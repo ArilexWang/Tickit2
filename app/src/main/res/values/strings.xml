@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">Tickit</string>
+
+    <!--Main page-->
+    <string name="app_name_b">T I C K I T</string>
+    <string name="main_tip">No account yet? Create one</string>
+    <!--Signin page-->
+    <string name="signin">Sign In</string>
+    <string name="ID_hint">Student ID</string>
+    <string name="sign_in_password_hint">Password</string>
+    <string name="sign_in_login">Login</string>
+    <string name="sign_in_tip">No account yet? Create one</string>
+    <string name="greetings">Good to see you again !</string>
+    <!--Signup page-->
+    <string name="signup">Sign Up</string>
+    <string name="firstGreeting">Nice to meet you !</string>
+    <string name="account_hint">Account</string>
+    <string name="password_hint">Password</string>
+    <string name="nickname_hint">NickName</string>
+    <string name="real_name_hint">realName</string>
+    <string name="mobile_hint">Mobile Number</string>
+    <string name="reenter_password_hint">Re-enter Password</string>
+    <string name="creat_account_hint">Create Account</string>
+    <string name="login_hint">Already a member? Login</string>
+
+
+
+    <!--sign in/up hint-->
+    <string name="name_hint">Name</string>
+
+    <!--Profile-->
+    <string name="me_login_balance">账户余额:</string>
+    <string name="me_nologin_not_login">您还没有登录哦</string>
+    <string name="me_nologin_login">立即登录</string>
+    <string name="me_user_coupons">优惠券</string>
+    <string name="me_user_cart">购物车</string>
+    <string name="me_user_favorite">收藏</string>
+    <string name="me_user_history">最近浏览</string>
+    <string name="me_item_unpaid_order">我的订单</string>
+    <string name="me_item_paid_order">我的票券</string>
+    <string name="me_item_lottery_order">抽奖单</string>
+    <string name="me_item_treasure_order">夺宝单</string>
+    <string name="me_item_unpaid_uncomment">未评价</string>
+    <string name="me_item_bankcard">我的银行卡</string>
+    <string name="me_item_bankcard_go_complete">去完善</string>
+    <string name="system_service">系统设置</string>
+    <string name="me_item_coupons">抵用券</string>
+    <string name="contact_service">联系客服</string>
+
+
+    <string name="user_item_title_username">用户名</string>
+    <string name="user_item_right_modify">修改</string>
+    <string name="user_item_title_nickname">昵称</string>
+    <string name="user_item_right_edit">编辑</string>
+    <string name="user_item_title_bindPhone">绑定手机号</string>
+    <string name="user_item_right_unbind">未绑定</string>
+    <string name="user_item_title_pay_password">支付密码</string>
+    <string name="user_item_right_unset">未设置</string>
+    <string name="user_item_title_login_password">登录密码</string>
+    <string name="user_item_title_avatar">头像</string>
+    <string name="man">男</string>
+    <string name="user_item_title_gender">性别</string>
+    <string name="user_item_title_birthday">生日</string>
+    <string name="user_item_right_select">请选择</string>
+    <string name="user_item_title_address">收货地址</string>
+    <string name="user_item_title_qr">我的二维码</string>
+    <string name="user_exit_login">退出登录</string>
+    <string name="user_item_title_member_level">会员等级</string>
+
+    <!--shake view buttons-->
+    <string name="shake_option_1">show</string>
+
+
+</resources>

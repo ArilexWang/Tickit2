@@ -14,6 +14,7 @@ import android.R.menu
 import android.content.Intent
 import com.example.ricardo.tickit2.MainActivity
 import com.cocosw.bottomsheet.BottomSheet
+import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
 import com.example.ricardo.tickit2.view.signup.SignUpActivity
 
@@ -35,10 +36,10 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         user_item_avatar.setOnClickListener{ avatarClick()  }
 
-
     }
 
     fun avatarClick(){
+        //底部导航栏
         BottomSheet.Builder(this@ProfileInfoActivity).sheet(R.menu.list).listener { dialog, which ->
             when (which) {
                 R.id.takePhoto -> {
@@ -47,6 +48,9 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
                     startActivity(intent)
                 }
                 R.id.choosePhoto -> {
+                    val intent = Intent()
+                    intent.setClass(this@ProfileInfoActivity, PhotoChoseActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }.build().show()

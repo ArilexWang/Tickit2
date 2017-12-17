@@ -1,7 +1,6 @@
-package com.example.ricardo.tickit2.data.network.api;
+package com.example.ricardo.tickit2.data.network.utils;
 
 import com.qiniu.android.common.FixedZone;
-import com.qiniu.android.common.Zone;
 import com.qiniu.android.storage.Configuration;
 import com.qiniu.android.storage.UploadManager;
 

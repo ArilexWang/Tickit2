@@ -1,16 +1,11 @@
 package com.example.ricardo.tickit2.view.setting
 
-import com.example.ricardo.tickit2.data.entity.GDUser
 import com.example.ricardo.tickit2.data.model.User
-import com.example.ricardo.tickit2.data.network.api.Auth
-import com.example.ricardo.tickit2.data.network.api.Config
-import com.example.ricardo.tickit2.data.network.repository.UserRepository
-import com.example.ricardo.tickit2.extensions.loadDaoSession
+import com.example.ricardo.tickit2.data.network.utils.Auth
+import com.example.ricardo.tickit2.data.network.utils.Config
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import java.text.SimpleDateFormat
 import java.util.*
-import org.json.JSONObject
-import com.qiniu.android.http.ResponseInfo
 import com.qiniu.android.storage.UpCompletionHandler
 import com.qiniu.android.storage.UploadManager
 

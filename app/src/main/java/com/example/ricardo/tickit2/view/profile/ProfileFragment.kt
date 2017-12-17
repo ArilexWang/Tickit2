@@ -22,15 +22,11 @@ import kotlinx.android.synthetic.main.fragment_profile.*
  */
 class ProfileFragment: android.support.v4.app.Fragment() {
 
-    private var profileDetail: ImageButton? = imgProfileDetail
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Fresco.initialize(context)
         val view = inflater!!.inflate(R.layout.fragment_profile, null)
 
-
         initProfile(view)
-
-
 
 
         return view
@@ -44,11 +40,17 @@ class ProfileFragment: android.support.v4.app.Fragment() {
             intent.setClass(this.context,SettingActivity::class.java)
             startActivity(intent)
         }
+
+        imgProfileDetail!!.setOnClickListener{
+            val intent = Intent()
+            intent.setClass(this.context,ProfileInfoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
     private fun initView(view: View?) {
-      //  profileDetial = view.findViewById(R.id.imgProfileDetail)
+
     }
 
     private fun initProfile(view: View?) {

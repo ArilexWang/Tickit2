@@ -36,8 +36,9 @@
     <string name="me_user_cart">购物车</string>
     <string name="me_user_favorite">收藏</string>
     <string name="me_user_history">最近浏览</string>
-    <string name="me_item_unpaid_order">我的订单</string>
-    <string name="me_item_paid_order">我的票券</string>
+    <string name="me_item_favourte">我的收藏</string>
+    <string name="me_item_order">我的订单</string>
+    <string name="me_item_ticket">我的票券</string>
     <string name="me_item_lottery_order">抽奖单</string>
     <string name="me_item_treasure_order">夺宝单</string>
     <string name="me_item_unpaid_uncomment">未评价</string>

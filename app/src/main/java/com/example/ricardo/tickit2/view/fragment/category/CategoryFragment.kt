@@ -1,6 +1,5 @@
-package com.example.ricardo.tickit2.view.cart
+package com.example.ricardo.tickit2.view.fragment.category
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +9,16 @@ import com.example.ricardo.tickit2.R
 /**
  * Created by yuhanyin on 2017/12/8.
  */
-class CartFragment: android.support.v4.app.Fragment() {
+class CategoryFragment  :android.support.v4.app.Fragment(){
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_cart, null)
+        return inflater!!.inflate(R.layout.fragment_category, null)
     }
 
     companion object {
-        fun instance(): CartFragment {
-            return CartFragment()
+
+        fun instance(): CategoryFragment {
+            return CategoryFragment()
         }
     }
 }

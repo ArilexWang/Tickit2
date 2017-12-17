@@ -33,7 +33,7 @@
         </activity>
 
 
-        <activity android:name=".view.profile.ProfileInfoActivity"></activity>
+        <activity android:name="com.example.ricardo.tickit2.view.fragment.profile.ProfileInfoActivity"></activity>
         <activity android:name=".view.signin.SignInActivity"></activity>
         <activity android:name=".view.views.ViewsActivity"></activity>
         <activity android:name=".view.signup.SignUpActivity"></activity>

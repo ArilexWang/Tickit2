@@ -38,6 +38,7 @@
 
 
     <!--我的 界面-->
+    <dimen name="Alpha">0.8</dimen>
     <dimen name="me_login_layout_height">90dp</dimen>
     <dimen name="me_login_head_width">65dp</dimen>
     <dimen name="me_login_head_height">60dp</dimen>

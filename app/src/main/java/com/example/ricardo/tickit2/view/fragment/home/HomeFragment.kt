@@ -1,13 +1,11 @@
-package com.example.ricardo.tickit2.view.home
+package com.example.ricardo.tickit2.view.fragment.home
 
-import android.app.Fragment
 import android.os.Bundle
 import android.support.annotation.Nullable
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import com.example.ricardo.tickit2.R
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
 /**

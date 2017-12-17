@@ -9,6 +9,14 @@ import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.setting.SettingPresenter
 import kotlinx.android.synthetic.main.activity_profile_detail.*
+import android.content.DialogInterface
+import android.R.menu
+import android.content.Intent
+import com.example.ricardo.tickit2.MainActivity
+import com.cocosw.bottomsheet.BottomSheet
+import com.example.ricardo.tickit2.view.setting.SettingActivity
+import com.example.ricardo.tickit2.view.signup.SignUpActivity
+
 
 /**
  * Created by yuhanyin on 2017/12/13.
@@ -25,8 +33,23 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         presenter.mUserDao = userDao
 
+        user_item_avatar.setOnClickListener{ avatarClick()  }
 
 
+    }
+
+    fun avatarClick(){
+        BottomSheet.Builder(this@ProfileInfoActivity).sheet(R.menu.list).listener { dialog, which ->
+            when (which) {
+                R.id.takePhoto -> {
+                    val intent = Intent()
+                    intent.setClass(this@ProfileInfoActivity, SettingActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.choosePhoto -> {
+                }
+            }
+        }.build().show()
     }
 
     private fun initView(){

@@ -32,7 +32,7 @@ class ProfileFragment: android.support.v4.app.Fragment() {
         return view
     }
 
-    //将需要点击事件的空间放在这里监听
+    //将需要点击事件的控件放在这里监听
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         systemService.setOnClickListener{

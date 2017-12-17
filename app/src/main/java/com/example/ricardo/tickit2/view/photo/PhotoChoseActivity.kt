@@ -17,6 +17,8 @@ import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.extensions.postAvatar
 import com.example.ricardo.tickit2.view.common.BaseActivity
+import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
+import com.example.ricardo.tickit2.view.setting.SettingActivity
 
 import java.io.File
 
@@ -24,9 +26,9 @@ import java.io.File
  * Created by Ricardo on 2017/12/17.
  */
 
-class PhotoChoseActivity : BaseActivity() {
+class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
 
-    override val presenter by lazy { PhotoChosePresenter() }
+    override val presenter by lazy { PhotoChosePresenter(this) }
 
     private var select_photo: Button? = null
     private var iv_photo: ImageView? = null
@@ -41,6 +43,7 @@ class PhotoChoseActivity : BaseActivity() {
 
         val gdUser = loadDaoSession().gdUserDao
 
+        presenter.userDao = gdUser
 
         select_photo = findViewById<View>(R.id.select_photo) as Button
         iv_photo = findViewById<View>(R.id.iv_photo) as ImageView
@@ -58,14 +61,22 @@ class PhotoChoseActivity : BaseActivity() {
 
     fun selectBtnClick(){
 
-        println(photoPath)
-
-        println(presenter.postAvatar(photoPath!!))
-
-
+        presenter.postAvatar(photoPath!!)
 
     }
 
+    override fun postAvatarSuccess(path: String?) {
+        presenter.updateUserInfo(path!!)
+
+        val intent = Intent()
+        intent.setClass(this@PhotoChoseActivity, ProfileInfoActivity::class.java)
+        startActivity(intent)
+
+    }
+
+    override fun postAvatarError(path: String?) {
+
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode != Activity.RESULT_OK) {

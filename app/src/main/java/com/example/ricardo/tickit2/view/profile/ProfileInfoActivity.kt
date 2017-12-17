@@ -27,16 +27,48 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_detail)
-        initView()
+
+        if(savedInstanceState != null){
+            print("not the first time")
+        }else{
+            setContentView(R.layout.activity_profile_detail)
+
+            val userDao = loadDaoSession().gdUserDao
+
+            presenter.mUserDao = userDao
+
+
+            val avatarPath = presenter.getLocalAvatar()
+
+            user_item_avatar.setImageURI(avatarPath)
+
+            user_item_avatar.setOnClickListener{ avatarClick()  }
+        }
+
+
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        println("resume")
+
 
         val userDao = loadDaoSession().gdUserDao
 
         presenter.mUserDao = userDao
 
-        user_item_avatar.setOnClickListener{ avatarClick()  }
+
+        val avatarPath =  "http://" + presenter.getLocalAvatar()
+
+        println(avatarPath)
+
+        user_item_avatar.setImageURI(avatarPath)
 
     }
+
 
     fun avatarClick(){
         //底部导航栏
@@ -51,6 +83,8 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
                     val intent = Intent()
                     intent.setClass(this@ProfileInfoActivity, PhotoChoseActivity::class.java)
                     startActivity(intent)
+                    this.finish()
+
                 }
             }
         }.build().show()

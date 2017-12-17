@@ -13,6 +13,7 @@ class ProfileInfoPresenter: ProfileInfoContract.Presenter{
 
     override fun start() {
 
+
     }
 
     override fun getLocalAvatar(): String? {

@@ -10,6 +10,8 @@ interface PhotoChoseContract {
 
     interface Presenter : BasePresenter {
 
+        fun postAvatar(path: String)
+
         //更新用户信息
         fun updateUserInfo(avatarPath: String)
     }

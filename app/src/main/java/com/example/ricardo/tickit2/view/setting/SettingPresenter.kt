@@ -51,7 +51,7 @@ class SettingPresenter (val view: SettingView): SettingContract.Presenter{
     }
 
     companion object {
-        var tempUser: User = User()
+
     }
 
 }

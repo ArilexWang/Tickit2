@@ -37,14 +37,12 @@ class SettingActivity:BaseActivity(), SettingView{
         super.onCreate(savedInstanceState)
 
 
-
         setContentView(R.layout.activity_setting)
 
         onAddCameraClicked()
         addCameraButton.setOnClickListener{ onAddCameraClicked()  }
         record_button.setOnClickListener{ onRecordButtonClicked() }
         front_back_camera_switcher.setOnClickListener{ onSwitchCameraClicked() }
-
 
     }
 
@@ -83,6 +81,9 @@ class SettingActivity:BaseActivity(), SettingView{
 
                     Toast.makeText(baseContext, "onPhotoTaken " + filePath!!, Toast.LENGTH_SHORT).show()
                     presenter.postAvatar(filePath)
+
+
+
 
                     val intent = Intent()
                     intent.setClass(this@SettingActivity, ProfileInfoActivity::class.java)

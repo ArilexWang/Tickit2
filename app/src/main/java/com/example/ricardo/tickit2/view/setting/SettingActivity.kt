@@ -1,5 +1,6 @@
 package com.example.ricardo.tickit2.view.setting
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
 import com.example.ricardo.tickit2.view.common.BaseActivity
+import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
 import com.github.florent37.camerafragment.CameraFragment
 import com.github.florent37.camerafragment.CameraFragmentApi
 import com.github.florent37.camerafragment.configuration.Configuration
@@ -78,9 +80,14 @@ class SettingActivity:BaseActivity(), SettingView{
                 }
 
                 override fun onPhotoTaken(bytes: ByteArray?, filePath: String?) {
+
                     Toast.makeText(baseContext, "onPhotoTaken " + filePath!!, Toast.LENGTH_SHORT).show()
-                    println(filePath)
                     presenter.postAvatar(filePath)
+
+                    val intent = Intent()
+                    intent.setClass(this@SettingActivity, ProfileInfoActivity::class.java)
+                    startActivity(intent)
+
                 }
             },
                     "/storage/self/primary",

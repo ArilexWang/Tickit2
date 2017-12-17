@@ -34,7 +34,11 @@ class SettingActivity:BaseActivity(), SettingView{
 
         super.onCreate(savedInstanceState)
 
+
+
         setContentView(R.layout.activity_setting)
+
+        onAddCameraClicked()
         addCameraButton.setOnClickListener{ onAddCameraClicked()  }
         record_button.setOnClickListener{ onRecordButtonClicked() }
         front_back_camera_switcher.setOnClickListener{ onSwitchCameraClicked() }

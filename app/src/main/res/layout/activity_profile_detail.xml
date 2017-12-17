@@ -6,15 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <!--<Button-->
-    <!--android:id="@+id/buttonProfile"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="Button" />-->
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,6 +46,7 @@
                     <ImageView
                         android:id="@+id/user_item_avatar_iv_arrow"
                         style="@style/me_common_item_arrow_right_imageView_style"/>
+
                 </RelativeLayout>
                 <View
                     style="@style/me_horizontal_view_style"/>

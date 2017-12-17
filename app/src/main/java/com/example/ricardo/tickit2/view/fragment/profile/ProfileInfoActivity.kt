@@ -25,6 +25,7 @@ class ProfileInfoActivity: AppCompatActivity(){
         }
 
 
+
     }
     companion object {
 

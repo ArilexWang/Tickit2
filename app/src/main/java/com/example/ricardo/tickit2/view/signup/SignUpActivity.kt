@@ -121,11 +121,13 @@ class SignUpActivity : BaseActivity(),SignUpView{
     //注册成功后调用的函数，用户信息存入greenDao,跳转界面
     override fun onSuccess(items: List<User>) {
 
-        println(items[0].avatar)
-
         val user = items[0]
 
         saveUserToLocal(user, presenter.mUserDao!!)
+
+        val intent = Intent()
+        intent.setClass(this@SignUpActivity, ViewsActivity::class.java)
+        startActivity(intent)
 
     }
 

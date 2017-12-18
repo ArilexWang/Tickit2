@@ -14,8 +14,11 @@ import android.widget.ImageView
 
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BasePresenter
+import com.example.ricardo.tickit2.data.model.User
+import com.example.ricardo.tickit2.data.network.repository.UserRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.extensions.postAvatar
+import com.example.ricardo.tickit2.extensions.saveUserToLocal
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
@@ -28,7 +31,7 @@ import java.io.File
 
 class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
 
-    override val presenter by lazy { PhotoChosePresenter(this) }
+    override val presenter by lazy { PhotoChosePresenter(this, UserRepository.get()) }
 
     private var select_photo: Button? = null
     private var iv_photo: ImageView? = null
@@ -60,13 +63,27 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
     }
 
     fun selectBtnClick(){
-
         presenter.postAvatar(photoPath!!)
 
     }
 
+    //图片上传七牛云成功
     override fun postAvatarSuccess(path: String?) {
         presenter.updateUserInfo(path!!)
+    }
+
+    //图片上传七牛云失败
+    override fun postAvatarError(path: String?) {
+        println("Upload Error")
+    }
+
+
+    //更新服务器信息成功
+    override fun onSuccess(items: List<User>) {
+
+        val user = items[0]
+
+        saveUserToLocal(user, presenter.userDao!!)
 
         val intent = Intent()
         intent.setClass(this@PhotoChoseActivity, ProfileInfoActivity::class.java)
@@ -74,9 +91,11 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
 
     }
 
-    override fun postAvatarError(path: String?) {
-
+    //更新服务器信息失败
+    override fun onError(error: Throwable) {
+        println(error)
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode != Activity.RESULT_OK) {

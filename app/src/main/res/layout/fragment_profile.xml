@@ -17,25 +17,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--我的信息-->
             <RelativeLayout
                 android:id="@+id/me_login_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/me_login_layout_height"
                 android:paddingLeft="@dimen/me_login_layout_paddingLeft"
-                android:visibility="visible">
-                <!--<com.facebook.drawee.view.SimpleDraweeView-->
-                    <!--android:id="@+id/me_login_iv_head"-->
-                    <!--android:layout_width="@dimen/me_login_head_width"-->
-                    <!--android:layout_height="@dimen/me_login_head_height"-->
-                    <!--android:layout_marginEnd="@dimen/me_login_head_marginEnd"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:scaleType="fitXY"-->
-                    <!--app:placeholderImage="@mipmap/user_head"/>-->
+                android:visibility="visible"
+                android:background="@color/green"
+                android:alpha="@dimen/Alpha">
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/me_login_iv_head"
+                    android:layout_width="@dimen/me_login_head_width"
+                    android:layout_height="@dimen/me_login_head_height"
+                    android:layout_marginEnd="@dimen/me_login_head_marginEnd"
+                    android:layout_centerVertical="true"
+                    android:scaleType="fitXY"
+                    app:placeholderImage="@mipmap/ic_profile"/>
                 <LinearLayout
                     android:id="@+id/me_login_profile_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/me_login_iv_head"
                     android:orientation="vertical">
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -45,10 +49,11 @@
                             android:id="@+id/me_login_tv_username"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="布拉拉"
+                            android:text="布拉拉"
                             android:singleLine="true"
                             android:ellipsize="end"
                             android:textSize="@dimen/me_login_username_size"/>
+                        <!--用户等级level图片目前为gone-->
                         <ImageView
                             android:id="@+id/me_login_iv_level"
                             android:layout_width="@dimen/me_login_level_width"
@@ -82,107 +87,124 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/me_login_head_marginEnd"
+                    android:background="@color/green"
                     android:src="@mipmap/icon_user_arrow_more"
-                   />
+                    />
             </RelativeLayout>
 
+            <!--隐藏：请登录-->
             <LinearLayout
+                android:id="@+id/me_nologin_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:background="@drawable/white_quai_bg"
-                android:orientation="horizontal">
+                android:layout_height="@dimen/me_login_layout_height"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@mipmap/my_login_bg"
+                android:alpha="@dimen/Alpha"
+                android:visibility="gone">
                 <TextView
-                    android:id="@+id/me_user_tv_cart"
-                    style="@style/me_userLayout_textView_style"
-                    android:drawableTop="@mipmap/user_icon_lashouquan"
-                    android:text="@string/me_user_cart"/>
-                <View
-                    style="@style/me_vertical_view_style"/>
-                <TextView
-                    android:id="@+id/me_user_tv_favorite"
-                    style="@style/me_userLayout_textView_style"
-                    android:drawableTop="@mipmap/user_icon_favorite"
-                    android:text="@string/me_user_favorite"/>
-                <View
-                    style="@style/me_vertical_view_style"/>
-                <TextView
-                    android:id="@+id/me_user_tv_history"
-                    style="@style/me_userLayout_textView_style"
-                    android:drawableTop="@mipmap/user_icon_history"
-                    android:text="@string/me_user_history"/>
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/me_nologin_not_login"
+                    android:textSize="@dimen/me_nologin_textSize" />
+                <Button
+                    android:id="@+id/meNologinBtnLogin"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/me_nologin_login"
+                    android:textSize="@dimen/me_nologin_textSize"
+                    android:background="@drawable/login_btn_bg_selector"/>
             </LinearLayout>
+            <!--隐藏的View-->
+            <View
+                style="@style/me_user_view"
+                android:visibility="gone"/>
 
             <LinearLayout
-                android:id="@+id/me_user_order_layout"
+                android:id="@+id/me_user_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/white_quai_bg">
+                <!--我的收藏-->
                 <RelativeLayout
-                    android:id="@+id/me_item_unpaid_layout"
+                    android:id="@+id/me_item_favourite_layout"
                     style="@style/me_common_item_relativeLayout_style">
                     <ImageView
-                        android:id="@+id/me_item_unpaid_iv_icon"
+                        android:id="@+id/me_item_favourite_icon"
                         style="@style/me_common_item_icon_imageView_style"
-                        android:src="@mipmap/user_listicon_daifukuan"/>
+                        android:src="@mipmap/user_icon_favourite"/>
                     <TextView
                         style="@style/me_common_item_title_textView_style"
-                        android:layout_toRightOf="@+id/me_item_unpaid_iv_icon"
-                        android:text="@string/me_item_unpaid_order"
+                        android:layout_toRightOf="@+id/me_item_favourite_icon"
+                        android:text="@string/me_item_favourte"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <ImageView
-                        android:id="@+id/me_item_unpaid_iv_arrow_right"
-                        style="@style/me_common_item_arrow_right_imageView_style"/>
-                    <TextView
-                        android:id="@+id/me_item_unpaid_tv_count"
-                        android:layout_toLeftOf="@+id/me_item_unpaid_iv_arrow_right"
-                        android:textColor="@color/white"
-                        android:background="@mipmap/num_red_bg"
-                        style="@style/me_common_item_count_textView_style"
-                        android:text="1"
+                    <ImageButton
+                        android:id="@+id/myFavouriteBtn"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_user_arrow_more"
+                        android:background="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
+                        android:layout_centerInParent="true"/>
                 </RelativeLayout>
                 <View
                     style="@style/me_horizontal_view_style"/>
+                <!--我的订单-->
                 <RelativeLayout
-                    android:id="@+id/me_item_paid_order_layout"
+                    android:id="@+id/me_item_order_layout"
                     style="@style/me_common_item_relativeLayout_style">
                     <ImageView
-                        android:id="@+id/me_item_paid_iv_icon"
+                        android:id="@+id/me_item_order_icon"
                         style="@style/me_common_item_icon_imageView_style"
                         android:src="@mipmap/user_listicon_yifukuan"/>
                     <TextView
                         style="@style/me_common_item_title_textView_style"
-                        android:layout_toRightOf="@+id/me_item_paid_iv_icon"
-                        android:text="@string/me_item_paid_order"
+                        android:layout_toRightOf="@+id/me_item_order_icon"
+                        android:text="@string/me_item_order"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+                    <ImageButton
+                        android:id="@+id/myOrderBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_user_arrow_more"
+                        android:background="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+                <View
+                    style="@style/me_horizontal_view_style"/>
+                <!--我的票券-->
+                <RelativeLayout
+                    android:id="@+id/me_item_favourite"
+                    style="@style/me_common_item_relativeLayout_style">
+
                     <ImageView
-                        android:id="@+id/me_item_paid_iv_arrow_right"
-                        style="@style/me_common_item_arrow_right_imageView_style"/>
+                        android:id="@+id/me_item_ticket_icon"
+                        style="@style/me_common_item_icon_imageView_style"
+                        android:src="@mipmap/user_listicon_choujiang"/>
                     <TextView
-                        android:id="@+id/me_item_paid_tv_count"
-                        android:layout_toLeftOf="@+id/me_item_paid_iv_arrow_right"
-                        style="@style/me_common_item_count_textView_style"
-                        tools:text="1"
+                        style="@style/me_common_item_title_textView_style"
+                        android:layout_toRightOf="@+id/me_item_ticket_icon"
+                        android:text="@string/me_item_ticket"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                    <TextView
-                        android:id="@+id/me_item_paid_tv_uncomment_count"
-                        style="@style/me_common_item_count_textView_style"
-                        android:layout_toLeftOf="@+id/me_item_paid_iv_arrow_right"
-                        android:background="@drawable/movie_group_good_buy_d"
-                        android:paddingLeft="5.0dip"
-                        android:paddingRight="5.0dip"
-                        android:text="@string/me_item_unpaid_uncomment"
-                        android:textColor="@color/white"
-                        android:visibility="gone"
+                    <ImageButton
+                        android:id="@+id/myTicketBtn"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_user_arrow_more"
+                        android:background="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
+                        android:layout_centerInParent="true"/>
                 </RelativeLayout>
                 <View
                     style="@style/me_horizontal_view_style"/>

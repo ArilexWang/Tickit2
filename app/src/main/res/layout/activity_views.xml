@@ -20,7 +20,8 @@
             android:padding="5dp"
             android:layout_centerInParent="true"
             android:background="@color/green"
-            android:src="@mipmap/tabbar_compose_icon_add_highlighted"/>
+            android:src="@mipmap/category" />
+
     </RelativeLayout>
 
 

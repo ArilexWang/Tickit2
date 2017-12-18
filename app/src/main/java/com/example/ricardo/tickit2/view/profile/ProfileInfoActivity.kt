@@ -1,23 +1,15 @@
 package com.example.ricardo.tickit2.view.profile
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.base.BasePresenter
-import com.example.ricardo.tickit2.data.entity.GDUser
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.view.common.BaseActivity
-import com.example.ricardo.tickit2.view.setting.SettingPresenter
-import kotlinx.android.synthetic.main.activity_profile_detail.*
-import android.content.DialogInterface
-import android.R.menu
+
 import android.content.Intent
-import com.example.ricardo.tickit2.MainActivity
 import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
-import com.example.ricardo.tickit2.view.signup.SignUpActivity
-
+import kotlinx.android.synthetic.main.activity_profile_detail.*
 
 /**
  * Created by yuhanyin on 2017/12/13.
@@ -27,6 +19,8 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_profile_detail)
+        initView()
 
         if(savedInstanceState != null){
             print("not the first time")
@@ -40,9 +34,9 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
             val avatarPath = presenter.getLocalAvatar()
 
-            user_item_avatar.setImageURI(avatarPath)
+            userItemAvatar.setImageURI(avatarPath)
 
-            user_item_avatar.setOnClickListener{ avatarClick()  }
+            userItemAvatar.setOnClickListener{ avatarClick()  }
         }
 
 
@@ -65,7 +59,7 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         println(avatarPath)
 
-        user_item_avatar.setImageURI(avatarPath)
+        userItemAvatar.setImageURI(avatarPath)
 
     }
 
@@ -91,6 +85,11 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
     }
 
     private fun initView(){
+        userItemAvatar.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this.applicationContext, SettingActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }

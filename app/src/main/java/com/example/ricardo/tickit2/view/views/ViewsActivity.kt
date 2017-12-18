@@ -2,25 +2,19 @@ package com.example.ricardo.tickit2.view.views
 
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.support.annotation.RequiresApi
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.view.cart.CartFragment
-import com.example.ricardo.tickit2.view.category.CategoryFragment
-import com.example.ricardo.tickit2.view.category.CategoryFragment.Companion.instance
-import com.example.ricardo.tickit2.view.home.HomeFragment
-import com.example.ricardo.tickit2.view.profile.ProfileFragment
+import com.example.ricardo.tickit2.view.fragment.cart.CartFragment
+import com.example.ricardo.tickit2.view.fragment.category.CategoryFragment
+import com.example.ricardo.tickit2.view.fragment.home.HomeFragment
+import com.example.ricardo.tickit2.view.fragment.profile.ProfileFragment
 import com.lhh.apst.library.AdvancedPagerSlidingTabStrip
 import com.lhh.apst.library.Margins
 
@@ -65,7 +59,8 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
 
         vp_main.currentItem = VIEW_FIRST
 
-        tabs.showDot(VIEW_FOURTH, "99+")
+        //example of how to show dot on icons
+        //tabs.showDot(VIEW_FOURTH, "99+")
 
     }
 
@@ -126,10 +121,10 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
         override fun getPageTitle(position: Int): CharSequence? {
             if (position in 0..(VIEW_SIZE - 1)) {
                 when (position) {
-                    VIEW_FIRST -> return "HOME"
-                    VIEW_SECOND -> return "CATEGORY"
-                    VIEW_THIRD -> return "CART"
-                    VIEW_FOURTH -> return "PROFILE"
+                    VIEW_FIRST -> return "Home"
+                    VIEW_SECOND -> return "Search"
+                    VIEW_THIRD -> return "Cart"
+                    VIEW_FOURTH -> return "Profile"
                     else -> {
 
                     }
@@ -141,10 +136,10 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
         override fun getPageWeight(position: Int): Float {
             if (position in 0..(VIEW_SIZE - 1)) {
                 when (position) {
-                    VIEW_FIRST -> return 0.92f
+                    VIEW_FIRST -> return 1.0f
                     VIEW_SECOND -> return 1.0f
                     VIEW_THIRD -> return 1.0f
-                    VIEW_FOURTH -> return 0.92f
+                    VIEW_FOURTH -> return 1.0f
                     else -> {
                     }
                 }
@@ -186,7 +181,7 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
             if (position in 0..(VIEW_SIZE - 1)) {
                 when (position) {
                     VIEW_FIRST -> return R.mipmap.tabbar_home_select as T
-                    VIEW_SECOND -> return R.mipmap.tabbar_category_select as T
+                    VIEW_SECOND -> return R.mipmap.tabbar_search_select as T
                     VIEW_THIRD -> return R.mipmap.tabbar_cart_select as T
                     VIEW_FOURTH -> return R.mipmap.tabbar_profile_select as T
                     else -> {
@@ -201,7 +196,7 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
             if (position in 0..(VIEW_SIZE - 1)) {
                 when (position) {
                     VIEW_FIRST -> return R.mipmap.tabbar_home as T
-                    VIEW_SECOND -> return R.mipmap.tabbar_category as T
+                    VIEW_SECOND -> return R.mipmap.tabbar_search as T
                     VIEW_THIRD -> return R.mipmap.tabbar_cart as T
                     VIEW_FOURTH -> return R.mipmap.tabbar_profile as T
                     else -> {
@@ -211,33 +206,6 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
             return 0 as T
         }
 
-//        override fun getPageIcon(index: Int): Int? {
-//            if (index in 0..(VIEW_SIZE - 1)) {
-//                when (index) {
-//                    VIEW_FIRST -> return R.mipmap.tabbar_home
-//                    VIEW_SECOND -> return R.mipmap.tabbar_message_center
-//                    VIEW_THIRD -> return R.mipmap.tabbar_discover
-//                    VIEW_FOURTH -> return R.mipmap.tabbar_profile
-//                    else -> {
-//                    }
-//                }
-//            }
-//            return 0
-//        }
-//
-//        override fun getPageSelectIcon(index: Int): Int? {
-//            if (index in 0..(VIEW_SIZE - 1)) {
-//                when (index) {
-//                    VIEW_FIRST -> return R.mipmap.tabbar_home_selected
-//                    VIEW_SECOND -> return R.mipmap.tabbar_message_center_highlighted
-//                    VIEW_THIRD -> return R.mipmap.tabbar_discover_highlighted
-//                    VIEW_FOURTH -> return R.mipmap.tabbar_profile_highlighted
-//                    else -> {
-//                    }
-//                }
-//            }
-//            return 0
-//        }
 
         override fun getPageIconBounds(position: Int): Rect {
             return Rect(0, 0, mSize, mSize)

@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.view.home
+package com.example.ricardo.tickit2.view.fragment.home
 
 //import com.taobao.library.BaseBannerAdapter
 //import android.view.LayoutInflater

@@ -3,6 +3,7 @@ package com.example.ricardo.tickit2.data.model
 import android.annotation.SuppressLint
 import android.os.Parcelable
 import com.example.ricardo.tickit2.data.dto.UserDto
+import com.example.ricardo.tickit2.data.entity.GDUser
 import kotlinx.android.parcel.Parcelize
 
 @SuppressLint("ParceCreator")
@@ -28,4 +29,13 @@ class User(
             this(id, nickName, realName, mobileNumber, password, "")
 
     constructor():this("","","","","")
+
+    constructor(gdUser: GDUser): this(
+            id = gdUser.id,
+            nickName = gdUser.nickName,
+            realName = gdUser.realName,
+            mobileNumber = gdUser.mobileNumber,
+            password = gdUser.password,
+            avatar = gdUser.avatar
+    )
 }

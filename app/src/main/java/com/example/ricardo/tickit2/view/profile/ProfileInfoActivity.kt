@@ -22,24 +22,16 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
         setContentView(R.layout.activity_profile_detail)
         initView()
 
-        if(savedInstanceState != null){
-            print("not the first time")
-        }else{
-            setContentView(R.layout.activity_profile_detail)
+        val userDao = loadDaoSession().gdUserDao
 
-            val userDao = loadDaoSession().gdUserDao
-
-            presenter.mUserDao = userDao
+        presenter.mUserDao = userDao
 
 
-            val avatarPath = presenter.getLocalAvatar()
+        val avatarPath = presenter.getLocalAvatar()
 
-            userItemAvatar.setImageURI(avatarPath)
+        userItemAvatar.setImageURI(avatarPath)
 
-            userItemAvatar.setOnClickListener{ avatarClick()  }
-        }
-
-
+        userItemAvatar.setOnClickListener{ avatarClick()  }
 
     }
 
@@ -49,13 +41,12 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         println("resume")
 
-
         val userDao = loadDaoSession().gdUserDao
 
         presenter.mUserDao = userDao
 
 
-        val avatarPath =  "http://" + presenter.getLocalAvatar()
+        var avatarPath =  presenter.getLocalAvatar()
 
         println(avatarPath)
 
@@ -65,6 +56,9 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
 
     fun avatarClick(){
+
+        println("click")
+
         //底部导航栏
         BottomSheet.Builder(this@ProfileInfoActivity).sheet(R.menu.list).listener { dialog, which ->
             when (which) {

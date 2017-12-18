@@ -33,7 +33,7 @@ class PhotoChosePresenter(val view: PhotoChoseView): PhotoChoseContract.Presente
         uploadManager.put(picPath, key, Auth
                 .create(Config.ACCESS_KEY , Config.SECRET_KEY).uploadToken(Config.BUCKET_NAME), UpCompletionHandler { key, info, res ->
             if (info.isOK) {
-                val headpicPath = Config.TEST_DOMAIN + "/" + key
+                val headpicPath = "http://" + Config.TEST_DOMAIN + "/" + key
 
                 view.postAvatarSuccess(headpicPath)
 

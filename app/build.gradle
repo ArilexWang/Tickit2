@@ -51,7 +51,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 //    //bottomBar
-//    implementation 'com.roughike:bottom-bar:2.3.1'
+    implementation 'com.roughike:bottom-bar:2.3.1'
 //    //switchBanner
 //    implementation 'com.github.Rowandjj:VerticalBannerView:1.0'
 //    //fragment
@@ -64,4 +64,5 @@ dependencies {
     implementation 'com.github.florent37:camerafragment:1.0.8'
     implementation 'com.facebook.fresco:fresco:0.12.0'
     implementation 'com.cocosw:bottomsheet:1.+@aar'
+
 }

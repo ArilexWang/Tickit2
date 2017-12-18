@@ -12,6 +12,9 @@ import com.example.ricardo.tickit2.view.common.BaseActivity
 
 fun BaseActivity.loadDaoSession() = (application as App).getDaoSession()
 
+
+
+
 fun BaseActivity.saveUserToLocal(item: User, userDao: GDUserDao){
     val db = userDao!!.queryBuilder()
 

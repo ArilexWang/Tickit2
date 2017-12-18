@@ -3,11 +3,16 @@ package com.example.ricardo.tickit2.view.photo
 import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.entity.GDUser
 import com.example.ricardo.tickit2.data.model.User
+import com.example.ricardo.tickit2.data.network.repository.UserRepository
 import com.example.ricardo.tickit2.data.network.utils.Auth
 import com.example.ricardo.tickit2.data.network.utils.Config
+import com.example.ricardo.tickit2.extensions.applySchedulers
+import com.example.ricardo.tickit2.extensions.plusAssign
+import com.example.ricardo.tickit2.extensions.subscribeBy
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import com.qiniu.android.storage.UpCompletionHandler
 import com.qiniu.android.storage.UploadManager
+import io.reactivex.disposables.CompositeDisposable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,8 +20,10 @@ import java.util.*
  * Created by Ricardo on 2017/12/17.
  */
 
-class PhotoChosePresenter(val view: PhotoChoseView): PhotoChoseContract.Presenter{
+class PhotoChosePresenter(val view: PhotoChoseView,val respository: UserRepository): PhotoChoseContract.Presenter{
     var userDao: GDUserDao? = null
+
+    protected var subscriptins = CompositeDisposable()
 
     override fun start() {
     }
@@ -27,8 +34,6 @@ class PhotoChosePresenter(val view: PhotoChoseView): PhotoChoseContract.Presente
         val sdf = SimpleDateFormat("yyyyMMddHHmmss")
         val key = "icon_" + sdf.format(Date())
         val picPath = path
-
-        var remotePath: String? = null
 
         uploadManager.put(picPath, key, Auth
                 .create(Config.ACCESS_KEY , Config.SECRET_KEY).uploadToken(Config.BUCKET_NAME), UpCompletionHandler { key, info, res ->
@@ -47,7 +52,6 @@ class PhotoChosePresenter(val view: PhotoChoseView): PhotoChoseContract.Presente
 
     }
     override fun updateUserInfo(avatarPath: String) {
-        println(avatarPath)
 
         val db = userDao!!.queryBuilder()
 
@@ -59,11 +63,13 @@ class PhotoChosePresenter(val view: PhotoChoseView): PhotoChoseContract.Presente
 
         nUser.avatar = avatarPath
 
-        val newGDUser = GDUser(nUser)
+        subscriptins += respository.updateUserInfo(nUser)
+                .applySchedulers()
+                .subscribeBy (
+                        onSuccess = view::onSuccess,
+                        onError = view::onError
+                )
 
-        userDao!!.update(newGDUser)
-
-        print(userDao!!.load(list[0].id).avatar)
 
     }
 

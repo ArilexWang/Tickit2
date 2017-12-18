@@ -56,9 +56,6 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
 
     fun avatarClick(){
-
-        println("click")
-
         //底部导航栏
         BottomSheet.Builder(this@ProfileInfoActivity).sheet(R.menu.list).listener { dialog, which ->
             when (which) {

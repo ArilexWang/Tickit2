@@ -11,3 +11,4 @@
 .gradelw
 .gradelw.bat
 settings.gradle
+gradle.properties

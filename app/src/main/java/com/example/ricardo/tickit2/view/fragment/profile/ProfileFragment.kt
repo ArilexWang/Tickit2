@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.ricardo.tickit2.App
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.greendao.gen.DaoMaster
 import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -22,6 +24,18 @@ class ProfileFragment: android.support.v4.app.Fragment() {
     //将需要点击事件的控件放在这里监听
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val  userDao = App.instance.getDaoSession().gdUserDao
+
+        val database = userDao.queryBuilder()
+
+        val list = database.list()
+
+        val avatarPath = list[0].avatar
+
+        print(avatarPath)
+
+        me_login_iv_head.setImageURI(avatarPath)
 
         imgProfileDetail.setOnClickListener {
             val intent = Intent()

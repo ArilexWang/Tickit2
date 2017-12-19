@@ -9,6 +9,8 @@ import android.content.Intent
 import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
+import com.example.ricardo.tickit2.view.signin.SignInActivity
+import com.example.ricardo.tickit2.view.signin.SignInPresenter
 import kotlinx.android.synthetic.main.activity_profile_detail.*
 
 /**
@@ -33,8 +35,15 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         userItemAvatar.setOnClickListener{ avatarClick()  }
 
+        user_btn_exit_login.setOnClickListener{ exitLogin() }
+
     }
 
+    fun exitLogin(){
+        val intent = Intent()
+        intent.setClass(this@ProfileInfoActivity, SignInActivity::class.java)
+        startActivity(intent)
+    }
 
     override fun onResume() {
         super.onResume()

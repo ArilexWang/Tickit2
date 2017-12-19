@@ -1,7 +1,11 @@
 package com.example.ricardo.tickit2.view.setting
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresPermission
@@ -11,8 +15,13 @@ import android.view.View
 import android.widget.Toast
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BasePresenter
+import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
+import com.example.ricardo.tickit2.extensions.loadDaoSession
+import com.example.ricardo.tickit2.extensions.saveUserToLocal
 import com.example.ricardo.tickit2.view.common.BaseActivity
+import com.example.ricardo.tickit2.view.photo.ImageUtils
+import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
 import com.github.florent37.camerafragment.CameraFragment
 import com.github.florent37.camerafragment.CameraFragmentApi
@@ -24,14 +33,18 @@ import com.github.florent37.camerafragment.listeners.CameraFragmentVideoRecordTe
 import com.github.florent37.camerafragment.widgets.CameraSettingsView
 import kotlinx.android.synthetic.main.activity_setting.*
 import java.io.File
+import java.net.URL
 import java.util.jar.Manifest
 
 
 class SettingActivity:BaseActivity(), SettingView{
-    override val presenter by lazy { SettingPresenter(this) }
+    override val presenter by lazy { SettingPresenter(this,UserRepository.get()) }
 
     val settingView:CameraSettingsView? = null
 
+    private var photoPath: String? = null
+
+    private val IMAGE_FILE_NAME = System.currentTimeMillis().toString() + "crecirheader.jpg"
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -40,9 +53,18 @@ class SettingActivity:BaseActivity(), SettingView{
         setContentView(R.layout.activity_setting)
 
         onAddCameraClicked()
+
+
+        val gdUser = loadDaoSession().gdUserDao
+
+        presenter.userDao = gdUser
+
+        select_photo.visibility = View.GONE
+
         addCameraButton.setOnClickListener{ onAddCameraClicked()  }
         record_button.setOnClickListener{ onRecordButtonClicked() }
         front_back_camera_switcher.setOnClickListener{ onSwitchCameraClicked() }
+        select_photo.setOnClickListener{ selectBtnClick() }
 
     }
 
@@ -80,14 +102,13 @@ class SettingActivity:BaseActivity(), SettingView{
                 override fun onPhotoTaken(bytes: ByteArray?, filePath: String?) {
 
                     Toast.makeText(baseContext, "onPhotoTaken " + filePath!!, Toast.LENGTH_SHORT).show()
-                    presenter.postAvatar(filePath)
 
 
+                    val pathUri = Uri.fromFile(File(filePath))
 
+                    resizeImage(pathUri)
 
-                    val intent = Intent()
-                    intent.setClass(this@SettingActivity, ProfileInfoActivity::class.java)
-                    startActivity(intent)
+                    //presenter.postAvatar(filePath)
 
                 }
             },
@@ -98,6 +119,82 @@ class SettingActivity:BaseActivity(), SettingView{
     }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        } else {
+            when (requestCode) {
+                SettingActivity.IMAGE_REQUEST_CODE -> resizeImage(data!!.data)
+
+                SettingActivity.RESIZE_REQUEST_CODE -> if (data != null) {
+                    showResizeImage(data)
+                }
+
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    fun resizeImage(uri: Uri?) {
+        val intent = Intent("com.android.camera.action.CROP")
+        intent.setDataAndType((uri), "image/*")
+        intent.putExtra("crop", "true")
+        intent.putExtra("aspectX", 1)
+        intent.putExtra("aspectY", 1)
+        intent.putExtra("outputX", 150)
+        intent.putExtra("outputY", 150)
+        intent.putExtra("return-data", true)
+        startActivityForResult(intent, 2)
+    }
+
+    private fun showResizeImage(data: Intent) {
+        val extras = data.extras
+        if (extras != null) {
+            val photo = extras.getParcelable<Bitmap>("data")
+
+            val path = filesDir.path + File.separator + IMAGE_FILE_NAME
+
+            photoPath = path
+
+            ImageUtils.saveImage(photo, path)
+            BitmapDrawable()
+            val drawable = BitmapDrawable(photo)
+            iv_photo!!.setImageDrawable(drawable)
+            addCameraButton.visibility = View.GONE
+            select_photo.visibility = View.VISIBLE
+            content.visibility = View.GONE
+            cameraLayout.visibility = View.GONE
+
+        }
+    }
+
+    fun selectBtnClick(){
+        println(photoPath!!)
+        presenter.postAvatar(photoPath!!)
+    }
+
+
+    override fun uploadSuccess(path: String) {
+        println(path)
+       presenter.updateUserInfo(path)
+    }
+
+    override fun uploadError(error: String) {
+        println(error)
+    }
+
+
+    override fun onSuccess(items: List<User>) {
+        val user = items[0]
+        saveUserToLocal(user, presenter.userDao!!)
+        val intent = Intent()
+        intent.setClass(this@SettingActivity, ProfileInfoActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun onError(error: Throwable) {
+        println(error)
+    }
 
     fun onSwitchCameraClicked() {
         val cameraFragment = getCameraFragment()
@@ -105,9 +202,11 @@ class SettingActivity:BaseActivity(), SettingView{
     }
 
 
+
+
+
     @RequiresPermission(android.Manifest.permission.CAMERA)
     fun addCamera(){
-
 
         addCameraButton.visibility = View.GONE
 
@@ -242,5 +341,7 @@ class SettingActivity:BaseActivity(), SettingView{
     companion object {
         val REQUEST_CAMERA_PERMISSIONS: Int = 931
         val FRAGMENT_TAG = "camera"
+        private val RESIZE_REQUEST_CODE = 2
+        private val IMAGE_REQUEST_CODE = 0
     }
 }

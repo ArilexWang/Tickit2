@@ -12,6 +12,6 @@ interface SettingContract {
         fun postAvatar(path: String)
 
         //更新用户信息
-        fun updateUserInfo(user: User)
+        fun updateUserInfo(avatarPath: String)
     }
 }

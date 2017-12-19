@@ -77,7 +77,6 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
         println("Upload Error")
     }
 
-
     //更新服务器信息成功
     override fun onSuccess(items: List<User>) {
 
@@ -107,6 +106,7 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
                 RESIZE_REQUEST_CODE -> if (data != null) {
                     showResizeImage(data)
                 }
+
             }
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -128,7 +128,7 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
         val extras = data.extras
         if (extras != null) {
             val photo = extras.getParcelable<Bitmap>("data")
-            //            String path = getExternalCacheDir().getAbsolutePath() + File.separator + IMAGE_FILE_NAME;
+
             val path = filesDir.path + File.separator + IMAGE_FILE_NAME
 
             photoPath = path

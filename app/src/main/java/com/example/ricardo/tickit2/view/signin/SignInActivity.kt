@@ -78,20 +78,16 @@ class SignInActivity:BaseActivity(),SignInView{
         val user = items[0]
 
         saveUserToLocal(user, presenter.mUserDao!!)
-
         //跳转界面
 
         val intent = Intent()
         intent.setClass(this@SignInActivity, ViewsActivity::class.java)
         startActivity(intent)
 
-
-
     }
 
     //登录失败后调用函数
     override fun onError(error: Throwable) {
-
 
     }
 

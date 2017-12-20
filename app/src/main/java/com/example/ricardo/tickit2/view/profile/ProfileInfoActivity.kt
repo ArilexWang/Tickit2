@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_profile_detail.*
  */
 class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
    override val presenter by lazy { ProfileInfoPresenter() }
-
+   
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_detail)

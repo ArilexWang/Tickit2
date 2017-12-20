@@ -7,11 +7,14 @@ import com.example.ricardo.tickit2.view.common.BaseActivity
 
 import android.content.Intent
 import com.cocosw.bottomsheet.BottomSheet
+import com.example.ricardo.tickit2.view.fragment.profile.ProfileFragment
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
 import com.example.ricardo.tickit2.view.signin.SignInActivity
 import com.example.ricardo.tickit2.view.signin.SignInPresenter
+import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_profile_detail.*
+import kotlinx.android.synthetic.main.activity_setting.*
 
 /**
  * Created by yuhanyin on 2017/12/13.
@@ -88,6 +91,11 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
         userItemAvatar.setOnClickListener {
             val intent = Intent()
             intent.setClass(this.applicationContext, SettingActivity::class.java)
+            startActivity(intent)
+        }
+        userProfileBack.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this.applicationContext,ViewsActivity::class.java)
             startActivity(intent)
         }
 

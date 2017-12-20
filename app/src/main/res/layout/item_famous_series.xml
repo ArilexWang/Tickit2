@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:text="@string/guess_you_like"
+        android:text="youlike"
         android:textColor="?android:attr/textColorSecondary"
         android:textSize="16sp" />
 

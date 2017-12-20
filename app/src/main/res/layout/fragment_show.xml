@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <vivian.com.searchlistview.widget.SearchListView
+        android:id="@+id/mListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/stand_backgroud"
+        android:cacheColorHint="#00000000"
+
+        android:drawSelectorOnTop="false"
+        android:listSelector="@android:color/transparent">
+
+    </vivian.com.searchlistview.widget.SearchListView>
+
+</RelativeLayout>

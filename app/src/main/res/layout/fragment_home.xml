@@ -3,17 +3,88 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
-    android:id="@+id/scrollingContent"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
 
-        <EditText
-            android:id="@+id/editText"
+    <com.youth.banner.Banner
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/switchBanner_height"
+        android:layout_marginBottom="@dimen/banner_margin"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark"/>
+    <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:id="@+id/scrollingContent"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ticket_activity"
+        android:layout_gravity="left"
+        android:layout_marginTop="@dimen/home_margin"
+        android:layout_marginBottom="@dimen/home_margin"
+        android:layout_marginLeft="@dimen/home_margin"/>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/homeListHorizon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:scrollbars="none">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ticket_ad"
+        android:layout_gravity="left"
+        android:layout_marginTop="@dimen/home_margin"
+        android:layout_marginBottom="@dimen/home_margin"
+        android:layout_marginLeft="@dimen/home_margin"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to our home" />
+            android:id="@+id/homeListVertical"
+            android:gravity="center_vertical"
+            android:scrollbars="none"
+            android:orientation="vertical">
 
-    </android.support.v4.widget.NestedScrollView>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_end"
+        android:layout_marginTop="@dimen/home_end_margin"
+        android:gravity="center" />
+    <!--</android.support.v4.widget.NestedScrollView>-->
 </LinearLayout>

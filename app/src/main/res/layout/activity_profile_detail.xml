@@ -7,12 +7,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <!--<Button-->
-    <!--android:id="@+id/buttonProfile"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="Button" />-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:alpha="0.8">
+        <ImageButton
+            android:id="@+id/userProfileBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="left"
+            android:background="@color/green"
+            android:src="@mipmap/icon_back"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/me_title"
+            android:textSize="@dimen/text_size"
+            android:layout_gravity="center"/>
+    </android.support.v7.widget.Toolbar>
 
 
     <ScrollView

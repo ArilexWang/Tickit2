@@ -2,6 +2,7 @@
 <resources>
     <dimen name="topSize">60sp</dimen>
 
+    <dimen name="textSize_12">12.0sp</dimen>
     <dimen name="textSize_14">14.0sp</dimen>
     <dimen name="textSize_15">15.0sp</dimen>
     <dimen name="textSize_16">16.0sp</dimen>
@@ -14,7 +15,9 @@
     <dimen name="main_margin">22dp</dimen>
     <dimen name="main_text_size">40sp</dimen>
     <dimen name="text_size">16dp</dimen>
-
+    <dimen name="home_list_icon_width">75dp</dimen>
+    <dimen name="home_list_ioon_height">100dp</dimen>
+    <dimen name="item_horizan_list_margin">5dp</dimen>
 
     <!--Sign in page-->
     <dimen name="sign_padding_top">56dp</dimen>
@@ -25,8 +28,6 @@
     <!--Sign up Page-->
 
 
-    <dimen name="switchBanner_height">200dp</dimen>
-
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -35,6 +36,15 @@
 
     <dimen name="button_drawable_padding">360dip</dimen>
     <dimen name="home_bar_icon_margins">15dp</dimen>
+
+
+
+    <!--home page-->
+    <dimen name="switchBanner_height">200dp</dimen>
+    <dimen name="banner_margin">10dp</dimen>
+    <dimen name="home_margin">15dp</dimen>
+    <dimen name="home_end_margin">20dp</dimen>
+
 
 
     <!--我的 界面-->

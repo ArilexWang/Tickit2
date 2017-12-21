@@ -65,4 +65,14 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:0.12.0'
     implementation 'com.cocosw:bottomsheet:1.+@aar'
 
+    //material banner
+    implementation 'com.github.rtugeek:materialbanner:1.0.1'
+
+    implementation 'com.xiwenhec:banner:1.0.5'
+    implementation 'com.squareup.picasso:picasso:2.3.2'
+    implementation 'com.youth.banner:banner:1.4.10'
+
+
 }
+
+

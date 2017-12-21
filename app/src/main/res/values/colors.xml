@@ -13,6 +13,15 @@
 
 
 
+    <!-- 黑色 -->
+    <color name="black">#333333</color>
+    <!-- gray -->
+    <color name="gray">#E5E5E5</color>
+    <!-- 白色 -->
+    <color name="light_gray">#B3B3B3</color>
+    <color name="time_gray">#808080</color>
+
+    <color name="stand_background">#9099A7</color>
 
     <color name="home_bar_text_normal">#6a6c6f</color>
     <color name="home_bar_text_push">#ff5959</color>

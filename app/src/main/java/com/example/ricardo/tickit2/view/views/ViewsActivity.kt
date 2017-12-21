@@ -12,9 +12,9 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.view.fragment.cart.CartFragment
-import com.example.ricardo.tickit2.view.fragment.category.CategoryFragment
 import com.example.ricardo.tickit2.view.fragment.home.HomeFragment
 import com.example.ricardo.tickit2.view.fragment.profile.ProfileFragment
+import com.example.ricardo.tickit2.view.fragment.show.ShowFragment
 import com.lhh.apst.library.AdvancedPagerSlidingTabStrip
 import com.lhh.apst.library.Margins
 
@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_views.*
 class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
 
     private var mHomeFragment: HomeFragment? = null
-    public var mCategoryFragment: CategoryFragment? =null
+    public var mCategoryFragment: ShowFragment? =null
     public var mCartFragment: CartFragment? = null
     public var mProfileFragment: ProfileFragment? = null
 
@@ -91,7 +91,7 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
                     }
 
                     VIEW_SECOND -> {
-                        if (null == mCategoryFragment) mCategoryFragment = CategoryFragment.instance()
+                        if (null == mCategoryFragment) mCategoryFragment = ShowFragment()
                         return mCategoryFragment
                     }
 

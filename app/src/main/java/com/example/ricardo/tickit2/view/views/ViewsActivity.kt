@@ -78,6 +78,11 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+    }
+
     @Suppress("UNCHECKED_CAST")
     inner class FragmentAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm), AdvancedPagerSlidingTabStrip.IconTabProvider, AdvancedPagerSlidingTabStrip.LayoutProvider, AdvancedPagerSlidingTabStrip.TipsProvider {
 

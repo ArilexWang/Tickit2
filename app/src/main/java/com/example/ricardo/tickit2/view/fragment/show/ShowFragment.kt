@@ -1,28 +1,39 @@
 package com.example.ricardo.tickit2.view.fragment.show
 
 import android.os.Bundle
+
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.*
+
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.R.id.mListView
-import kotlinx.android.synthetic.main.fragment_show.*
+import com.example.ricardo.tickit2.data.entity.TicketType
 import java.util.ArrayList
+
+import kotlinx.android.synthetic.main.fragment_show.*
+import android.support.v7.widget.LinearLayoutManager
+
+
+
 
 /**
  * Created by yuhanyin on 2017/12/8.
  */
-class ShowFragment :android.support.v4.app.Fragment(){
+class ShowFragment :android.support.v4.app.Fragment(), View.OnClickListener{
 
 
-    internal var mSearchBar: SearchBar? = null
-    internal var mList = ArrayList<String>()
-    internal var mAdappter: MyAdapter? = null
-    internal var layout: LinearLayout? = null
+    private val suggestions = ArrayList<TicketType>()
+    private var searchSuggestionsAdapter: SearchSuggestionsAdapter? = null
+
+    // Sample data
+    private val tickets = arrayOf("天鹅湖",
+            "Vincent",
+            "猫Cats",
+            "奇迹展",
+            "芳华——舞团",
+            "C4专场")
+
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_show, null)
@@ -31,63 +42,49 @@ class ShowFragment :android.support.v4.app.Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mListView.setEnableRefresh(true)
-        //关闭刷新功能，在 addHeaderView 之前调用
+        /**
+         * searchbar & suggestions
+         */
+        searchSuggestionsAdapter = SearchSuggestionsAdapter(layoutInflater)
 
-        mSearchBar = SearchBar(context)
+        searchBar.setMaxSuggestionCount(2)
+        searchBar.setHint("find tickets...")
 
-        layout = LayoutInflater.from(context).inflate(R.layout.header_test, null) as LinearLayout
-        layout?.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        mSearchBar?.setTextEditable(true)
-        layout?.setOnClickListener(View.OnClickListener {
-            Log.e("HomeFragment", "SearchBar click")
+        for (i in 1..6) {
+            suggestions.add(TicketType(tickets[i - 1], (i * 10).toFloat()))
+        }
+
+        searchSuggestionsAdapter!!.suggestions = suggestions
+        searchBar.setCustomSuggestionAdapter(searchSuggestionsAdapter)
+
+        searchBar.addTextChangeListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+                Log.d("LOG_TAG", javaClass.simpleName + " text changed " + searchBar!!.text)
+                // send the entered text to our filter and let it manage everything
+                searchSuggestionsAdapter!!.filter.filter(searchBar!!.text)
+            }
+
+            override fun afterTextChanged(editable: Editable) {
+
+            }
+
         })
-//        layout.addView(mSearchBar);
-        mListView?.addHeaderView(mSearchBar)
+
+        /**
+         * recycle view
+         */
+        ticketsList.layoutManager = LinearLayoutManager(context)
+//        ticketsList.setAdapter(mAdapter = HomeAdapter())
+
 
 
     }
 
-    fun testForPullToRefresh() {
-        mListView?.pullRefreshEnable(true)//下拉刷新
-        mListView?.setAutoFetchMore(true)//自动加载更多
-
-        mListView?.postDelayed(Runnable { mListView?.onRefreshComplete() }, 3000)
-
-        mListView?.setOnRefreshListener(object : SearchListView.OnRefreshListener {
-            override fun onRefresh() {
-
-                mListView?.postDelayed(Runnable {
-                    mList.clear()
-                    for (i in 0..9) {
-                        val str = "item" + (i + 1)
-                        mList.add(str)
-                    }
-                    mAdappter?.notifyDataSetChanged()
-                    mListView?.onRefreshComplete()
-                }, 3000)
-            }
-        })
-
-        mListView?.setOnLastItemVisibleListener(object : SearchListView.OnLastItemVisibleListener {
-            override fun onLastItemVisible() {
-                mListView?.postDelayed(Runnable {
-                    val start = mList.size
-                    for (i in start until start + 10) {
-                        val str = "item" + (i + 1)
-                        mList.add(str)
-                    }
-                    mAdappter?.notifyDataSetChanged()
-                    mListView?.onRefreshComplete()
-                    if (mList.size > 30) {
-                        mListView?.setLoadAll()
-                    }
-                }, 3000)
-
-            }
-        })
+    override fun onClick(v: View?) {
+        searchSuggestionsAdapter!!.addSuggestion(TicketType("Product", 100.0F))
     }
-
 
     companion object {
 
@@ -97,26 +94,4 @@ class ShowFragment :android.support.v4.app.Fragment(){
     }
 
 
-    internal inner class MyAdapter : BaseAdapter() {
-
-        override fun getCount(): Int {
-            return mList.size
-        }
-
-        override fun getItem(position: Int): String {
-            return mList[position]
-        }
-
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
-
-        override fun getView(position: Int, convertView: View, parent: ViewGroup): View {
-            val view = LayoutInflater.from(context).inflate(R.layout.activity_views, null)
-            val textView = view.findViewById<View>(R.id.textView) as TextView
-            textView.text = getItem(position)
-
-            return view
-        }
-    }
 }

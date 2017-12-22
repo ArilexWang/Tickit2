@@ -14,6 +14,10 @@ public class TicketType {
     private int experience;
     private boolean is_available = true;
 
+    public TicketType(String name, float price){
+        this.name = name;
+        this.price = price;
+    }
     public TicketType(Long id, Long parentShowID, String name, float price, int totalAmount, int experience) {
         this.id = id;
         this.parentShowID = parentShowID;

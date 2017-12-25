@@ -11,6 +11,7 @@ import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
 import com.example.ricardo.tickit2.view.signin.SignInActivity
 import com.example.ricardo.tickit2.view.signin.SignInPresenter
+import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_profile_detail.*
 
 /**
@@ -36,6 +37,15 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
         userItemAvatar.setOnClickListener{ avatarClick()  }
 
         user_btn_exit_login.setOnClickListener{ exitLogin() }
+
+        profileDetialBack.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@ProfileInfoActivity,ViewsActivity.javaClass)
+            intent.putExtra("profiledetialflag", 1)
+            startActivity(intent)
+
+        }
+
 
     }
 

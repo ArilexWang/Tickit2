@@ -11,11 +11,9 @@ import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
 import com.example.ricardo.tickit2.view.signin.SignInActivity
 import com.example.ricardo.tickit2.view.signin.SignInPresenter
+import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_profile_detail.*
 
-/**
- * Created by yuhanyin on 2017/12/13.
- */
 class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
    override val presenter by lazy { ProfileInfoPresenter() }
    
@@ -24,18 +22,27 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
         setContentView(R.layout.activity_profile_detail)
         initView()
 
-        val userDao = loadDaoSession().gdUserDao
+//        val userDao = loadDaoSession().gdUserDao
+//
+//        presenter.mUserDao = userDao
+//
+//
+//        val avatarPath = presenter.getLocalAvatar()
+//
+//        userItemAvatar.setImageURI(avatarPath)
+//
+//        userItemAvatar.setOnClickListener{ avatarClick()  }
+//
+//        user_btn_exit_login.setOnClickListener{ exitLogin() }
+//
+//        profileDetialBack.setOnClickListener {
+//            val intent = Intent()
+//            intent.setClass(this@ProfileInfoActivity,ViewsActivity.javaClass)
+//            intent.putExtra("profiledetialflag", 1)
+//            startActivity(intent)
+//
+//        }
 
-        presenter.mUserDao = userDao
-
-
-        val avatarPath = presenter.getLocalAvatar()
-
-        userItemAvatar.setImageURI(avatarPath)
-
-        userItemAvatar.setOnClickListener{ avatarClick()  }
-
-        user_btn_exit_login.setOnClickListener{ exitLogin() }
 
     }
 
@@ -50,16 +57,16 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         println("resume")
 
-        val userDao = loadDaoSession().gdUserDao
-
-        presenter.mUserDao = userDao
-
-
-        var avatarPath =  presenter.getLocalAvatar()
-
-        println(avatarPath)
-
-        userItemAvatar.setImageURI(avatarPath)
+//        val userDao = loadDaoSession().gdUserDao
+//
+//        presenter.mUserDao = userDao
+//
+//
+//        var avatarPath =  presenter.getLocalAvatar()
+//
+//        println(avatarPath)
+//
+//        userItemAvatar.setImageURI(avatarPath)
 
     }
 
@@ -85,11 +92,11 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
     }
 
     private fun initView(){
-        userItemAvatar.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this.applicationContext, SettingActivity::class.java)
-            startActivity(intent)
-        }
+//        userItemAvatar.setOnClickListener {
+//            val intent = Intent()
+//            intent.setClass(this.applicationContext, SettingActivity::class.java)
+//            startActivity(intent)
+//        }
 
 
     }

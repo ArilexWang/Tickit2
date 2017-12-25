@@ -64,8 +64,10 @@ class SignInActivity:BaseActivity(),SignInView{
     fun signinBtnClick(presenter: SignInPresenter){
         println("click")
         if (validate()){
+
             val id = input_studentID.getText().toString()
             val password = input_password.getText().toString()
+            println(password)
             presenter.postAccount(id,password)
         }
     }
@@ -88,7 +90,7 @@ class SignInActivity:BaseActivity(),SignInView{
 
     //登录失败后调用函数
     override fun onError(error: Throwable) {
-
+        println(error)
     }
 
     fun validate(): Boolean {

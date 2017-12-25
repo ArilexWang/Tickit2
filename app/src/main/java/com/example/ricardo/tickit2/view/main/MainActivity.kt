@@ -65,6 +65,9 @@ class MainActivity : BaseActivity(),MainView {
         val user = items[0]
         saveUserToLocal(user, presenter.mUserDao!!)
 
+        println(user.id)
+
+
         val intent = Intent()
         intent.setClass(this@MainActivity, ViewsActivity::class.java)
         startActivity(intent)

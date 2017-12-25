@@ -29,8 +29,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -49,30 +48,24 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-
-//    //bottomBar
+    //    //bottomBar
     implementation 'com.roughike:bottom-bar:2.3.1'
-//    //switchBanner
-//    implementation 'com.github.Rowandjj:VerticalBannerView:1.0'
-//    //fragment
+    //    //fragment
     implementation 'homhomlin.lib:apsts:1.8.0'
     //implementation 'com.facebook.fresco:fresco:0.9.0'
-    //implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
     implementation 'homhomlin.lib:frescoimageview:1.2.0'
-
     implementation 'com.qiniu:qiniu-android-sdk:7.3.+'
     implementation 'com.github.florent37:camerafragment:1.0.8'
     implementation 'com.facebook.fresco:fresco:0.12.0'
     implementation 'com.cocosw:bottomsheet:1.+@aar'
-
     //material banner
-    implementation 'com.github.rtugeek:materialbanner:1.0.1'
-
-    implementation 'com.xiwenhec:banner:1.0.5'
     implementation 'com.squareup.picasso:picasso:2.3.2'
     implementation 'com.youth.banner:banner:1.4.10'
-
-
+    //search bar
+    //implementation 'com.github.mancj:MaterialSearchBar:0.7.5'Error:Unable to resolve dependency for ':app@debug/compileClasspath': Could not resolve com.android.support:cardview-v7:25.4.0.
+    implementation 'com.github.mancj:MaterialSearchBar:0.7.5'
+    implementation 'com.android.support:cardview-v7:26.1.0'
 }
 
 

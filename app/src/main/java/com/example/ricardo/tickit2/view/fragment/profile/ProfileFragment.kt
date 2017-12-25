@@ -33,8 +33,6 @@ class ProfileFragment: android.support.v4.app.Fragment() {
 
         val avatarPath = list[0].avatar
 
-        print(avatarPath)
-
         me_login_iv_head.setImageURI(avatarPath)
 
         imgProfileDetail.setOnClickListener {
@@ -45,13 +43,13 @@ class ProfileFragment: android.support.v4.app.Fragment() {
         systemService.setOnClickListener {
 
         }
-        myTicketBtn.setOnClickListener {
-            imgProfileDetail!!.setOnClickListener {
-                val intent = Intent()
-                intent.setClass(this.context, ProfileInfoActivity::class.java)
-                startActivity(intent)
-            }
-        }
+//        myTicketBtn.setOnClickListener {
+//            imgProfileDetail!!.setOnClickListener {
+//                val intent = Intent()
+//                intent.setClass(this.context, ProfileInfoActivity::class.java)
+//                startActivity(intent)
+//            }
+//        }
 
 
     }

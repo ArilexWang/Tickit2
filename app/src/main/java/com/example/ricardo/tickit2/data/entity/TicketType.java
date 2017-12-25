@@ -1,10 +1,9 @@
 package com.example.ricardo.tickit2.data.entity;
 
-/**
- * Created by igulu on 13/11/2017.
- */
 
-public class TicketType {
+import java.io.Serializable;
+
+public class TicketType implements Serializable {
     private Long id;
     private Long parentShowID;
     private String name;
@@ -14,6 +13,10 @@ public class TicketType {
     private int experience;
     private boolean is_available = true;
 
+    public TicketType(String name, float price){
+        this.name = name;
+        this.price = price;
+    }
     public TicketType(Long id, Long parentShowID, String name, float price, int totalAmount, int experience) {
         this.id = id;
         this.parentShowID = parentShowID;

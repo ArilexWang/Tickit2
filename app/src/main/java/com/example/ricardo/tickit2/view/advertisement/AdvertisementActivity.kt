@@ -47,7 +47,7 @@ class AdvertisementActivity:BaseActivity() {
         val url = intent.getStringExtra("url")
         println(url)
 
-        wb.loadUrl(url)
+        wb.loadUrl("http://mp.weixin.qq.com/s/OeolGVOQ8Ob4Mv37IcVkCA")
 
         wb.setWebViewClient(object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {

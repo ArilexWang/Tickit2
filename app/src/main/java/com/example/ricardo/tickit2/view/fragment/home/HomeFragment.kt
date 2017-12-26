@@ -13,7 +13,9 @@ import android.view.View
 import android.widget.*
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.data.model.BannerPicture
+import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
+import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.view.SimpleDraweeView
@@ -32,25 +34,28 @@ import java.util.ArrayList
 
 class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener {
 
-    val presenter: HomePresenter = HomePresenter(this, BannerPicRepository.get())
+    val presenter: HomePresenter = HomePresenter(this, BannerPicRepository.get(), ShowRepository.get())
 
     val imgIDs = ArrayList<Int>()
 
     var mInflate:LayoutInflater? = null
 
+    var lLayout:LinearLayout? = null
 
     private val images = ArrayList<String>()
 
     private val bannerPics = ArrayList<BannerPicture>()
+
+    private val showDescription = ArrayList<String>()
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Fresco.initialize(context)
         val view = inflater!!.inflate(R.layout.fragment_home, null)
         mInflate = LayoutInflater.from(context)
-        val lLayout:LinearLayout = view.findViewById(R.id.homeListHorizon);
+        lLayout= view.findViewById(R.id.homeListHorizon);
 
-        initView(lLayout)
+        //initView(lLayout!!)
 
         return view
     }
@@ -62,24 +67,7 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
     }
 
 
-    private fun initView(layout: LinearLayout){
-        imgIDs.add(R.drawable.shake)
-        imgIDs.add(R.drawable.shake)
-
-        val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon,false)
-
-        view.home_film_icon.setImageURI("http://p04jew294.bkt.clouddn.com/avatar.jpg")
-
-        view.home_film_title.setText("title")
-
-        view.home_film_grade.setText("6.0")
-
-        layout.addView(view)
-
-
-    }
-
-
+    //banner图片点击事件
     override fun OnBannerClick(position: Int) {
 
         println(bannerPics[position].targetPath)
@@ -90,7 +78,7 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
 
     }
 
-     override fun onSuccess(items: List<BannerPicture>) {
+    override fun onSuccess(items: List<BannerPicture>) {
          for (item in items){
              images.add(item.picPath)
              bannerPics.add(item)
@@ -102,13 +90,32 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
          banner.setIndicatorGravity(BannerConfig.CENTER)
          //banner设置方法全部调用完毕时最后调用
          banner.start()
-     }
+    }
 
 
-     override fun onError(error: Throwable) {
+    override fun onError(error: Throwable) {
          Toast.makeText(context,"加载图片失败",Toast.LENGTH_SHORT).show();
-     }
+    }
 
+
+    override fun onShowSuccess(items: List<Show>) {
+
+        for (item in items){
+            val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon,false)
+
+            view.home_film_icon.setImageURI(item.avatarPath)
+
+            view.home_film_title.setText(item.name)
+
+            showDescription.add(item.descriptionPath)
+
+            lLayout!!.addView(view)
+        }
+    }
+
+    override fun onShowError(error: Throwable) {
+        print(error)
+    }
 
     companion object {
 

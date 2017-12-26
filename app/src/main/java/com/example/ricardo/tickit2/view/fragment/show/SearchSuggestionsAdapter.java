@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ricardo.tickit2.R;
-import com.example.ricardo.tickit2.data.entity.Show;
 import com.example.ricardo.tickit2.data.entity.TicketType;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 

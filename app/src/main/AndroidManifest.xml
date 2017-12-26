@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-
+        <activity android:name=".view.advertisement.AdvertisementActivity"></activity>
         <activity android:name=".view.profile.ProfileInfoActivity"></activity>
         <activity android:name=".view.signin.SignInActivity"></activity>
         <activity android:name=".view.views.ViewsActivity"></activity>

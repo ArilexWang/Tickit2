@@ -12,7 +12,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="@string/signup"
+            android:text="@string/signin"
             android:layout_height="@dimen/sign_text_height"
             android:layout_marginBottom="@dimen/main_margin"
             android:textColor="@color/dark"

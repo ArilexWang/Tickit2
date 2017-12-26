@@ -4,6 +4,7 @@
     <!--Main page-->
     <string name="app_name_b">T I C K I T</string>
     <string name="main_tip">No account yet? Create one</string>
+
     <!--Signin page-->
     <string name="signin">Sign In</string>
     <string name="ID_hint">Student ID</string>
@@ -11,6 +12,7 @@
     <string name="sign_in_login">Login</string>
     <string name="sign_in_tip">No account yet? Create one</string>
     <string name="greetings">Good to see you again !</string>
+
     <!--Signup page-->
     <string name="signup">Sign Up</string>
     <string name="firstGreeting">Nice to meet you !</string>

@@ -22,26 +22,26 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
         setContentView(R.layout.activity_profile_detail)
         initView()
 
-//        val userDao = loadDaoSession().gdUserDao
-//
-//        presenter.mUserDao = userDao
-//
-//
-//        val avatarPath = presenter.getLocalAvatar()
-//
-//        userItemAvatar.setImageURI(avatarPath)
-//
-//        userItemAvatar.setOnClickListener{ avatarClick()  }
-//
-//        user_btn_exit_login.setOnClickListener{ exitLogin() }
-//
-//        profileDetialBack.setOnClickListener {
-//            val intent = Intent()
-//            intent.setClass(this@ProfileInfoActivity,ViewsActivity.javaClass)
-//            intent.putExtra("profiledetialflag", 1)
-//            startActivity(intent)
-//
-//        }
+        val userDao = loadDaoSession().gdUserDao
+
+        presenter.mUserDao = userDao
+
+
+        val avatarPath = presenter.getLocalAvatar()
+
+        userItemAvatar.setImageURI(avatarPath)
+
+        userItemAvatar.setOnClickListener{ avatarClick()  }
+
+        user_btn_exit_login.setOnClickListener{ exitLogin() }
+
+        profileDetialBack.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@ProfileInfoActivity,ViewsActivity::class.java)
+            intent.putExtra("profiledetialflag", 1)
+            startActivity(intent)
+
+        }
 
 
     }
@@ -57,16 +57,16 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         println("resume")
 
-//        val userDao = loadDaoSession().gdUserDao
-//
-//        presenter.mUserDao = userDao
-//
-//
-//        var avatarPath =  presenter.getLocalAvatar()
-//
-//        println(avatarPath)
-//
-//        userItemAvatar.setImageURI(avatarPath)
+        val userDao = loadDaoSession().gdUserDao
+
+        presenter.mUserDao = userDao
+
+
+        var avatarPath =  presenter.getLocalAvatar()
+
+        println(avatarPath)
+
+        userItemAvatar.setImageURI(avatarPath)
 
     }
 
@@ -92,11 +92,11 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
     }
 
     private fun initView(){
-//        userItemAvatar.setOnClickListener {
-//            val intent = Intent()
-//            intent.setClass(this.applicationContext, SettingActivity::class.java)
-//            startActivity(intent)
-//        }
+        userItemAvatar.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this.applicationContext, SettingActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }

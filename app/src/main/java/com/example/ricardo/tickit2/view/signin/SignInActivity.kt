@@ -3,7 +3,9 @@ package com.example.ricardo.tickit2.view.signin
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.Toast
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.*
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
@@ -62,9 +64,7 @@ class SignInActivity:BaseActivity(),SignInView{
     }
 
     fun signinBtnClick(presenter: SignInPresenter){
-        println("click")
         if (validate()){
-
             val id = input_studentID.getText().toString()
             val password = input_password.getText().toString()
             println(password)
@@ -90,7 +90,13 @@ class SignInActivity:BaseActivity(),SignInView{
 
     //登录失败后调用函数
     override fun onError(error: Throwable) {
-        println(error)
+        println(error.message)
+        if (error.message == USER_NOT_EXIT_CODE){
+            Toast.makeText(baseContext, USER_NOT_EXIT , Toast.LENGTH_SHORT).show()
+        }else if(error.message == PASSWORK_ERROR_CODE){
+            Toast.makeText(baseContext, PASSWORK_ERROR , Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     fun validate(): Boolean {

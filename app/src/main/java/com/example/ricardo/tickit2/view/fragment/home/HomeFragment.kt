@@ -1,12 +1,8 @@
 package com.example.ricardo.tickit2.view.fragment.home
 
 import android.content.Intent
-import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
-import android.os.Handler
 import android.support.annotation.Nullable
-import android.support.v4.view.ViewPager
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
@@ -18,25 +14,16 @@ import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.facebook.drawee.view.SimpleDraweeView
-import com.google.gson.Gson
-import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.listener.OnBannerListener
-import kotlinx.android.synthetic.main.activity_setting.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_horizan_list.*
 import kotlinx.android.synthetic.main.item_horizan_list.view.*
 import java.util.ArrayList
-
-
 
 
 class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener {
 
     val presenter: HomePresenter = HomePresenter(this, BannerPicRepository.get(), ShowRepository.get())
-
-    val imgIDs = ArrayList<Int>()
 
     var mInflate:LayoutInflater? = null
 
@@ -55,8 +42,6 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
         mInflate = LayoutInflater.from(context)
         lLayout= view.findViewById(R.id.homeListHorizon);
 
-        //initView(lLayout!!)
-
         return view
     }
 
@@ -70,7 +55,6 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
     //banner图片点击事件
     override fun OnBannerClick(position: Int) {
 
-        println(bannerPics[position].targetPath)
         val url = bannerPics[position].targetPath
         val intent = Intent(context, AdvertisementActivity::class.java)
         intent.putExtra("url", url)
@@ -78,6 +62,7 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
 
     }
 
+    //加载banner成功
     override fun onSuccess(items: List<BannerPicture>) {
          for (item in items){
              images.add(item.picPath)
@@ -92,12 +77,12 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
          banner.start()
     }
 
-
+    //加载banner失败
     override fun onError(error: Throwable) {
          Toast.makeText(context,"加载图片失败",Toast.LENGTH_SHORT).show();
     }
 
-
+    //加载票务新奇日成功
     override fun onShowSuccess(items: List<Show>) {
 
         for (item in items){
@@ -107,10 +92,20 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
 
             view.home_film_title.setText(item.name)
 
+            view.setOnClickListener { viewClick(item.descriptionPath) }
+
             showDescription.add(item.descriptionPath)
 
             lLayout!!.addView(view)
         }
+    }
+
+
+    //票务新奇日点击事件
+    fun viewClick(path: String){
+        val intent = Intent(context, AdvertisementActivity::class.java)
+        intent.putExtra("url", path)
+        startActivityForResult(intent, 0)
     }
 
     override fun onShowError(error: Throwable) {

@@ -14,17 +14,21 @@
 
         </WebView>
     </LinearLayout>
-   <LinearLayout
+    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
+       android:gravity="right"
        android:layout_alignParentBottom="true">
 
        <Button
+           android:id="@+id/participateBtn"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text="立即参与"/>
+           android:layout_marginRight="15dp"
 
-   </LinearLayout>
+           android:text="@string/seleted_btn"/>
+
+    </LinearLayout>
 
 
 

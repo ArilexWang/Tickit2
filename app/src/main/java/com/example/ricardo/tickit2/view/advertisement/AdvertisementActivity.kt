@@ -1,14 +1,17 @@
 package com.example.ricardo.tickit2.view.advertisement
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import kotlinx.android.synthetic.main.activity_advertisement.*
+import android.content.DialogInterface
+
+
 
 /**
  * Created by Ricardo on 2017/12/25.
@@ -45,9 +48,8 @@ class AdvertisementActivity:BaseActivity() {
 
         val intent:Intent = getIntent()
         val url = intent.getStringExtra("url")
-        println(url)
 
-        wb.loadUrl("http://mp.weixin.qq.com/s/OeolGVOQ8Ob4Mv37IcVkCA")
+        wb.loadUrl(url)
 
         wb.setWebViewClient(object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
@@ -56,7 +58,38 @@ class AdvertisementActivity:BaseActivity() {
             }
         })
 
+        participateBtn.setOnClickListener{ participateBtnClick() }
 
 
+    }
+
+    val items = arrayOf("a","b")
+    var choses = arrayListOf<Boolean>(false,false)
+
+    fun participateBtnClick(){
+        val dialog = AlertDialog.Builder(this)
+                .setTitle("选择票价")
+                .setIcon(R.drawable.shake)
+                .setNegativeButton("取消", object :DialogInterface.OnClickListener{
+                    override fun onClick(dialog: DialogInterface?, p1: Int) {
+
+                    }
+                })
+                .setPositiveButton("立即参与", object : DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        positiveClick()
+                    }
+                })
+                .setSingleChoiceItems(items,-1,object: DialogInterface.OnClickListener{
+                    override fun onClick(p0: DialogInterface?, p1: Int) {
+                        println(items[p1])
+                        choses[p1] = true
+                    }
+                }).create()
+        dialog.show()
+    }
+
+    fun positiveClick(){
+        println(choses[0])
     }
 }

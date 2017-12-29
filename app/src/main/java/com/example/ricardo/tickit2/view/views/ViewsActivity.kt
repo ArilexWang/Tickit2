@@ -87,7 +87,6 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
     @Suppress("UNCHECKED_CAST")
     inner class FragmentAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm), AdvancedPagerSlidingTabStrip.IconTabProvider, AdvancedPagerSlidingTabStrip.LayoutProvider, AdvancedPagerSlidingTabStrip.TipsProvider {
 
-
         override fun getItem(position: Int): Fragment? {
             if (position in 0..(VIEW_SIZE - 1)) {
                 when (position) {

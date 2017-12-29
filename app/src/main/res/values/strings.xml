@@ -104,5 +104,8 @@
     <string name="time_error">时间有问题</string>
     <string name="load_all">已加载全部</string>
 
+    <!--Advertisement View-->
+
+    <string name="seleted_btn">选择票价</string>
 
 </resources>

@@ -2,7 +2,7 @@
 <resources>
     <dimen name="topSize">60sp</dimen>
 
-    <dimen name="tool_bar">50dp</dimen>
+    <dimen name="tool_bar">60dp</dimen>
     <dimen name="tool_back">10dp</dimen>
     <dimen name="textSize_12">12.0sp</dimen>
     <dimen name="textSize_14">14.0sp</dimen>

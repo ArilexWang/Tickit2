@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:text="@string/me_title"
             android:layout_gravity="center"
-            android:gravity="center_vertical"
+            android:gravity="fill_vertical"
             android:textSize="@dimen/textSize_20"/>
     </android.support.v7.widget.Toolbar>
 
@@ -212,12 +212,14 @@
                 </RelativeLayout>
             </LinearLayout>
 
+            <!--会员等级-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/me_item_common_layout_marginTop"
                 android:orientation="vertical"
-                android:background="@drawable/white_quai_bg">
+                android:background="@drawable/white_quai_bg"
+                android:visibility="gone">
                 <RelativeLayout
                     android:id="@+id/user_item_level_layout"
                     style="@style/me_common_item_relativeLayout_style">
@@ -245,13 +247,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/me_item_common_layout_marginTop"
                 android:orientation="vertical"
-                android:background="@drawable/white_quai_bg">
+                android:background="@drawable/white_quai_bg"
+                android:visibility="gone">
 
                 <View
                     style="@style/me_horizontal_view_style"/>
+                <!--收货地址-->
                 <RelativeLayout
                     android:id="@+id/user_item_address_layout"
-                    style="@style/me_common_item_relativeLayout_style">
+                    style="@style/me_common_item_relativeLayout_style"
+                    >
                     <TextView
                         style="@style/more_common_item_textView_style"
                         android:text="@string/user_item_title_address"
@@ -262,9 +267,11 @@
                 </RelativeLayout>
                 <View
                     style="@style/me_horizontal_view_style"/>
+                <!--我的二维码-->
                 <RelativeLayout
                     android:id="@+id/user_item_qr_layout"
-                    style="@style/me_common_item_relativeLayout_style">
+                    style="@style/me_common_item_relativeLayout_style"
+                    >
                     <TextView
                         style="@style/more_common_item_textView_style"
                         android:text="@string/user_item_title_qr"

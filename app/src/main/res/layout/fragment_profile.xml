@@ -9,7 +9,8 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_bar"
-        android:background="@color/green">
+        android:background="@color/green"
+        android:layout_marginTop="@dimen/banner_margin">
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -151,7 +152,8 @@
                 <!--我的收藏-->
                 <RelativeLayout
                     android:id="@+id/me_item_favourite_layout"
-                    style="@style/me_common_item_relativeLayout_style">
+                    style="@style/me_common_item_relativeLayout_style"
+                    android:visibility="gone">
                     <ImageView
                         android:id="@+id/me_item_favourite_icon"
                         style="@style/me_common_item_icon_imageView_style"
@@ -177,7 +179,8 @@
                 <!--我的订单-->
                 <RelativeLayout
                     android:id="@+id/me_item_order_layout"
-                    style="@style/me_common_item_relativeLayout_style">
+                    style="@style/me_common_item_relativeLayout_style"
+                    android:visibility="gone">
                     <ImageView
                         android:id="@+id/me_item_order_icon"
                         style="@style/me_common_item_icon_imageView_style"
@@ -299,18 +302,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:id="@+id/me_item_recommend_iv_arrow_right"
-                    style="@style/me_common_item_arrow_right_imageView_style"/>
-                <!--<TextView-->
-                    <!--android:id="@+id/me_item_recommend_tv_new"-->
-                    <!--style="@style/me_common_item_count_textView_style"-->
-                    <!--android:layout_toLeftOf="@+id/me_item_recommend_iv_arrow_right"-->
-                    <!--android:background="@drawable/orange_bg"-->
-                    <!--android:text="new"-->
-                    <!--android:textColor="@color/white"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content" />-->
+                <ImageButton
+                    android:id="@+id/settingBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_user_arrow_more"
+                    android:background="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
+                    android:layout_centerInParent="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -320,16 +320,22 @@
                 <ImageView
                     android:id="@+id/me_item_qr_iv_icon"
                     style="@style/me_common_item_icon_imageView_style"
-                    />
+                    android:src="@mipmap/contact"/>
                 <TextView
                     style="@style/me_common_item_title_textView_style"
                     android:layout_toRightOf="@+id/me_item_qr_iv_icon"
                     android:text="@string/contact_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <ImageView
-                    android:id="@+id/me_item_qr_iv_arrow_right"
-                    style="@style/me_common_item_arrow_right_imageView_style"/>
+                <ImageButton
+                    android:id="@+id/ContactBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_user_arrow_more"
+                    android:background="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
+                    android:layout_centerInParent="true"/>
             </RelativeLayout>
         </LinearLayout>
 

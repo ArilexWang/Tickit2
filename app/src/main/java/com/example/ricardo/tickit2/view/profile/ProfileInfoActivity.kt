@@ -6,6 +6,7 @@ import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.view.common.BaseActivity
 
 import android.content.Intent
+import android.view.Window
 import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
@@ -19,6 +20,7 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_profile_detail)
         initView()
 

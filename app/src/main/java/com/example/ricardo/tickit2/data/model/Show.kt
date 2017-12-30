@@ -17,7 +17,8 @@ class Show(
         var name: String,
         var avatarPath: String,
         var descriptionPath: String,
-        var is_OnSale: Boolean
+        var is_OnSale: Boolean,
+        var category: Int
 ): Parcelable{
     constructor(dto:ShowDto):this(
             id = dto.pk.toLong(),
@@ -25,6 +26,7 @@ class Show(
             name = dto.fields.name,
             avatarPath = dto.fields.avatar,
             descriptionPath = dto.fields.description,
-            is_OnSale = dto.fields.isOnSale
+            is_OnSale = dto.fields.isOnSale,
+            category = dto.fields.category
     )
 }

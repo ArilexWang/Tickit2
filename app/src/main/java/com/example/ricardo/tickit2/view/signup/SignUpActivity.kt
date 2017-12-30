@@ -2,7 +2,12 @@ package com.example.ricardo.tickit2.view.signup
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.MOBILE_TAKEN
+import com.example.ricardo.tickit2.data.MOBILE_TAKEN_CODE
+import com.example.ricardo.tickit2.data.USER_NOT_EXIT
+import com.example.ricardo.tickit2.data.USER_NOT_EXIT_CODE
 import com.example.ricardo.tickit2.data.entity.GDUser
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
@@ -133,7 +138,9 @@ class SignUpActivity : BaseActivity(),SignUpView{
 
     //注册失败，给出一系列提示
     override fun onError(error: Throwable) {
-        println(error)
+        if (error.message == MOBILE_TAKEN_CODE) {
+            Toast.makeText(baseContext, MOBILE_TAKEN, Toast.LENGTH_SHORT).show()
+        }
     }
 
 

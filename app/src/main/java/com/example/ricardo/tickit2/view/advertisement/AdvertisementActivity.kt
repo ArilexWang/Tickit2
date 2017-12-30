@@ -10,14 +10,16 @@ import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import kotlinx.android.synthetic.main.activity_advertisement.*
 import android.content.DialogInterface
+import com.example.ricardo.tickit2.data.model.Order
+import com.example.ricardo.tickit2.data.network.repository.OrderRepository
+import com.example.ricardo.tickit2.extensions.loadDaoSession
+import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 
 
+class AdvertisementActivity:BaseActivity(),AdvertisementView {
+    override val presenter by lazy { AdvertisementPresenter(this, OrderRepository.get()) }
 
-/**
- * Created by Ricardo on 2017/12/25.
- */
-class AdvertisementActivity:BaseActivity() {
-    override val presenter by lazy { AdvertisementPresenter() }
+    var _userDao: GDUserDao? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,12 +46,26 @@ class AdvertisementActivity:BaseActivity() {
         webSettings.setLoadsImagesAutomatically(true); //支持自动加载图片
         webSettings.setDefaultTextEncodingName("utf-8");//设置编码格式
 
-
-
         val intent:Intent = getIntent()
         val url = intent.getStringExtra("url")
+        var category = intent.getStringExtra("category")
+        var id = intent.getStringExtra("id")
 
         wb.loadUrl(url)
+
+        _userDao = loadDaoSession().gdUserDao
+
+        presenter.mUserDao = _userDao
+
+        if (category == "4"){
+
+            participateBtn.setText("立即参与")
+            val ticketTypeID = id + "00"
+
+            participateBtn.setOnClickListener{ participateBtnClick(ticketTypeID) }
+
+
+        }
 
         wb.setWebViewClient(object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
@@ -58,35 +74,57 @@ class AdvertisementActivity:BaseActivity() {
             }
         })
 
-        participateBtn.setOnClickListener{ participateBtnClick() }
+
+    }
+
+    override fun onSuccess(items: List<Order>) {
+        println(items[0].id)
+        val dialog = AlertDialog.Builder(this)
+                .setTitle("订票成功")
+                .setMessage("您已经订票成功，详细信息请查看'我的票券' ")
+                .create()
+                .show()
+    }
 
 
+    override fun onError(error: Throwable) {
+
+        val dialog = AlertDialog.Builder(this)
+                .setTitle("订票失败")
+                .setMessage("该票已经售罄了 ")
+                .create()
+                .show()
     }
 
     val items = arrayOf("a","b")
     var choses = arrayListOf<Boolean>(false,false)
 
-    fun participateBtnClick(){
-        val dialog = AlertDialog.Builder(this)
-                .setTitle("选择票价")
-                .setIcon(R.drawable.shake)
-                .setNegativeButton("取消", object :DialogInterface.OnClickListener{
-                    override fun onClick(dialog: DialogInterface?, p1: Int) {
+    fun participateBtnClick(ticketTypeID: String){
+//        val dialog = AlertDialog.Builder(this)
+//                .setTitle("立即参与")
+//                .setIcon(R.drawable.shake)
+//                .setNegativeButton("取消", object :DialogInterface.OnClickListener{
+//                    override fun onClick(dialog: DialogInterface?, p1: Int) {
+//
+//                    }
+//                })
+//                .setPositiveButton("立即参与", object : DialogInterface.OnClickListener{
+//                    override fun onClick(p0: DialogInterface?, p1: Int) {
+//                        positiveClick()
+//                    }
+//                })
+//                .setSingleChoiceItems(items,-1,object: DialogInterface.OnClickListener{
+//                    override fun onClick(p0: DialogInterface?, p1: Int) {
+//                        println(items[p1])
+//                        choses[p1] = true
+//                    }
+//                }).create()
+//        dialog.show()
 
-                    }
-                })
-                .setPositiveButton("立即参与", object : DialogInterface.OnClickListener{
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        positiveClick()
-                    }
-                })
-                .setSingleChoiceItems(items,-1,object: DialogInterface.OnClickListener{
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        println(items[p1])
-                        choses[p1] = true
-                    }
-                }).create()
-        dialog.show()
+        val user = presenter.getLocalUser()
+        presenter.createOrder(user!!,ticketTypeID.toLong())
+
+
     }
 
     fun positiveClick(){

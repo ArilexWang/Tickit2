@@ -39,7 +39,7 @@ class ProfileFragment: android.support.v4.app.Fragment() {
         imgProfileDetail.setOnClickListener {
             val intent = Intent()
             intent.setClass(this.context, ProfileInfoActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent,0)
         }
         systemService.setOnClickListener {
 
@@ -47,7 +47,7 @@ class ProfileFragment: android.support.v4.app.Fragment() {
         myTicketBtn.setOnClickListener {
             val intent = Intent()
             intent.setClass(this.context, MyTickeyActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent,1)
         }
 
 

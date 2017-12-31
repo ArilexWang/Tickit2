@@ -14,3 +14,5 @@ val PASSWORK_ERROR = "密码错误"
 
 val MOBILE_TAKEN_CODE = "HTTP 123 Unknown Status Code"
 val MOBILE_TAKEN = "手机号已被注册"
+
+val PWXQR_NUMBER = 4

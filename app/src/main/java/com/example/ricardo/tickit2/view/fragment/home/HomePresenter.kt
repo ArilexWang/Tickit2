@@ -19,7 +19,6 @@ class HomePresenter(val view: HomeView,val repository: BannerPicRepository, val 
     override fun start() {
         getBannerPic()
         getShow()
-        getShow2()
     }
 
     fun getBannerPic() {
@@ -31,22 +30,12 @@ class HomePresenter(val view: HomeView,val repository: BannerPicRepository, val 
                 )
     }
     fun getShow(){
-        val category: Int = 4
-        subscriptions += showRepository.getNewShow(category)
+
+        subscriptions += showRepository.getNewShow()
                 .applySchedulers()
                 .subscribeBy (
                     onSuccess = view::onShowSuccess,
                     onError = view::onShowError
-                )
-    }
-
-    fun getShow2(){
-        val category: Int = 0
-        subscriptions += showRepository.getNewShow(category)
-                .applySchedulers()
-                .subscribeBy (
-                        onSuccess = view::onShow2Success,
-                        onError = view::onShow2Error
                 )
     }
 

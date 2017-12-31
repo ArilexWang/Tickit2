@@ -1,5 +1,6 @@
 package com.example.ricardo.tickit2.view.profile
 
+import android.app.Activity
 import android.os.Bundle
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.extensions.loadDaoSession
@@ -39,9 +40,16 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         profileDetialBack.setOnClickListener {
             val intent = Intent()
+
+            val bundle = Bundle()
+            bundle.putString("view","4")
+
             intent.setClass(this@ProfileInfoActivity,ViewsActivity::class.java)
             intent.putExtra("profiledetialflag", 1)
-            startActivity(intent)
+            intent.putExtras(bundle)
+            setResult(Activity.RESULT_OK,intent)
+            finish()
+            //startActivity(intent)
 
         }
 

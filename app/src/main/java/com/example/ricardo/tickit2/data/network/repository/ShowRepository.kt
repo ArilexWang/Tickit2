@@ -9,7 +9,7 @@ import io.reactivex.Single
  */
 interface ShowRepository {
 
-    fun getNewShow(category: Int): Single<List<Show>>
+    fun getNewShow(): Single<List<Show>>
 
     companion object : Provider<ShowRepository>() {
         override fun creator() =  ShowRepositoryImpl()

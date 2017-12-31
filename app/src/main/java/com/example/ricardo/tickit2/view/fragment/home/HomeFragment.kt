@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.PWXQR_NUMBER
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
@@ -85,46 +86,39 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
         Toast.makeText(context,"加载图片失败",Toast.LENGTH_SHORT).show();
     }
 
-    //加载票务新奇日成功
+    //加载票务成功
     override fun onShowSuccess(items: List<Show>) {
-
         for (item in items){
-            val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon,false)
+            if (item.category == PWXQR_NUMBER){
+                val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon,false)
 
-            view.home_film_icon.setImageURI(item.avatarPath)
+                view.home_film_icon.setImageURI(item.avatarPath)
 
-            view.home_film_title.setText(item.name)
+                view.home_film_title.setText(item.name)
 
-            view.setOnClickListener { viewClick(item.descriptionPath,item.category.toString(),item.id.toString()) }
+                view.setOnClickListener { viewClick(item.descriptionPath,item.category.toString(),item.id.toString()) }
 
-            showDescription.add(item.descriptionPath)
+                showDescription.add(item.descriptionPath)
 
-            lLayout!!.addView(view)
+                lLayout!!.addView(view)
+            } else{
+                val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon2,false)
+
+                view.home_film_icon.setImageURI(item.avatarPath)
+
+                view.home_film_title.setText(item.name)
+
+                view.setOnClickListener { viewClick(item.descriptionPath,item.category.toString(),item.id.toString()) }
+
+                showDescription.add(item.descriptionPath)
+
+                lLayout2!!.addView(view)
+            }
+
         }
     }
 
 
-    override fun onShow2Success(items: List<Show>) {
-        for (item in items){
-            val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon2,false)
-
-            view.home_film_icon.setImageURI(item.avatarPath)
-
-            view.home_film_title.setText(item.name)
-
-            view.setOnClickListener { viewClick(item.descriptionPath,item.category.toString(),item.id.toString()) }
-
-            showDescription.add(item.descriptionPath)
-
-            lLayout2!!.addView(view)
-        }
-    }
-
-    override fun onShow2Error(error: Throwable) {
-        println(error)
-        Toast.makeText(context,"加载图片失败",Toast.LENGTH_SHORT).show();
-
-    }
 
     //票务新奇日点击事件
     fun viewClick(path: String,category: String, id:String){

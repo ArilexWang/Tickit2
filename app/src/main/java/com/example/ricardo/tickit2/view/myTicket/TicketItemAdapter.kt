@@ -2,6 +2,7 @@ package com.example.ricardo.tickit2.view.myTicket
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.TextView
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.data.entity.Ticket
 import com.example.ricardo.tickit2.data.model.Order
@@ -16,12 +17,14 @@ class TicketItemAdapter(val ticket: Order): ItemAdapter<TicketItemAdapter.ViewHo
     override fun onCreateViewHolder(itemView: View): ViewHolder = ViewHolder(itemView)
     override fun ViewHolder.onBindViewHolder() {
         ticketView.setImageURI("")
+        orderIDText.text = ticket.id
     }
 
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
     {
         val ticketView by bindView<com.facebook.drawee.view.SimpleDraweeView>(R.id.ticket_image)
+        val orderIDText by bindView<TextView>(R.id.orderIDText)
     }
 
 

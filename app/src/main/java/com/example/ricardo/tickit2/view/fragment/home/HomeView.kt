@@ -14,6 +14,4 @@ interface HomeView{
     fun onShowSuccess(items: List<Show>)
     fun onShowError(error: Throwable)
 
-    fun onShow2Success(items: List<Show>)
-    fun onShow2Error(error: Throwable)
 }

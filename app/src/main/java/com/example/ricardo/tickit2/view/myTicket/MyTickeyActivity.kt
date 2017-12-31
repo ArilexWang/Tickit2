@@ -1,5 +1,7 @@
 package com.example.ricardo.tickit2.view.myTicket
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Window
@@ -11,7 +13,9 @@ import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import com.example.ricardo.tickit2.view.common.BaseActivity
+import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_myticket.*
+import kotlinx.android.synthetic.main.activity_profile_detail.*
 
 /**
  * Created by Ricardo on 2017/12/29.
@@ -38,7 +42,21 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
 
         presenter.getOrder(user!!)
 
+        ticketDetialBack.setOnClickListener { ticketBackBtnClick() }
 
+    }
+
+    fun ticketBackBtnClick(){
+        val intent = Intent()
+
+        val bundle = Bundle()
+        bundle.putString("view","4")
+
+        intent.setClass(this@MyTickeyActivity, ViewsActivity::class.java)
+        intent.putExtra("ticketdetialflag", 1)
+        intent.putExtras(bundle)
+        setResult(Activity.RESULT_OK,intent)
+        finish()
     }
 
     override fun show(items: List<Order>) {

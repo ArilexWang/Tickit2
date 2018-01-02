@@ -1,22 +1,22 @@
 package com.example.ricardo.tickit2.data.dto;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 /**
- * Created by Ricardo on 2017/12/26.
+ * Created by Ricardo on 2017/12/30.
  */
 
-public class BannerPicDto {
+public class OrderDto {
     @SerializedName("model")
     @Expose
     private String model;
     @SerializedName("pk")
     @Expose
-    private Long pk;
+    private String pk;
     @SerializedName("fields")
     @Expose
-    private BannerFiledDto fields;
+    private OrderFieldDto fields;
 
     public String getModel() {
         return model;
@@ -26,20 +26,19 @@ public class BannerPicDto {
         this.model = model;
     }
 
-    public Long getPk() {
+    public String getPk() {
         return pk;
     }
 
-    public void setPk(Long pk) {
+    public void setPk(String pk) {
         this.pk = pk;
     }
 
-    public BannerFiledDto getFields() {
+    public OrderFieldDto getFields() {
         return fields;
     }
 
-    public void setFields(BannerFiledDto fields) {
+    public void setFields(OrderFieldDto fields) {
         this.fields = fields;
     }
-
 }

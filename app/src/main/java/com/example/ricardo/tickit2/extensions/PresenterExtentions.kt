@@ -24,7 +24,6 @@ fun BasePresenter.postAvatar(path: String): String?{
             .create(Config.ACCESS_KEY , Config.SECRET_KEY).uploadToken(Config.BUCKET_NAME), UpCompletionHandler { key, info, res ->
         if (info.isOK) {
             val headpicPath = Config.TEST_DOMAIN + key
-            println(headpicPath)
             remotePath = headpicPath
         }
         else{

@@ -1,5 +1,7 @@
 package com.example.ricardo.tickit2.view.views
 
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -60,12 +62,17 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
 
         vp_main.currentItem = VIEW_FIRST
 
-        //example of how to show dot on icons
-        //tabs.showDot(VIEW_FOURTH, "99+")
 
     }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if ((requestCode == 0) && resultCode == Activity.RESULT_OK){
+            val bundle = data!!.extras
+            val text = bundle.getString("view")
+            println(text)
+        }
+    }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 

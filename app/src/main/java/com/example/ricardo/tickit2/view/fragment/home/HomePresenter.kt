@@ -30,14 +30,15 @@ class HomePresenter(val view: HomeView,val repository: BannerPicRepository, val 
                 )
     }
     fun getShow(){
-        val category: Int = 4
-        subscriptions += showRepository.getNewShow(category)
+
+        subscriptions += showRepository.getNewShow()
                 .applySchedulers()
                 .subscribeBy (
                     onSuccess = view::onShowSuccess,
                     onError = view::onShowError
                 )
     }
+
 
     override fun onViewDestroyed() {
         subscriptions.dispose()

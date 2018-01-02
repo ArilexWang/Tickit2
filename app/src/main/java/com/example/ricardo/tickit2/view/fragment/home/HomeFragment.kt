@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.PWXQR_NUMBER
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
@@ -28,6 +29,7 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
     var mInflate:LayoutInflater? = null
 
     var lLayout:LinearLayout? = null
+    var lLayout2:LinearLayout? = null
 
     private val images = ArrayList<String>()
 
@@ -41,7 +43,7 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
         val view = inflater!!.inflate(R.layout.fragment_home, null)
         mInflate = LayoutInflater.from(context)
         lLayout= view.findViewById(R.id.homeListHorizon);
-
+        lLayout2= view.findViewById(R.id.homeListHorizon2);
         return view
     }
 
@@ -64,47 +66,66 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
 
     //加载banner成功
     override fun onSuccess(items: List<BannerPicture>) {
-         for (item in items){
-             images.add(item.picPath)
-             bannerPics.add(item)
-         }
-         banner.setImageLoader(GlideImageLoader())
-         banner.setOnBannerListener(this)
-         //设置图片集合
-         banner.setImages(images)
-         banner.setIndicatorGravity(BannerConfig.CENTER)
-         //banner设置方法全部调用完毕时最后调用
-         banner.start()
+        for (item in items){
+            images.add(item.picPath)
+            bannerPics.add(item)
+        }
+        banner.setImageLoader(GlideImageLoader())
+        banner.setOnBannerListener(this)
+        banner.setDelayTime(5000)
+        //设置图片集合
+        banner.setImages(images)
+        banner.setIndicatorGravity(BannerConfig.CENTER)
+        //banner设置方法全部调用完毕时最后调用
+        banner.start()
     }
 
     //加载banner失败
     override fun onError(error: Throwable) {
-         Toast.makeText(context,"加载图片失败",Toast.LENGTH_SHORT).show();
+        println(error)
+        Toast.makeText(context,"加载图片失败",Toast.LENGTH_SHORT).show();
     }
 
-    //加载票务新奇日成功
+    //加载票务成功
     override fun onShowSuccess(items: List<Show>) {
-
         for (item in items){
-            val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon,false)
+            if (item.category == PWXQR_NUMBER){
+                val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon,false)
 
-            view.home_film_icon.setImageURI(item.avatarPath)
+                view.home_film_icon.setImageURI(item.avatarPath)
 
-            view.home_film_title.setText(item.name)
+                view.home_film_title.setText(item.name)
 
-            view.setOnClickListener { viewClick(item.descriptionPath) }
+                view.setOnClickListener { viewClick(item.descriptionPath,item.category.toString(),item.id.toString()) }
 
-            showDescription.add(item.descriptionPath)
+                showDescription.add(item.descriptionPath)
 
-            lLayout!!.addView(view)
+                lLayout!!.addView(view)
+            } else{
+                val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon2,false)
+
+                view.home_film_icon.setImageURI(item.avatarPath)
+
+                view.home_film_title.setText(item.name)
+
+                view.setOnClickListener { viewClick(item.descriptionPath,item.category.toString(),item.id.toString()) }
+
+                showDescription.add(item.descriptionPath)
+
+                lLayout2!!.addView(view)
+            }
+
         }
     }
 
 
+
     //票务新奇日点击事件
-    fun viewClick(path: String){
+    fun viewClick(path: String,category: String, id:String){
         val intent = Intent(context, AdvertisementActivity::class.java)
         intent.putExtra("url", path)
+        intent.putExtra("category",category)
+        intent.putExtra("id",id)
         startActivityForResult(intent, 0)
     }
 

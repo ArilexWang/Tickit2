@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.ricardo.tickit2.App
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.greendao.gen.DaoMaster
+import com.example.ricardo.tickit2.view.myTicket.MyTickeyActivity
 import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -38,18 +39,16 @@ class ProfileFragment: android.support.v4.app.Fragment() {
         imgProfileDetail.setOnClickListener {
             val intent = Intent()
             intent.setClass(this.context, ProfileInfoActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(intent,0)
         }
         systemService.setOnClickListener {
 
         }
-//        myTicketBtn.setOnClickListener {
-//            imgProfileDetail!!.setOnClickListener {
-//                val intent = Intent()
-//                intent.setClass(this.context, ProfileInfoActivity::class.java)
-//                startActivity(intent)
-//            }
-//        }
+        myTicketBtn.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this.context, MyTickeyActivity::class.java)
+            startActivityForResult(intent,1)
+        }
 
 
     }

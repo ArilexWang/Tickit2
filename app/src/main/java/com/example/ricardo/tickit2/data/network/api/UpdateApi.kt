@@ -11,7 +11,7 @@ import retrofit2.http.POST
  */
 interface UpdateApi {
     @FormUrlEncoded
-    @POST("changeUserInfo/")
+    @POST("setUserInfo/")
     fun UpdateUserMsg(
             @Field("nickname") nickname: String,
             @Field("studentID") studentID: Long,

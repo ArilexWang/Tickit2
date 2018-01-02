@@ -52,6 +52,21 @@
         android:layout_marginTop="@dimen/home_margin"
         android:layout_marginBottom="@dimen/home_margin"
         android:layout_marginLeft="@dimen/home_margin"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/homeListHorizon2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:scrollbars="none">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -62,9 +77,6 @@
             android:gravity="center_vertical"
             android:scrollbars="none"
             android:orientation="vertical">
-
-
-
 
         </LinearLayout>
 

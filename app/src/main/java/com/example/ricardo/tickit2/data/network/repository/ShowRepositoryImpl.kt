@@ -11,7 +11,7 @@ import io.reactivex.Single
 class ShowRepositoryImpl: ShowRepository{
     val showApi = retrofit.create(GetShowApi::class.java)
 
-    override fun getNewShow(category: Int): Single<List<Show>> =
-            showApi.getShow(category)
+    override fun getNewShow(): Single<List<Show>> =
+            showApi.getShow()
                     .map { it.map(::Show) }
 }

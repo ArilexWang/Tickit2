@@ -6,11 +6,9 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-/**
- * Created by Ricardo on 2017/12/26.
- */
+
 interface GetBannerApi {
-    @GET("getBannerPicture/")
+    @GET("getAllBannerPicture/")
     fun getBannerPic():Single<List<BannerPicDto>>
 
 }

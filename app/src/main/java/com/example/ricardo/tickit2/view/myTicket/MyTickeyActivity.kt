@@ -11,6 +11,7 @@ import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
+import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_myticket.*
@@ -66,6 +67,15 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
 
     }
 
-    fun createCategoryItemAdapter(ticket : Ticket) = TicketItemAdapter(ticket)
+    fun createCategoryItemAdapter(ticket : Ticket) = TicketItemAdapter(ticket,{ticketDetail(ticket)})
+
+    fun ticketDetail(ticket: Ticket){
+        val url = ticket.showDescription
+        val intent = Intent()
+        intent.putExtra("url", url)
+        intent.setClass(this@MyTickeyActivity,AdvertisementActivity::class.java)
+        startActivity(intent)
+    }
+
 
 }

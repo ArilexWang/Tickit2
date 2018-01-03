@@ -13,11 +13,13 @@ import java.util.*
 /**
  * Created by Ricardo on 2017/12/29.
  */
-class TicketItemAdapter(val ticket: Ticket): ItemAdapter<TicketItemAdapter.ViewHolder>(R.layout.item_ticket){
+class TicketItemAdapter(val ticket: Ticket,val clicked: (Ticket) -> Unit): ItemAdapter<TicketItemAdapter.ViewHolder>(R.layout.item_ticket){
 
     override fun onCreateViewHolder(itemView: View): ViewHolder = ViewHolder(itemView)
     override fun ViewHolder.onBindViewHolder() {
         ticketView.setImageURI(ticket.showAvatar)
+
+        ticketView.setOnClickListener{ clicked(ticket) }
 
         showName.text = ticket.showName
 

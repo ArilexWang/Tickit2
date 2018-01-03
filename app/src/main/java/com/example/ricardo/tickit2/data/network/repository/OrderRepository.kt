@@ -1,6 +1,7 @@
 package com.example.ricardo.tickit2.data.network.repository
 
 import com.example.ricardo.tickit2.data.model.Order
+import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.provider.Provider
 import io.reactivex.Single
@@ -11,7 +12,7 @@ import io.reactivex.Single
 interface OrderRepository {
 
     fun createOrder(user: User,ticketTypeID: Long): Single<List<Order>>
-    fun getOrder(user: User): Single<List<Order>>
+    fun getOrder(user: User): Single<List<Ticket>>
 
     companion object : Provider<OrderRepository>() {
         override fun creator() =  OrderRepositoryImpl()

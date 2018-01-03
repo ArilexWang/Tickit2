@@ -18,23 +18,37 @@
             android:scaleType="centerCrop"
             fresco:placeholderImage="@mipmap/default_list_pic"/>
 
+
         <TextView
-            android:id="@+id/order"
+            android:id="@+id/showName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/ticket_image"
             android:layout_marginTop="5dp"
-            android:text="@string/order"
+            android:layout_marginLeft="10dp"
             />
 
         <TextView
-            android:id="@+id/orderIDText"
+            android:id="@+id/cTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/order"
+            android:layout_toRightOf="@id/ticket_image"
             android:layout_marginTop="5dp"
-
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/showName"
+            android:text="@string/time"
             />
+
+        <TextView
+            android:id="@+id/createTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/cTime"
+            android:layout_below="@id/showName"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            />
+
 
     </RelativeLayout>
 

@@ -6,16 +6,16 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Window
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.base.BasePresenter
-import com.example.ricardo.tickit2.data.entity.Ticket
 import com.example.ricardo.tickit2.data.model.Order
+import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
+import com.example.ricardo.tickit2.extensions.toast
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
+import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_myticket.*
-import kotlinx.android.synthetic.main.activity_profile_detail.*
 
 /**
  * Created by Ricardo on 2017/12/29.
@@ -59,15 +59,26 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
         finish()
     }
 
-    override fun show(items: List<Order>) {
+    //加载我的票务成功
+    override fun show(items: List<Ticket>) {
         val categoryItemAdapters = items.map(this::createCategoryItemAdapter)
         recyclerView.adapter = MyTicketListAdapter(categoryItemAdapters)
     }
 
+    //加载我的票务失败
     override fun showError(error: Throwable) {
-
+        toast("Error: ${error.message}")
     }
 
-    fun createCategoryItemAdapter(order : Order) = TicketItemAdapter(order)
+    fun createCategoryItemAdapter(ticket : Ticket) = TicketItemAdapter(ticket,{ticketDetail(ticket)})
+
+    fun ticketDetail(ticket: Ticket){
+        val url = ticket.showDescription
+        val intent = Intent()
+        intent.putExtra("url", url)
+        intent.setClass(this@MyTickeyActivity,AdvertisementActivity::class.java)
+        startActivity(intent)
+    }
+
 
 }

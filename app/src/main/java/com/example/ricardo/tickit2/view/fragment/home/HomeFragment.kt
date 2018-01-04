@@ -8,12 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.base.BaseFragment
 import com.example.ricardo.tickit2.data.PWXQR_NUMBER
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
+import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
+import com.example.ricardo.tickit2.view.common.AnyItemAdapter
+import com.example.ricardo.tickit2.view.common.HorizontalScrollViewAdapter
+import com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
+import com.example.ricardo.tickit2.view.myTicket.TicketItemAdapter
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.youth.banner.BannerConfig
 import com.youth.banner.listener.OnBannerListener
@@ -22,46 +28,38 @@ import kotlinx.android.synthetic.main.item_horizan_list.view.*
 import java.util.ArrayList
 
 
-class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener {
+class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
 
     val presenter: HomePresenter = HomePresenter(this, BannerPicRepository.get(), ShowRepository.get())
 
-    var mInflate:LayoutInflater? = null
-
-    var lLayout:LinearLayout? = null
-    var lLayout2:LinearLayout? = null
+    var scollerView: ShowHorizontalScrollview? = null
+    var scollerView2: ShowHorizontalScrollview? = null
 
     private val images = ArrayList<String>()
 
     private val bannerPics = ArrayList<BannerPicture>()
 
-    private val showDescription = ArrayList<String>()
 
     @Nullable
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Fresco.initialize(context)
         val view = inflater!!.inflate(R.layout.fragment_home, null)
-        mInflate = LayoutInflater.from(context)
-        lLayout= view.findViewById(R.id.homeListHorizon);
-        lLayout2= view.findViewById(R.id.homeListHorizon2);
+        scollerView = view.findViewById(R.id.pwxqrScrollView)
+        scollerView2 = view.findViewById(R.id.pwtjScrollView)
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter.start()
-
     }
-
 
     //banner图片点击事件
     override fun OnBannerClick(position: Int) {
-
         val url = bannerPics[position].targetPath
         val intent = Intent(context, AdvertisementActivity::class.java)
         intent.putExtra("url", url)
         startActivityForResult(intent, 0)
-
     }
 
     //加载banner成功
@@ -88,44 +86,36 @@ class HomeFragment: android.support.v4.app.Fragment(),HomeView,OnBannerListener 
 
     //加载票务成功
     override fun onShowSuccess(items: List<Show>) {
+
+        var pwxqrList: MutableList<Show> = mutableListOf()
+        val pwtjList: MutableList<Show> = mutableListOf()
+
         for (item in items){
             if (item.category == PWXQR_NUMBER){
-                val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon,false)
-
-                view.home_film_icon.setImageURI(item.avatarPath)
-
-                view.home_film_title.setText(item.name)
-
-                view.setOnClickListener { viewClick(item.descriptionPath,item.category.toString(),item.id.toString()) }
-
-                showDescription.add(item.descriptionPath)
-
-                lLayout!!.addView(view)
-            } else{
-                val view:View = mInflate!!.inflate(R.layout.item_horizan_list,homeListHorizon2,false)
-
-                view.home_film_icon.setImageURI(item.avatarPath)
-
-                view.home_film_title.setText(item.name)
-
-                view.setOnClickListener { viewClick(item.descriptionPath,item.category.toString(),item.id.toString()) }
-
-                showDescription.add(item.descriptionPath)
-
-                lLayout2!!.addView(view)
+                pwxqrList.add(item)
+            }else{
+                pwtjList.add(item)
             }
-
         }
+
+        val categoryItemAdapters1 = pwxqrList.map(this::createCategoryItemAdapter)
+        val categoryItemAdapters2 = pwtjList.map(this::createCategoryItemAdapter)
+
+        val customListAdapter = HorizontalScrollViewAdapter(context,R.layout.item_horizan_list,categoryItemAdapters1)
+        val customListAdapter2 = HorizontalScrollViewAdapter(context,R.layout.item_horizan_list,categoryItemAdapters2)
+
+        scollerView!!.setAdapter(context,customListAdapter)
+        scollerView2!!.setAdapter(context,customListAdapter2)
     }
 
-
+    fun createCategoryItemAdapter(show: Show) = ShowItemAdapter(show,{viewClick(show)})
 
     //票务新奇日点击事件
-    fun viewClick(path: String,category: String, id:String){
+    fun viewClick(show: Show){
         val intent = Intent(context, AdvertisementActivity::class.java)
-        intent.putExtra("url", path)
-        intent.putExtra("category",category)
-        intent.putExtra("id",id)
+        intent.putExtra("url", show.descriptionPath)
+        intent.putExtra("category",show.category)
+        intent.putExtra("id",show.id)
         startActivityForResult(intent, 0)
     }
 

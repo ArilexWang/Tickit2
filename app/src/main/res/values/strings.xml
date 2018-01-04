@@ -110,8 +110,9 @@
     <string name="seleted_btn">选择票价</string>
 
     <!--Ticket item-->
-    <string name="order">Order ID: </string>
+    <string name="show">Show:  </string>
     <string name="ticket_title">我的票券</string>
-
+    <string name="time">购买时间:  </string>
+    <string name="detail">票券详情</string>
 
 </resources>

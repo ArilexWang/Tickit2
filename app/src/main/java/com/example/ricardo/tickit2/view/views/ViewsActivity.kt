@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.view.category.CategoryActivity
 import com.example.ricardo.tickit2.view.fragment.cart.CartFragment
 import com.example.ricardo.tickit2.view.fragment.home.HomeFragment
 import com.example.ricardo.tickit2.view.fragment.show.ShowFragment
@@ -22,6 +23,7 @@ import com.lhh.apst.library.AdvancedPagerSlidingTabStrip
 import com.lhh.apst.library.Margins
 
 import kotlinx.android.synthetic.main.activity_views.*
+import java.util.*
 
 class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
 
@@ -41,7 +43,10 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
     private fun init() {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         ivCenterBtn.setOnClickListener {
-            Toast.makeText(this@ViewsActivity, "Center Btn is Clicked.", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this@ViewsActivity, "Center Btn is Clicked.", Toast.LENGTH_SHORT).show()
+            val intent = Intent()
+            intent.setClass(this@ViewsActivity,CategoryActivity::class.java)
+            startActivity(intent)
         }
 
         mSize = resources.getDimensionPixelSize(R.dimen.weibo_tab_size)

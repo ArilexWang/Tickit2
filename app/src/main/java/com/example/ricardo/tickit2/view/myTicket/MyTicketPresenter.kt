@@ -29,15 +29,10 @@ class MyTicketPresenter(val view: MyTicketView, val repository: OrderRepository)
         val list = db.list()
 
         if (!list.isEmpty()){
-            val id = list[0].id
-            val password = list[0].password
-
             val user = User(list[0])
             return user
         }
-
         return null
-
     }
 
     fun getOrder(user: User){

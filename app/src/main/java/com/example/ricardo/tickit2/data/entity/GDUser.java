@@ -19,15 +19,19 @@ public class GDUser {
     private String mobileNumber;
     private String password;
     private String avatar;
-    @Generated(hash = 1256462792)
+    private boolean isSuperUser;
+    private boolean isAdmin;
+    @Generated(hash = 1610267966)
     public GDUser(String id, String nickName, String realName, String mobileNumber,
-            String password, String avatar) {
+            String password, String avatar, boolean isSuperUser, boolean isAdmin) {
         this.id = id;
         this.nickName = nickName;
         this.realName = realName;
         this.mobileNumber = mobileNumber;
         this.password = password;
         this.avatar = avatar;
+        this.isSuperUser = isSuperUser;
+        this.isAdmin = isAdmin;
     }
     @Generated(hash = 1014226889)
     public GDUser() {
@@ -41,6 +45,8 @@ public class GDUser {
         this.mobileNumber = user.getMobileNumber();
         this.password = user.getPassword();
         this.avatar = user.getAvatar();
+        this.isAdmin = user.isAdmin();
+        this.isSuperUser = user.isSuperUser();
     }
 
     public String getId() {
@@ -78,5 +84,17 @@ public class GDUser {
     }
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+    public boolean getIsSuperUser() {
+        return this.isSuperUser;
+    }
+    public void setIsSuperUser(boolean isSuperUser) {
+        this.isSuperUser = isSuperUser;
+    }
+    public boolean getIsAdmin() {
+        return this.isAdmin;
+    }
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

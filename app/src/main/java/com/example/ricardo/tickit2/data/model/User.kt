@@ -14,7 +14,9 @@ class User(
         var realName: String,
         var mobileNumber: String,
         var password: String,
-        var avatar: String
+        var avatar: String,
+        var isSuperUser: Boolean,
+        var isAdmin: Boolean
 ) :Parcelable {
     constructor(dto: UserDto): this(
             id = dto.pk,
@@ -22,11 +24,13 @@ class User(
             realName = dto.fields.realName,
             mobileNumber = dto.fields.mobileNumber,
             password = dto.fields.password,
-            avatar = dto.fields.avatar
+            avatar = dto.fields.avatar,
+            isSuperUser = dto.fields.isSuperuser,
+            isAdmin = dto.fields.isAdmin
 
     )
     constructor(id: String, nickName: String,realName: String, mobileNumber: String,password: String):
-            this(id, nickName, realName, mobileNumber, password, "")
+            this(id, nickName, realName, mobileNumber, password, "",false,false)
 
     constructor():this("","","","","")
 
@@ -36,6 +40,8 @@ class User(
             realName = gdUser.realName,
             mobileNumber = gdUser.mobileNumber,
             password = gdUser.password,
-            avatar = gdUser.avatar
+            avatar = gdUser.avatar,
+            isAdmin = gdUser.isAdmin,
+            isSuperUser = gdUser.isSuperUser
     )
 }

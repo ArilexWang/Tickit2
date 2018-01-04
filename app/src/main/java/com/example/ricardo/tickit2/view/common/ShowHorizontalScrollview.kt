@@ -36,7 +36,6 @@ class ShowHorizontalScrollview(
         }
 
     }
-
     @Throws(ZeroChildException::class)
     private fun fillViewWithAdapter(mAdapter: HorizontalScrollViewAdapter?) {
         if (childCount == 0) {

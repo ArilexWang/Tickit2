@@ -12,10 +12,6 @@ import com.example.ricardo.tickit2.view.fragment.home.ShowItemAdapter
 import kotlinx.android.synthetic.main.item_horizan_list.view.*
 
 
-/**
- * Created by Ricardo on 2018/1/4.
- */
-
 class HorizontalScrollViewAdapter(
         internal var context: Context,
         internal var layoutId: Int,

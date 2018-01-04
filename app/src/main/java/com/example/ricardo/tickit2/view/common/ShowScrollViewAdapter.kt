@@ -12,7 +12,7 @@ import com.example.ricardo.tickit2.view.fragment.home.ShowItemAdapter
 import kotlinx.android.synthetic.main.item_horizan_list.view.*
 
 
-class HorizontalScrollViewAdapter(
+class ShowScrollViewAdapter(
         internal var context: Context,
         internal var layoutId: Int,
         private val list: List<ShowItemAdapter>) : ArrayAdapter<ShowItemAdapter>(context, R.layout.item_horizan_list,list) {

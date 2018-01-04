@@ -1,11 +1,6 @@
 package com.example.ricardo.tickit2.view.common
 
-import android.opengl.ETC1.getWidth
-import android.app.Activity
 import android.content.Context
-import android.graphics.Color
-import android.widget.LinearLayout
-import android.graphics.Color.parseColor
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
@@ -26,7 +21,7 @@ class ShowHorizontalScrollview(
         this.isSmoothScrollingEnabled = true
     }
 
-    fun setAdapter(context: Context, mAdapter: HorizontalScrollViewAdapter) {
+    fun setAdapter(context: Context, mAdapter: ShowScrollViewAdapter) {
 
         try {
             fillViewWithAdapter(mAdapter)
@@ -37,7 +32,7 @@ class ShowHorizontalScrollview(
 
     }
     @Throws(ZeroChildException::class)
-    private fun fillViewWithAdapter(mAdapter: HorizontalScrollViewAdapter?) {
+    private fun fillViewWithAdapter(mAdapter: ShowScrollViewAdapter?) {
         if (childCount == 0) {
             throw ZeroChildException(
                     "CenterLockHorizontalScrollView must have one child")

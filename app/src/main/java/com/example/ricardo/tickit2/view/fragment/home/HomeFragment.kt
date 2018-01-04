@@ -12,19 +12,15 @@ import com.example.ricardo.tickit2.base.BaseFragment
 import com.example.ricardo.tickit2.data.PWXQR_NUMBER
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
-import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
-import com.example.ricardo.tickit2.view.common.AnyItemAdapter
-import com.example.ricardo.tickit2.view.common.HorizontalScrollViewAdapter
+import com.example.ricardo.tickit2.view.common.ShowScrollViewAdapter
 import com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
-import com.example.ricardo.tickit2.view.myTicket.TicketItemAdapter
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.youth.banner.BannerConfig
 import com.youth.banner.listener.OnBannerListener
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_horizan_list.view.*
 import java.util.ArrayList
 
 
@@ -44,8 +40,11 @@ class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Fresco.initialize(context)
         val view = inflater!!.inflate(R.layout.fragment_home, null)
+
         scollerView = view.findViewById(R.id.pwxqrScrollView)
+
         scollerView2 = view.findViewById(R.id.pwtjScrollView)
+
         return view
     }
 
@@ -101,8 +100,8 @@ class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
         val categoryItemAdapters1 = pwxqrList.map(this::createCategoryItemAdapter)
         val categoryItemAdapters2 = pwtjList.map(this::createCategoryItemAdapter)
 
-        val customListAdapter = HorizontalScrollViewAdapter(context,R.layout.item_horizan_list,categoryItemAdapters1)
-        val customListAdapter2 = HorizontalScrollViewAdapter(context,R.layout.item_horizan_list,categoryItemAdapters2)
+        val customListAdapter = ShowScrollViewAdapter(context,R.layout.item_horizan_list,categoryItemAdapters1)
+        val customListAdapter2 = ShowScrollViewAdapter(context,R.layout.item_horizan_list,categoryItemAdapters2)
 
         scollerView!!.setAdapter(context,customListAdapter)
         scollerView2!!.setAdapter(context,customListAdapter2)

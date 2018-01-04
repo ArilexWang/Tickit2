@@ -9,7 +9,7 @@ import com.example.ricardo.tickit2.BuildConfig
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.view.common.BaseActivity
-import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.main.activity_category.*
 
 /**
  * Created by yuhanyin on 1/3/18.

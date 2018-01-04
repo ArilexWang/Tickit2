@@ -33,7 +33,7 @@
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="weibo_tab_size">30dp</dimen>
-
+    <dimen name="tool_bar_view">1.5dp</dimen>
     <dimen name="button_drawable_padding">360dip</dimen>
     <dimen name="home_bar_icon_margins">15dp</dimen>
 

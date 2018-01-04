@@ -9,23 +9,27 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_bar"
-        android:background="@color/green">
+        android:background="@color/white">
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/icon_back"
             android:layout_gravity="center_vertical"
-            android:background="@color/green"
+            android:background="@color/white"
             android:layout_marginLeft="@dimen/tool_back"
             android:visibility="gone"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/me_title"
+            android:text="@string/profile_title"
             android:layout_gravity="center"
             android:gravity="center_vertical"
             android:textSize="@dimen/textSize_20"/>
     </android.support.v7.widget.Toolbar>
+    <View
+        style="@style/me_horizontal_view_style"
+        android:background="@color/green"
+        android:layout_height="@dimen/tool_bar_view"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,8 +48,10 @@
                 android:layout_height="@dimen/me_login_layout_height"
                 android:paddingLeft="@dimen/me_login_layout_paddingLeft"
                 android:visibility="visible"
-                android:background="@color/green"
-                android:alpha="@dimen/Alpha">
+                android:background="@color/white"
+                android:alpha="@dimen/Alpha"
+                android:layout_marginTop="@dimen/me_item_common_layout_marginTop"
+                android:layout_marginBottom="@dimen/me_item_common_layout_marginTop">
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/me_login_iv_head"
                     android:layout_width="@dimen/me_login_head_width"
@@ -61,6 +67,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/me_login_iv_head"
                     android:orientation="vertical">
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -69,7 +76,7 @@
                             android:id="@+id/me_login_tv_username"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="布拉拉"
+                            android:text="@string/user_name"
                             android:singleLine="true"
                             android:ellipsize="end"
                             android:textSize="@dimen/me_login_username_size"/>
@@ -100,7 +107,9 @@
                             android:text="00.00"
                             android:textSize="@dimen/textSize_16"/>
                     </LinearLayout>
+
                 </LinearLayout>
+
                 <ImageButton
                     android:id="@+id/imgProfileDetail"
                     android:layout_width="wrap_content"
@@ -108,10 +117,16 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/me_login_head_marginEnd"
-                    android:background="@color/green"
+                    android:background="@color/white"
                     android:src="@mipmap/icon_user_arrow_more"
                     />
+
+                <View
+                    style="@style/me_horizontal_view_style"
+                    android:layout_marginTop="@dimen/me_login_layout_height"/>
             </RelativeLayout>
+
+
 
             <!--隐藏：请登录-->
             <LinearLayout
@@ -137,17 +152,16 @@
                     android:textSize="@dimen/me_nologin_textSize"
                     android:background="@drawable/login_btn_bg_selector"/>
             </LinearLayout>
+
             <!--隐藏的View-->
-            <View
-                style="@style/me_user_view"
-                android:visibility="gone"/>
 
             <LinearLayout
                 android:id="@+id/me_user_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/white_quai_bg">
+                android:background="@drawable/white_quai_bg"
+                >
                 <!--我的收藏-->
                 <RelativeLayout
                     android:id="@+id/me_item_favourite_layout"
@@ -173,8 +187,7 @@
                         android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
-                <View
-                    style="@style/me_horizontal_view_style"/>
+
                 <!--我的订单-->
                 <RelativeLayout
                     android:id="@+id/me_item_order_layout"
@@ -200,9 +213,10 @@
                         android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
                         android:layout_centerInParent="true"/>
 
+                    <View
+                        style="@style/me_horizontal_view_style" />
                 </RelativeLayout>
-                <View
-                    style="@style/me_horizontal_view_style"/>
+
                 <!--我的票券-->
                 <RelativeLayout
                     android:id="@+id/me_item_favourite"
@@ -227,9 +241,9 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
                         android:layout_centerInParent="true"/>
+
                 </RelativeLayout>
-                <View
-                    style="@style/me_horizontal_view_style"/>
+
             </LinearLayout>
 
             <RelativeLayout

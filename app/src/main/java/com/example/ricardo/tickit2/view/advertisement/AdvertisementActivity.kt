@@ -10,6 +10,7 @@ import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import kotlinx.android.synthetic.main.activity_advertisement.*
 import android.content.DialogInterface
+import android.view.View
 import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
@@ -24,6 +25,9 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_advertisement)
+
+        participateBtn.visibility = View.GONE
+
 
         val webSettings = wb.settings
 
@@ -62,6 +66,7 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
             participateBtn.setText("立即参与")
             val ticketTypeID = id + "00"
 
+            participateBtn.visibility = View.VISIBLE
             participateBtn.setOnClickListener{ participateBtnClick(ticketTypeID) }
 
 
@@ -88,7 +93,7 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
 
 
     override fun onError(error: Throwable) {
-
+        println(error)
         val dialog = AlertDialog.Builder(this)
                 .setTitle("订票失败")
                 .setMessage("该票已经售罄了 ")

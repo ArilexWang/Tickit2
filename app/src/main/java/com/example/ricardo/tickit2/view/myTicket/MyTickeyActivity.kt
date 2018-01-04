@@ -34,6 +34,7 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
 
         recyclerView.layoutManager = GridLayoutManager(this, 1)
 
+
         _userDao = loadDaoSession().gdUserDao
 
         presenter.mUserDao = _userDao

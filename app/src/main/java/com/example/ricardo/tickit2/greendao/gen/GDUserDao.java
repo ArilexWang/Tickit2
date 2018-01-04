@@ -30,6 +30,8 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
         public final static Property MobileNumber = new Property(3, String.class, "mobileNumber", false, "MOBILE_NUMBER");
         public final static Property Password = new Property(4, String.class, "password", false, "PASSWORD");
         public final static Property Avatar = new Property(5, String.class, "avatar", false, "AVATAR");
+        public final static Property IsSuperUser = new Property(6, boolean.class, "isSuperUser", false, "IS_SUPER_USER");
+        public final static Property IsAdmin = new Property(7, boolean.class, "isAdmin", false, "IS_ADMIN");
     }
 
 
@@ -50,7 +52,9 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
                 "\"REAL_NAME\" TEXT," + // 2: realName
                 "\"MOBILE_NUMBER\" TEXT," + // 3: mobileNumber
                 "\"PASSWORD\" TEXT," + // 4: password
-                "\"AVATAR\" TEXT);"); // 5: avatar
+                "\"AVATAR\" TEXT," + // 5: avatar
+                "\"IS_SUPER_USER\" INTEGER NOT NULL ," + // 6: isSuperUser
+                "\"IS_ADMIN\" INTEGER NOT NULL );"); // 7: isAdmin
     }
 
     /** Drops the underlying database table. */
@@ -92,6 +96,8 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
         if (avatar != null) {
             stmt.bindString(6, avatar);
         }
+        stmt.bindLong(7, entity.getIsSuperUser() ? 1L: 0L);
+        stmt.bindLong(8, entity.getIsAdmin() ? 1L: 0L);
     }
 
     @Override
@@ -127,6 +133,8 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
         if (avatar != null) {
             stmt.bindString(6, avatar);
         }
+        stmt.bindLong(7, entity.getIsSuperUser() ? 1L: 0L);
+        stmt.bindLong(8, entity.getIsAdmin() ? 1L: 0L);
     }
 
     @Override
@@ -142,7 +150,9 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // realName
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // mobileNumber
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // password
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // avatar
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // avatar
+            cursor.getShort(offset + 6) != 0, // isSuperUser
+            cursor.getShort(offset + 7) != 0 // isAdmin
         );
         return entity;
     }
@@ -155,6 +165,8 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
         entity.setMobileNumber(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setPassword(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setAvatar(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setIsSuperUser(cursor.getShort(offset + 6) != 0);
+        entity.setIsAdmin(cursor.getShort(offset + 7) != 0);
      }
     
     @Override

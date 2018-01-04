@@ -16,8 +16,6 @@
         android:layout_height="1dp"
         android:background="@color/dark"/>
 
-
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +24,9 @@
         android:layout_marginTop="@dimen/home_margin"
         android:layout_marginBottom="@dimen/home_margin"
         android:layout_marginLeft="@dimen/home_margin"/>
-    <HorizontalScrollView
+
+    <com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
+        android:id="@+id/pwxqrScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -38,7 +38,7 @@
             android:scrollbars="none">
 
         </LinearLayout>
-    </HorizontalScrollView>
+    </com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -53,7 +53,8 @@
         android:layout_marginBottom="@dimen/home_margin"
         android:layout_marginLeft="@dimen/home_margin"/>
 
-    <HorizontalScrollView
+    <com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
+        android:id="@+id/pwtjScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -65,7 +66,7 @@
             android:scrollbars="none">
 
         </LinearLayout>
-    </HorizontalScrollView>
+    </com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview>
 
     <ScrollView
         android:layout_width="match_parent"

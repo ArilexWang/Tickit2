@@ -10,6 +10,7 @@ import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
+import com.example.ricardo.tickit2.extensions.toast
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
@@ -58,13 +59,15 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
         finish()
     }
 
+    //加载我的票务成功
     override fun show(items: List<Ticket>) {
         val categoryItemAdapters = items.map(this::createCategoryItemAdapter)
         recyclerView.adapter = MyTicketListAdapter(categoryItemAdapters)
     }
 
+    //加载我的票务失败
     override fun showError(error: Throwable) {
-
+        toast("Error: ${error.message}")
     }
 
     fun createCategoryItemAdapter(ticket : Ticket) = TicketItemAdapter(ticket,{ticketDetail(ticket)})

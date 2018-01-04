@@ -52,8 +52,9 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
 
         val intent:Intent = getIntent()
         val url = intent.getStringExtra("url")
-        var category = intent.getStringExtra("category")
-        var id = intent.getStringExtra("id")
+        var category = intent.getIntExtra("category",-1)
+        var id = intent.getLongExtra("id",-1)
+        println(category)
 
         wb.loadUrl(url)
 
@@ -61,10 +62,10 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
 
         presenter.mUserDao = _userDao
 
-        if (category == "4"){
+        if (category == 4){
 
             participateBtn.setText("立即参与")
-            val ticketTypeID = id + "00"
+            val ticketTypeID = id.toString() + "00"
 
             participateBtn.visibility = View.VISIBLE
             participateBtn.setOnClickListener{ participateBtnClick(ticketTypeID) }

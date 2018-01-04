@@ -32,7 +32,7 @@ android {
         experimental = true
     }
     greendao {
-        schemaVersion 3
+        schemaVersion 4
         daoPackage 'com.example.ricardo.tickit2.greendao.gen'
         targetGenDir 'src/main/java'
     }

@@ -1,7 +1,7 @@
 package com.example.ricardo.tickit2.view.myTicket
 
-import com.example.ricardo.tickit2.data.entity.Ticket
 import com.example.ricardo.tickit2.data.model.Order
+import com.example.ricardo.tickit2.data.model.Ticket
 
 /**
  * Created by Ricardo on 2017/12/29.
@@ -9,7 +9,7 @@ import com.example.ricardo.tickit2.data.model.Order
 
 interface MyTicketView{
 
-    fun show(items: List<Order>)
+    fun show(items: List<Ticket>)
     fun showError(error: Throwable)
 
 }

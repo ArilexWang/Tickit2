@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.data.network.api
+package com.example.ricardo.tickit2.data.network.api.bannerapi
 
 import com.example.ricardo.tickit2.data.dto.BannerPicDto
 import io.reactivex.Single

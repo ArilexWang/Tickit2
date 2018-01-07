@@ -2,10 +2,9 @@ package com.example.ricardo.tickit2.data.network.repository
 
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.User
-import com.example.ricardo.tickit2.data.network.api.CreateBannerApi
-import com.example.ricardo.tickit2.data.network.api.CreateOrderApi
-import com.example.ricardo.tickit2.data.network.api.GetBannerApi
-import com.example.ricardo.tickit2.data.network.api.SetBannerApi
+import com.example.ricardo.tickit2.data.network.api.bannerapi.CreateBannerApi
+import com.example.ricardo.tickit2.data.network.api.bannerapi.GetBannerApi
+import com.example.ricardo.tickit2.data.network.api.bannerapi.SetBannerApi
 import com.example.ricardo.tickit2.data.network.provider.retrofit
 import com.example.ricardo.tickit2.extensions.toInt
 import io.reactivex.Single

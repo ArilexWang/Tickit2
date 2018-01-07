@@ -28,26 +28,42 @@ import kotlinx.android.synthetic.main.item_banner.*
 class BannerSettingActivity:BaseActivity(),BannerSettingView{
     override val presenter by lazy{ BannerSettingPresenter(this, BannerPicRepository.get()) }
 
-
     val banner: BannerPicture by extra(BANNER_ARG)
+
+    val from: String by lazy { intent.getStringExtra(INTENT) }
+
     var userDao: GDUserDao? = null
     var newBanner: BannerPicture? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_banner_setting)
+
         Fresco.initialize(this)
+
         set_banner_pic.setImageURI(banner.picPath)
         set_descriptionURL.setText(banner.targetPath)
 
         set_banner_pic.setOnClickListener { picClick() }
-        set_banner_save.setOnClickListener{ savaBtnClick() }
+
+
+        bannerBack.setOnClickListener { backClick() }
+
+
+        if(from != "ADD"){
+            set_banner_save.setOnClickListener{ savaBtnClick() }
+        } else{
+            set_banner_save.setOnClickListener { addBtnClick() }
+        }
+
+
 
         userDao = loadDaoSession().gdUserDao
 
         newBanner = BannerPicture(banner)
 
-        switch_view.showText = newBanner!!.isOnDisplay
+
+        switch_view.isChecked = newBanner!!.isOnDisplay
 
         switch_view.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener {  buttonView, isChecked ->
             if (isChecked) {
@@ -62,10 +78,12 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
 
     }
 
+    fun backClick(){
+        BannerActivity.start(this)
+    }
+
     override fun onSuccess(items: List<BannerPicture>) {
-        val intent = Intent()
-        intent.setClass(this@BannerSettingActivity, BannerActivity::class.java)
-        startActivity(intent)
+        BannerActivity.start(this)
     }
 
     override fun onError(error: Throwable) {
@@ -73,10 +91,24 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
     }
 
 
+    override fun createSuccess(items: List<BannerPicture>) {
+        BannerActivity.start(this)
+    }
+
+    override fun createFaile(error: Throwable) {
+        println(error)
+    }
+
     fun savaBtnClick(){
         newBanner!!.targetPath = set_descriptionURL.text.toString()
         presenter.setBanner(newBanner!!)
     }
+
+    fun addBtnClick(){
+        newBanner!!.targetPath = set_descriptionURL.text.toString()
+        presenter.createBanner(newBanner!!)
+    }
+
 
 
     fun picClick(){
@@ -88,7 +120,8 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
                     startActivity(intent)
                 }
                 R.id.choosePhoto -> {
-                    PhotoChoseActivity.startFromBanner(this,"banner",banner)
+                    newBanner!!.targetPath = set_descriptionURL.text.toString()
+                    PhotoChoseActivity.startFromBanner(this,"banner",newBanner!!)
 
                 }
             }
@@ -97,14 +130,26 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
 
     companion object {
         private const val BANNER_ARG = "Banner_Key"
+        private const val INTENT = "INTENT_FROM"
 
         fun getIntent(context: Context, banner: BannerPicture) = context
                 .getIntent<BannerSettingActivity>()
                 .apply { putExtra(BANNER_ARG, banner) }
 
+        fun getIntent(context: Context, banner: BannerPicture, from: String) = context
+                .getIntent<BannerSettingActivity>()
+                .apply {
+                    putExtra(BANNER_ARG,banner)
+                    putExtra(INTENT,from)
+                }
 
         fun start(context: Context, banner: BannerPicture ){
             val intent = getIntent(context, banner)
+            context.startActivity(intent)
+        }
+
+        fun startFromAdd(context: Context,banner: BannerPicture,from: String){
+            val intent = getIntent(context,banner,from)
             context.startActivity(intent)
         }
 

@@ -5,19 +5,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Window
+import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
+import com.example.ricardo.tickit2.extensions.bindToSwipeRefresh
 import com.example.ricardo.tickit2.extensions.getIntent
 import com.example.ricardo.tickit2.view.admin.bannerSetting.BannerSettingActivity
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.myTicket.MyTicketListAdapter
 import com.example.ricardo.tickit2.view.myTicket.TicketItemAdapter
+import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
+import com.example.ricardo.tickit2.view.setting.SettingActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_banner.*
+import kotlinx.android.synthetic.main.activity_banner_setting.*
 import kotlinx.android.synthetic.main.activity_myticket.*
 
 
@@ -27,6 +32,7 @@ import kotlinx.android.synthetic.main.activity_myticket.*
 
 class BannerActivity:BaseActivity(),BannerView{
     override val presenter by lazy { BannerPresenter(this, BannerPicRepository.get()) }
+    override var refresh by bindToSwipeRefresh(R.id.bannerSwipeRefreshView)
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -47,7 +53,8 @@ class BannerActivity:BaseActivity(),BannerView{
 
     fun addBtnClick(){
         val banner = BannerPicture("","","",true)
-        BannerSettingActivity.start(this,banner)
+        BannerSettingActivity.startFromAdd(this,banner,"ADD")
+
     }
 
 
@@ -55,7 +62,19 @@ class BannerActivity:BaseActivity(),BannerView{
 
 
     fun bannerPicClick(banner: BannerPicture){
-        BannerSettingActivity.start(this,banner)
+
+        BottomSheet.Builder(this@BannerActivity).sheet(R.menu.set_banner_list).listener { dialog, which ->
+            when (which) {
+                R.id.set_banner -> {
+                    BannerSettingActivity.start(this,banner)
+                }
+                R.id.delete_banner -> {
+
+                }
+            }
+        }.build().show()
+
+
     }
 
     override fun onSuccess(items: List<BannerPicture>) {
@@ -67,6 +86,18 @@ class BannerActivity:BaseActivity(),BannerView{
         println(error)
     }
 
+    companion object {
+        private const val BANNER_ARG = "Banner_Key"
+
+        fun getIntent(context: Context) = context.getIntent<BannerActivity>()
+
+        fun start(context: Context){
+            val intent = getIntent(context)
+            context.startActivity(intent)
+        }
+
+
+    }
 
 
 }

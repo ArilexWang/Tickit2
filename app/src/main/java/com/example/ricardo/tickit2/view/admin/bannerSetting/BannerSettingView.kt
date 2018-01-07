@@ -12,4 +12,6 @@ interface BannerSettingView {
 
     fun onError(error: Throwable)
 
+    fun createSuccess(items: List<BannerPicture>)
+    fun createFaile(error: Throwable)
 }

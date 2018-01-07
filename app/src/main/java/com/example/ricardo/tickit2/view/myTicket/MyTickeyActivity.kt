@@ -9,6 +9,7 @@ import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
+import com.example.ricardo.tickit2.extensions.bindToSwipeRefresh
 import com.example.ricardo.tickit2.extensions.getLocalUser
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.extensions.toast
@@ -25,6 +26,8 @@ import kotlinx.android.synthetic.main.activity_myticket.*
 
 class MyTickeyActivity:BaseActivity(),MyTicketView{
     override val presenter by lazy { MyTicketPresenter(this, OrderRepository.get()) }
+
+    override var refresh by bindToSwipeRefresh(R.id.swipeRefreshView)
 
     var _userDao: GDUserDao? = null
 
@@ -45,6 +48,8 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
         presenter.getOrder(user!!)
 
         ticketDetialBack.setOnClickListener { ticketBackBtnClick() }
+
+        swipeRefreshView.setOnRefreshListener { presenter.onRefresh() }
 
     }
 

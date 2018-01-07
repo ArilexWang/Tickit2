@@ -4,6 +4,7 @@ import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.extensions.applySchedulers
+import com.example.ricardo.tickit2.extensions.getLocalUser
 import com.example.ricardo.tickit2.extensions.plusAssign
 import com.example.ricardo.tickit2.extensions.subscribeBy
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
@@ -20,24 +21,18 @@ class MyTicketPresenter(val view: MyTicketView, val repository: OrderRepository)
 
     override fun start() {
 
-
     }
 
-//    fun getLocalUser(): User?{
-//        val db = mUserDao!!.queryBuilder()
-//
-//        val list = db.list()
-//
-//        if (!list.isEmpty()){
-//            val user = User(list[0])
-//            return user
-//        }
-//        return null
-//    }
+    fun onRefresh(){
+        val user = getLocalUser(mUserDao!!)
+        getOrder(user!!)
+    }
 
     fun getOrder(user: User){
         subscriptins += repository.getOrder(user)
                 .applySchedulers()
+                .doOnSubscribe { view.refresh = true }
+                .doFinally{ view.refresh = false }
                 .subscribeBy (
                         onSuccess = view::show,
                         onError = view::showError
@@ -45,6 +40,6 @@ class MyTicketPresenter(val view: MyTicketView, val repository: OrderRepository)
     }
 
     override fun onViewDestroyed() {
-
+        subscriptins.dispose()
     }
 }

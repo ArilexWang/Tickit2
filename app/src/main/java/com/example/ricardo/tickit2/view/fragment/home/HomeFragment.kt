@@ -70,8 +70,10 @@ class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
     //加载banner成功
     override fun onSuccess(items: List<BannerPicture>) {
         for (item in items){
-            images.add(item.picPath)
-            bannerPics.add(item)
+            if (item.isOnDisplay){
+                images.add(item.picPath)
+                bannerPics.add(item)
+            }
         }
         banner.setImageLoader(GlideImageLoader())
         banner.setOnBannerListener(this)

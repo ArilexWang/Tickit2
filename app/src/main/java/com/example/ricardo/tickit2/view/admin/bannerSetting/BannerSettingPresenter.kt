@@ -31,9 +31,19 @@ class BannerSettingPresenter(val view: BannerSettingView,val repository: BannerP
                         onSuccess = view::onSuccess,
                         onError = view::onError
                 )
-
-
     }
+
+
+    fun createBanner(banner: BannerPicture){
+        val user = getLocalUser(mUserDao!!)
+        subscriptins += repository.createBannerPic(user!!,banner)
+                .applySchedulers()
+                .subscribeBy(
+                        onSuccess = view::createSuccess,
+                        onError = view::createFaile
+                )
+    }
+
 
     override fun onViewDestroyed() {
 

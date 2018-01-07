@@ -51,9 +51,6 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
         fromImg()
 
 
-        println(banner.targetPath)
-        println(from)
-
         val gdUser = loadDaoSession().gdUserDao
 
         presenter.userDao = gdUser
@@ -83,9 +80,8 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
         if (from == AVATAR){
             presenter.updateUserInfo(path!!)
         } else {
-
             banner.picPath = path!!
-            BannerSettingActivity.start(this,banner)
+            BannerSettingActivity.startFromAdd(this,banner,"ADD")
         }
     }
 

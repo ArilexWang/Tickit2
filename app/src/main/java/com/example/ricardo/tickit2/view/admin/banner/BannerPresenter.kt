@@ -24,6 +24,8 @@ class BannerPresenter(val view: BannerView,val repository: BannerPicRepository):
     fun getBannerPic() {
         subscriptions += repository.getBannerPic()
                 .applySchedulers()
+                .doOnSubscribe { view.refresh = true }
+                .doFinally{ view.refresh = false }
                 .subscribeBy (
                         onSuccess = view::onSuccess,
                         onError = view::onError

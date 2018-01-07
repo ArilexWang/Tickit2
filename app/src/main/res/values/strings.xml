@@ -113,4 +113,12 @@
     <string name="time">购买时间:  </string>
     <string name="detail">票券详情</string>
 
+
+    <!--Admin fragment-->
+    <string name="bannerBtn">Banner</string>
+    <string name="showBtn">Show</string>
+
+
+
+
 </resources>

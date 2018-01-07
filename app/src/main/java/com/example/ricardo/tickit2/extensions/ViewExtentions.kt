@@ -17,3 +17,5 @@ fun <T: View> RecyclerView.ViewHolder.bindView(viewId: Int)
 fun Context.toast(text: String, length: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, text, length).show()
 }
+
+fun Boolean.toInt() = if (this) 1 else 0

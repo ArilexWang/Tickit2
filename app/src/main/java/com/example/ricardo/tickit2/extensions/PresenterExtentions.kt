@@ -1,8 +1,10 @@
 package com.example.ricardo.tickit2.extensions
 
 import com.example.ricardo.tickit2.base.BasePresenter
+import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.utils.Auth
 import com.example.ricardo.tickit2.data.network.utils.Config
+import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import com.qiniu.android.storage.UpCompletionHandler
 import com.qiniu.android.storage.UploadManager
 import java.text.SimpleDateFormat
@@ -33,5 +35,21 @@ fun BasePresenter.postAvatar(path: String): String?{
     }, null)
 
     return remotePath
+
+}
+
+fun BasePresenter.getLocalUser(mUserDao: GDUserDao): User?{
+    val db = mUserDao!!.queryBuilder()
+
+    val list = db.list()
+
+    if (!list.isEmpty()){
+        val user: User = User(list[0])
+
+        return user
+
+    }
+
+    return null
 
 }

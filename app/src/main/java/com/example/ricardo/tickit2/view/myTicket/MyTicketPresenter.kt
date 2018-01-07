@@ -23,17 +23,17 @@ class MyTicketPresenter(val view: MyTicketView, val repository: OrderRepository)
 
     }
 
-    fun getLocalUser(): User?{
-        val db = mUserDao!!.queryBuilder()
-
-        val list = db.list()
-
-        if (!list.isEmpty()){
-            val user = User(list[0])
-            return user
-        }
-        return null
-    }
+//    fun getLocalUser(): User?{
+//        val db = mUserDao!!.queryBuilder()
+//
+//        val list = db.list()
+//
+//        if (!list.isEmpty()){
+//            val user = User(list[0])
+//            return user
+//        }
+//        return null
+//    }
 
     fun getOrder(user: User){
         subscriptins += repository.getOrder(user)

@@ -7,9 +7,11 @@ import android.view.View
 import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
+import com.example.ricardo.tickit2.extensions.isAdmin
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.extensions.saveUserToLocal
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
+import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.main.MainActivityPresenter
 import com.example.ricardo.tickit2.view.main.MainView
@@ -68,9 +70,16 @@ class MainActivity : BaseActivity(),MainView {
         println(user.id)
 
 
-        val intent = Intent()
-        intent.setClass(this@MainActivity, ViewsActivity::class.java)
-        startActivity(intent)
+        if (isAdmin(_userDao!!)){
+            val intent = Intent()
+            intent.setClass(this@MainActivity, AdminMainActivity::class.java)
+            startActivity(intent)
+        }else{
+            val intent = Intent()
+            intent.setClass(this@MainActivity, ViewsActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 

@@ -9,12 +9,14 @@ import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
+import com.example.ricardo.tickit2.extensions.getLocalUser
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.extensions.toast
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.views.ViewsActivity
+import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_myticket.*
 
 /**
@@ -31,15 +33,14 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_myticket)
-
+        Fresco.initialize(this)
         recyclerView.layoutManager = GridLayoutManager(this, 1)
-
 
         _userDao = loadDaoSession().gdUserDao
 
         presenter.mUserDao = _userDao
 
-        val user = presenter.getLocalUser()
+        val user = presenter.getLocalUser(_userDao!!)
 
         presenter.getOrder(user!!)
 

@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.R
@@ -23,13 +25,22 @@ import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_banner_setting.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.item_banner.*
+import android.widget.Toast
+import com.example.ricardo.tickit2.MainActivity
+import android.widget.AdapterView.OnItemSelectedListener
+import com.example.ricardo.tickit2.data.ODNR
+import com.example.ricardo.tickit2.data.ODNR_NUMBER
+import com.example.ricardo.tickit2.data.PWXQR
+import com.example.ricardo.tickit2.data.PWXQR_NUMBER
+import com.example.ricardo.tickit2.data.network.repository.ShowRepository
+
 
 /**
  * Created by Ricardo on 2018/1/6.
  */
 
 class BannerSettingActivity:BaseActivity(),BannerSettingView{
-    override val presenter by lazy{ BannerSettingPresenter(this, BannerPicRepository.get()) }
+    override val presenter by lazy{ BannerSettingPresenter(this, BannerPicRepository.get(), ShowRepository.get()) }
 
     val banner: BannerPicture by extra(BANNER_ARG)
 
@@ -91,6 +102,32 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
             para.height = 400
             set_banner_pic.layoutParams = para
 
+
+            cate_spinner.visibility = View.VISIBLE
+
+            cate_spinner.setOnItemSelectedListener(object : OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    val data = cate_spinner.getItemAtPosition(position) as String//从spinner中获取被选择的数据
+                    if (data == PWXQR){
+                        newShow!!.category = PWXQR_NUMBER
+                    } else if(data == ODNR){
+                        newShow!!.category = ODNR_NUMBER
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+
+                }
+            })
+
+
+            if(from != "ADD"){
+                set_banner_save.setOnClickListener{ saveShowBtnClick() }
+            } else{
+
+            }
+
+
             set_descriptionURL.setText(show.descriptionPath)
             set_input2.visibility = View.VISIBLE
             set_name.setText(show.name)
@@ -108,9 +145,17 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
                     newShow!!.is_OnSale = isChecked
                 }
             })
+
             set_bannerBack.setOnClickListener { backToShowClick() }
+
+
         }
+
+
+
         presenter.mUserDao = userDao
+
+
     }
 
 
@@ -132,6 +177,13 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
         println(error)
     }
 
+    override fun setShowSuccess(items: List<Show>) {
+        BannerActivity.start(this,"MAIN_SHOW")
+    }
+
+    override fun setShowError(error: Throwable) {
+        println(error)
+    }
 
     fun backClick(){
         BannerActivity.start(this,"SET")
@@ -150,6 +202,16 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
         newBanner!!.targetPath = set_descriptionURL.text.toString()
         presenter.createBanner(newBanner!!)
     }
+
+    fun saveShowBtnClick(){
+
+        newShow!!.name = set_name.text.toString()
+        newShow!!.descriptionPath = set_descriptionURL.text.toString()
+        println(newShow!!.name)
+        presenter.setShow(newShow!!)
+
+    }
+
 
 
 

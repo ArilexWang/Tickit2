@@ -11,7 +11,7 @@ import io.reactivex.Single
 interface ShowRepository {
 
     fun getNewShow(): Single<List<Show>>
-    //fun setShow(user: User,show: Show): Single<List<Show>>
+    fun setShow(user: User,show: Show): Single<List<Show>>
 
     companion object : Provider<ShowRepository>() {
         override fun creator() =  ShowRepositoryImpl()

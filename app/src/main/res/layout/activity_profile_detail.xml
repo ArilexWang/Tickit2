@@ -48,6 +48,7 @@
                 android:layout_marginTop="@dimen/me_item_common_layout_marginTop"
                 android:orientation="vertical"
                 android:background="@drawable/white_quai_bg">
+                <!--头像-->
                 <RelativeLayout
                     android:id="@+id/user_item_avatar_layout"
                     style="@style/me_common_item_relativeLayout_style"
@@ -88,22 +89,20 @@
                         android:id="@+id/user_item_username_tv_username"
                         style="@style/more_common_desc_textView_style"
                         android:layout_alignParentEnd="false"
-                        android:layout_toRightOf="@+id/user_item_username_tv_title"
+                        android:layout_toLeftOf="@+id/usernameEdit"
                         android:layout_marginLeft="10dp"
-                        tools:text="布拉拉"
+                        android:hint="@string/app_name_b"
                         android:textSize="@dimen/textSize_14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/usernameEdit"
                         style="@style/more_common_desc_textView_style"
-                        android:layout_alignParentEnd="false"
-                        android:layout_toLeftOf="@+id/user_item_username_iv_arrow"
+                        android:layout_alignParentRight="true"
                         android:text="@string/user_item_right_modify"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <ImageView
-                        android:id="@+id/user_item_username_iv_arrow"
-                        style="@style/me_common_item_arrow_right_imageView_style"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/main_margin"/>
                 </RelativeLayout>
                 <View
                     style="@style/me_horizontal_view_style"/>
@@ -120,22 +119,20 @@
                         android:id="@+id/user_item_nickname_tv_nickname"
                         style="@style/more_common_desc_textView_style"
                         android:layout_alignParentEnd="false"
-                        android:layout_toRightOf="@+id/user_item_nickname_tv_title"
+                        android:layout_toLeftOf="@+id/nicknameEdit"
                         android:layout_marginLeft="10dp"
-                        tools:text="布拉拉"
+                        android:hint="@string/app_name_b"
                         android:textSize="@dimen/textSize_14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
+                        android:id="@+id/nicknameEdit"
                         style="@style/more_common_desc_textView_style"
-                        android:layout_alignParentEnd="false"
-                        android:layout_toLeftOf="@+id/user_item_nickname_iv_arrow"
-                        android:text="@string/user_item_right_edit"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/user_item_right_modify"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <ImageView
-                        android:id="@+id/user_item_nickname_iv_arrow"
-                        style="@style/me_common_item_arrow_right_imageView_style"/>
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/main_margin"/>
                 </RelativeLayout>
                 <View
                     style="@style/me_horizontal_view_style"/>
@@ -152,14 +149,14 @@
                         android:id="@+id/user_item_bindPhone_tv_nickname"
                         style="@style/more_common_desc_textView_style"
                         android:layout_alignParentEnd="false"
-                        android:layout_toRightOf="@+id/user_item_bindPhone_tv_title"
+                        android:layout_toLeftOf="@+id/phoneEdit"
                         android:layout_marginLeft="10dp"
                         tools:text="18186532328"
                         android:textSize="@dimen/textSize_14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:id="@+id/user_item_bindPhone_tv_state"
+                        android:id="@+id/phoneEdit"
                         style="@style/more_common_desc_textView_style"
                         android:layout_alignParentEnd="false"
                         android:layout_toLeftOf="@+id/user_item_bindPhone_iv_arrow"
@@ -289,10 +286,12 @@
             <Button
                 android:id="@+id/user_btn_exit_login"
                 android:text="@string/user_exit_login"
+                android:background="@drawable/signup_btn"
                 android:enabled="true"
-                android:layout_marginBottom="30dp"
-                android:layout_height="@dimen/sign_text_height"
-                android:layout_width="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/sign_btn_margin"
+                android:layout_margin="@dimen/sign_btn_margin"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

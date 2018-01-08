@@ -276,22 +276,22 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/me_item_coupons_layout"
+                android:id="@+id/me_item_vip_layout"
                 style="@style/me_common_item_relativeLayout_style"
                 android:layout_marginTop="@dimen/me_item_common_layout_marginTop"
                 >
                 <ImageView
-                    android:id="@+id/me_item_coupons_iv_icon"
+                    android:id="@+id/me_item_vip_iv_icon"
                     style="@style/me_common_item_icon_imageView_style"
                     android:src="@mipmap/user_listicon_diyongquan"/>
                 <TextView
                     style="@style/me_common_item_title_textView_style"
-                    android:layout_toRightOf="@+id/me_item_coupons_iv_icon"
-                    android:text="@string/me_item_coupons"
+                    android:layout_toRightOf="@+id/me_item_vip_iv_icon"
+                    android:text="@string/me_item_vip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <ImageButton
-                    android:id="@+id/myDiscountBtn"
+                    android:id="@+id/myVipBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/icon_user_arrow_more"

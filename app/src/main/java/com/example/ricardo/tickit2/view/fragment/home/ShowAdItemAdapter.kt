@@ -13,4 +13,4 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class ShowItemAdapter(val show: Show, val clicked: (Show) -> Unit){}
+class ShowAdItemAdapter(val show: Show, val clicked: (Show) -> Unit){}

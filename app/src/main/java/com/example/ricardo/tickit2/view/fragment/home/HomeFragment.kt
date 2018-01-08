@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import com.example.ricardo.tickit2.App
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BaseFragment
 import com.example.ricardo.tickit2.data.PWXQR_NUMBER
@@ -15,8 +14,6 @@ import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
-import com.example.ricardo.tickit2.extensions.isAdmin
-import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.example.ricardo.tickit2.view.common.ShowScrollViewAdapter
 import com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
@@ -115,7 +112,7 @@ class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
         scollerView2!!.setAdapter(context,customListAdapter2)
     }
 
-    fun createCategoryItemAdapter(show: Show) = ShowItemAdapter(show,{viewClick(show)})
+    fun createCategoryItemAdapter(show: Show) = ShowAdItemAdapter(show,{viewClick(show)})
 
     //票务新奇日点击事件
     fun viewClick(show: Show){

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.ricardo.tickit2.view.fragment.show.ShowFragmentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/showImage"
+            android:layout_width="@dimen/home_list_icon_width"
+            android:layout_height="@dimen/home_list_ioon_height"
+            android:scaleType="centerCrop"
+            fresco:placeholderImage="@mipmap/default_list_pic"/>
+
+
+        <TextView
+            android:id="@+id/showFraName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ticket_image"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:id="@+id/cTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ticket_image"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/showName"
+            android:text="@string/show_time"
+            />
+
+        <TextView
+            android:id="@+id/validTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/cTime"
+            android:layout_below="@id/showName"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            />
+
+        <TextView
+            android:id="@+id/show_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ticket_image"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/cTime"
+            android:text="@string/show_price"
+            />
+
+        <TextView
+            android:id="@+id/showFraPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/cTime"
+            android:layout_below="@id/createTime"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+</com.example.ricardo.tickit2.view.fragment.show.ShowFragmentFrameLayout>

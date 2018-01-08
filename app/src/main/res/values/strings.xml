@@ -50,7 +50,7 @@
     <string name="me_item_bankcard">我的银行卡</string>
     <string name="me_item_bankcard_go_complete">去完善</string>
     <string name="system_service">系统设置</string>
-    <string name="me_item_coupons">抵用券</string>
+    <string name="me_item_vip">我的会员</string>
     <string name="contact_service">联系客服</string>
 
 
@@ -58,7 +58,7 @@
     <string name="user_item_right_modify">修改</string>
     <string name="user_item_title_nickname">昵称</string>
     <string name="user_item_right_edit">编辑</string>
-    <string name="user_item_title_bindPhone">绑定手机号</string>
+    <string name="user_item_title_bindPhone">手机号</string>
     <string name="user_item_right_unbind">未绑定</string>
     <string name="user_item_title_pay_password">支付密码</string>
     <string name="user_item_right_unset">未设置</string>
@@ -86,7 +86,7 @@
     <string name="more_item_good_comment">赏个好评</string>
     <string name="more_item_feedback">意见反馈</string>
     <string name="more_item_contact_kefu">联系客服</string>
-    <string name="more_item_kefu_number">18186532328</string>
+    <string name="more_item_kefu_number">15801775823</string>
     <string name="more_item_current_version">当前版本 V1.0</string>
     <string name="more_item_check_update">检查更新</string>
     <string name="more_item_about">关于</string>
@@ -117,6 +117,9 @@
 
     <string name="action_settings">Settings</string>
     <string name="search">搜索</string>
+    <string name="show_price">价格：</string>
+    <string name="show_time">有效期：</string>
+
     <!--search and refresh-->
     <string name="pull_to_refresh_pull_label">下拉可以刷新</string>
     <string name="pull_to_refresh_release_label">松开可以刷新</string>

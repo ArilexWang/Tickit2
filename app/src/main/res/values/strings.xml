@@ -142,8 +142,10 @@
 
 
     <!--Admin fragment-->
+    <string name="admin_title">管理中心</string>
     <string name="bannerBtn">Banner</string>
     <string name="showBtn">Show</string>
+
 
 
 

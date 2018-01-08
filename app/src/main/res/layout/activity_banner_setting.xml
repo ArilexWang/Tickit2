@@ -1,39 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:fresco="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tool_bar"
-        android:background="@color/green">
-        <ImageButton
-            android:id="@+id/set_bannerBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_back"
-            android:layout_gravity="center_vertical"
-            android:background="@color/green"
-            android:layout_marginLeft="@dimen/tool_back" />
-        <TextView
-            android:id="@+id/set_title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Banner"
-            android:layout_gravity="center"
-            android:gravity="fill_vertical"
-            android:textSize="@dimen/textSize_20"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar"
+            android:background="@color/white">
+            <ImageButton
+                android:id="@+id/set_bannerBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_back"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_marginLeft="@dimen/tool_back" />
+            <TextView
+                android:id="@+id/set_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/bannerBtn"
+                android:layout_gravity="center"
+                android:gravity="fill_vertical"
+                android:textSize="@dimen/textSize_20"/>
 
-    </android.support.v7.widget.Toolbar>
+
+        </android.support.v7.widget.Toolbar>
+        <View
+            style="@style/me_horizontal_view_style"
+            android:background="@color/green"
+            android:layout_height="@dimen/tool_bar_view"/>
+    </LinearLayout>
 
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/set_banner_pic"
         android:layout_width= "400dp"
         android:layout_height= "200dp"
-        android:layout_below="@id/toolbar"
+
         android:layout_marginTop="30dp"
         fresco:placeholderImage="@mipmap/default_list_pic"/>
 
@@ -66,8 +77,6 @@
             android:text="some url" />
     </android.support.design.widget.TextInputLayout>
 
-
-
     <Switch
         android:id="@+id/switch_view"
         android:layout_width="wrap_content"
@@ -86,4 +95,4 @@
         android:text="保存"/>
 
 
-</RelativeLayout>
+</LinearLayout>

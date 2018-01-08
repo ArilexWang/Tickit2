@@ -108,21 +108,9 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
                     newShow!!.is_OnSale = isChecked
                 }
             })
-
             set_bannerBack.setOnClickListener { backToShowClick() }
-
-
         }
-
-
-
-
-
-
-
         presenter.mUserDao = userDao
-
-
     }
 
 

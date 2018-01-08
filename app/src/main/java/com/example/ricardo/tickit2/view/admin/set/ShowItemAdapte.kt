@@ -22,7 +22,6 @@ class ShowItemAdapte(val show: Show, val clicked: (Show) -> Unit): ItemAdapter<S
         showDescription.setText(show.descriptionPath)
     }
 
-
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
     {
         val showPic by bindView<com.facebook.drawee.view.SimpleDraweeView>(R.id.show_icon)

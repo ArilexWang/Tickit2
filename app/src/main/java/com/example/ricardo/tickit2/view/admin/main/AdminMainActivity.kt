@@ -28,7 +28,10 @@ class AdminMainActivity: BaseActivity(){
 
         admin_showBtn.setOnClickListener{ showBtnClick() }
 
+        admin_orderBtn.setOnClickListener{ orderBtnClick() }
+
         admin_exitBtn.setOnClickListener { exit() }
+
 
     }
 
@@ -40,6 +43,10 @@ class AdminMainActivity: BaseActivity(){
         SetActivity.start(this, SHOW_INTENT)
     }
 
+    fun orderBtnClick(){
+        SetActivity.start(this, ORDER_INTENT)
+    }
+
 
     fun exit(){
         val intent = Intent()
@@ -49,8 +56,9 @@ class AdminMainActivity: BaseActivity(){
 
 
     companion object {
-        private const val BANNER_INTENT = "MAIN_BANNER"
-        private const val SHOW_INTENT = "MAIN_SHOW"
+        const val BANNER_INTENT = "MAIN_BANNER"
+        const val SHOW_INTENT = "MAIN_SHOW"
+        const val ORDER_INTENT = "MAIN_ORDER"
 
         fun getIntent(context: Context) = context
                 .getIntent<AdminMainActivity>()

@@ -3,23 +3,25 @@ package com.example.ricardo.tickit2.view.admin.set
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.view.View
 import android.view.Window
 import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
+import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
+import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
-import com.example.ricardo.tickit2.extensions.bindToSwipeRefresh
-import com.example.ricardo.tickit2.extensions.getIntent
-import com.example.ricardo.tickit2.extensions.loadDaoSession
-import com.example.ricardo.tickit2.extensions.toast
+import com.example.ricardo.tickit2.extensions.*
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import com.example.ricardo.tickit2.view.admin.detail.SetDetailActivity
 import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
+import com.example.ricardo.tickit2.view.myTicket.TicketItemAdapter
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_banner.*
+import kotlinx.android.synthetic.main.item_ticket.*
 
 
 /**
@@ -27,7 +29,7 @@ import kotlinx.android.synthetic.main.activity_banner.*
  */
 
 class SetActivity :BaseActivity(), SetView {
-    override val presenter by lazy { SetPresenter(this, BannerPicRepository.get(), ShowRepository.get()) }
+    override val presenter by lazy { SetPresenter(this, BannerPicRepository.get(), ShowRepository.get(), OrderRepository.get()) }
     override var refresh by bindToSwipeRefresh(R.id.bannerSwipeRefreshView)
 
     val from by lazy { intent.getStringExtra(INTENT) }
@@ -47,8 +49,17 @@ class SetActivity :BaseActivity(), SetView {
 
         presenter.from = from
 
-        if (from == "MAIN_SHOW"){
+        if (from == SHOW_INTENT){
             toolbarTitle.setText("Show")
+        } else if(from == ORDER_INTENT){
+            toolbarTitle.setText("Order")
+            searchViewLayout.visibility = View.VISIBLE
+
+            searchView.addOnTextChangedListener {
+                onTextChanged{ text, start, before, Count ->
+                    presenter.onSearchChanged(text)
+                }
+            }
         }
 
         bannerSwipeRefreshView.setOnRefreshListener { presenter.onRefresh() }
@@ -58,7 +69,6 @@ class SetActivity :BaseActivity(), SetView {
         bannerAdd.setOnClickListener { addBtnClick() }
 
         bannerBack.setOnClickListener{ backBtnClick() }
-
 
     }
 
@@ -72,6 +82,8 @@ class SetActivity :BaseActivity(), SetView {
     fun createCategoryItemAdapter(banner : BannerPicture) = BannerItemAdapter(banner, {bannerPicClick(banner)})
 
     fun createCategoryItemAdapter(show: Show) = ShowItemAdapte(show,{showClick(show)})
+
+    fun createCategoryItemAdapter(ticket: Ticket) = TicketItemAdapter(ticket,{})
 
     fun bannerPicClick(banner: BannerPicture){
 
@@ -132,10 +144,28 @@ class SetActivity :BaseActivity(), SetView {
     override fun onShowError(error: Throwable) {
     }
 
+    override fun onOrderSuccess(items: List<Ticket>) {
+        println(items[0].createTime)
+        val categoryItemAdapters = items.map(this::createCategoryItemAdapter)
+        bannerRecyclerView.adapter = SetListAdapter(categoryItemAdapters)
+    }
+
+    override fun onOrderError(error: Throwable) {
+        println(error)
+    }
+
+
 
     companion object {
         private const val BANNER_ARG = "Banner_Key"
         private const val INTENT = "Intent_From"
+
+
+        private const val BANNER_INTENT = "MAIN_BANNER"
+        private const val SHOW_INTENT = "MAIN_SHOW"
+        private const val ORDER_INTENT = "MAIN_ORDER"
+
+
 
         fun getIntent(context: Context,from: String) = context.getIntent<SetActivity>()
                 .apply {

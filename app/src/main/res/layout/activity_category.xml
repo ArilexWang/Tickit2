@@ -9,30 +9,25 @@
         android:id="@+id/materialViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:viewpager_logo="@layout/header_logo"
         app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
-        app:viewpager_logoMarginTop="100dp"
+        app:viewpager_logoMarginTop="@dimen/category_logo_margin"
         app:viewpager_color="@color/colorPrimary"
-        app:viewpager_headerHeight="200dp"
-        app:viewpager_headerAlpha="0.4"
-        app:viewpager_imageHeaderDarkLayerAlpha="0.2"
+        app:viewpager_headerHeight="@dimen/category_header_height"
+        app:viewpager_headerAlpha="@dimen/category_headerAlpha"
+        app:viewpager_imageHeaderDarkLayerAlpha="@dimen/category_imageHeaderDarkLayerAlpha"
         app:viewpager_hideLogoWithFade="false"
         app:viewpager_hideToolbarAndTitle="false"
         app:viewpager_enableToolbarElevation="true"
-        app:viewpager_parallaxHeaderFactor="1.5"
-        app:viewpager_headerAdditionalHeight="20dp"
+        app:viewpager_parallaxHeaderFactor="@dimen/category_parallaxHeaderFactor"
+        app:viewpager_logo="@layout/header_logo"
         app:viewpager_displayToolbarWhenSwipe="true"
         app:viewpager_transparentToolbar="false"
         app:viewpager_animatedHeaderImage="true"/>
-
-    <!--<include layout="@layout/drawer" />-->
-
-    <View xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/leftDrawer"
-        android:layout_width="320dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@android:color/white"
-        />
+    <!--<View xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/leftDrawer"-->
+        <!--android:layout_width="320dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="start"-->
+        <!--android:background="@android:color/white"-->
+        <!--/>-->
 </android.support.v4.widget.DrawerLayout>
-<!--app:viewpager_imageHeaderDarkLayerAlpha="0.2"-->

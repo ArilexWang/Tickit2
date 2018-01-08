@@ -17,23 +17,20 @@ import kotlinx.android.synthetic.main.activity_category.*
  */
 class CategoryActivity : DrawerActivity() {
 
-//    @BindView(R.id.materialViewPager)
-//    internal var mViewPager: MaterialViewPager? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
-        title = ""
+        title = "分类"
 //        val toolbar = materialViewPager!!.toolbar
-//        val toolbar = materialViewPager.toolbar
-//        if (toolbar != null) {
+        val toolbar = materialViewPager.toolbar
+        if (toolbar != null) {
 //            setSupportActionBar(toolbar)
-//        }
-        leftDrawer.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@CategoryActivity, ViewsActivity::class.java)
-            startActivity(intent)
         }
+//        leftDrawer.setOnClickListener {
+//            val intent = Intent()
+//            intent.setClass(this@CategoryActivity, ViewsActivity::class.java)
+//            startActivity(intent)
+//        }
 
 
         materialViewPager!!.viewPager.adapter = object : FragmentStatePagerAdapter(supportFragmentManager) {

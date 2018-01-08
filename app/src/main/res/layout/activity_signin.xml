@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:text="@string/greetings"
             android:layout_height="@dimen/main_margin"
-            android:layout_marginBottom="@dimen/main_margin"
+            android:layout_marginBottom="@dimen/main_margin_big"
             android:textColor="@color/dark"
             android:layout_gravity="center_horizontal" />
 
@@ -60,7 +60,8 @@
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginBottom="@dimen/main_margin"
             android:padding="@dimen/sign_btn_margin"
-            android:text="@string/sign_in_login"/>
+            android:text="@string/sign_in_login"
+            android:background="@drawable/signin_btn"/>
 
         <TextView android:id="@+id/link_signup"
             android:layout_width="fill_parent"

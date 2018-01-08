@@ -9,7 +9,8 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_bar"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_marginTop="10dp">
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -166,7 +167,7 @@
                 <RelativeLayout
                     android:id="@+id/me_item_favourite_layout"
                     style="@style/me_common_item_relativeLayout_style"
-                    android:visibility="gone">
+                    >
                     <ImageView
                         android:id="@+id/me_item_favourite_icon"
                         style="@style/me_common_item_icon_imageView_style"
@@ -246,6 +247,7 @@
 
             </LinearLayout>
 
+            <!--银行卡gone-->
             <RelativeLayout
                 android:id="@+id/me_item_bankcard_layout"
                 style="@style/me_common_item_relativeLayout_style"
@@ -277,7 +279,7 @@
                 android:id="@+id/me_item_coupons_layout"
                 style="@style/me_common_item_relativeLayout_style"
                 android:layout_marginTop="@dimen/me_item_common_layout_marginTop"
-                android:visibility="gone">
+                >
                 <ImageView
                     android:id="@+id/me_item_coupons_iv_icon"
                     style="@style/me_common_item_icon_imageView_style"
@@ -288,16 +290,15 @@
                     android:text="@string/me_item_coupons"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <ImageView
-                    android:id="@+id/me_item_coupons_iv_arrow_right"
-                    style="@style/me_common_item_arrow_right_imageView_style"/>
-                <TextView
-                    android:id="@+id/me_item_coupons_tv_count"
-                    android:layout_toLeftOf="@+id/me_item_coupons_iv_arrow_right"
-                    style="@style/me_common_item_count_textView_style"
-                    tools:text="1"
+                <ImageButton
+                    android:id="@+id/myDiscountBtn"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_user_arrow_more"
+                    android:background="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/me_item_common_layout_marginTop"
+                    android:layout_centerInParent="true"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -326,6 +327,7 @@
                     android:layout_centerInParent="true"/>
             </RelativeLayout>
 
+
             <RelativeLayout
                 android:id="@+id/me_item_qr_layout"
                 style="@style/me_common_item_relativeLayout_style"
@@ -340,11 +342,11 @@
                     android:text="@string/contact_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <ImageButton
-                    android:id="@+id/ContactBtn"
+                <TextView
+                    android:id="@+id/contactTele"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_user_arrow_more"
+                    android:text="@string/more_item_kefu_number"
                     android:background="@color/white"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/me_item_common_layout_marginTop"

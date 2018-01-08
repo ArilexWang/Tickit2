@@ -1,13 +1,14 @@
 package com.example.ricardo.tickit2.view.fragment.profile
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ricardo.tickit2.App
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.greendao.gen.DaoMaster
+import com.example.ricardo.tickit2.view.fragment.profile.functions.SystemActivity
 import com.example.ricardo.tickit2.view.myTicket.MyTickeyActivity
 import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -41,13 +42,22 @@ class ProfileFragment: android.support.v4.app.Fragment() {
             intent.setClass(this.context, ProfileInfoActivity::class.java)
             startActivityForResult(intent,0)
         }
-        systemService.setOnClickListener {
 
-        }
         myTicketBtn.setOnClickListener {
             val intent = Intent()
             intent.setClass(this.context, MyTickeyActivity::class.java)
             startActivityForResult(intent,1)
+        }
+        systemService.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this.context, SystemActivity::class.java)
+            startActivityForResult(intent,2)
+
+        }
+        contactTele.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:" + contactTele.text)
+            startActivity(intent)
         }
 
 

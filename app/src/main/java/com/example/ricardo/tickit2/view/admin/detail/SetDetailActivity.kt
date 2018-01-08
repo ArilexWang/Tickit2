@@ -1,15 +1,13 @@
-package com.example.ricardo.tickit2.view.admin.bannerSetting
+package com.example.ricardo.tickit2.view.admin.detail
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
@@ -17,16 +15,12 @@ import com.example.ricardo.tickit2.extensions.extra
 import com.example.ricardo.tickit2.extensions.getIntent
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
-import com.example.ricardo.tickit2.view.admin.banner.BannerActivity
+import com.example.ricardo.tickit2.view.admin.set.SetActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_banner_setting.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
-import kotlinx.android.synthetic.main.item_banner.*
-import android.widget.Toast
-import com.example.ricardo.tickit2.MainActivity
 import android.widget.AdapterView.OnItemSelectedListener
 import com.example.ricardo.tickit2.data.ODNR
 import com.example.ricardo.tickit2.data.ODNR_NUMBER
@@ -39,8 +33,8 @@ import com.example.ricardo.tickit2.data.network.repository.ShowRepository
  * Created by Ricardo on 2018/1/6.
  */
 
-class BannerSettingActivity:BaseActivity(),BannerSettingView{
-    override val presenter by lazy{ BannerSettingPresenter(this, BannerPicRepository.get(), ShowRepository.get()) }
+class SetDetailActivity :BaseActivity(), SetDetailView {
+    override val presenter by lazy{ SetDetailPresenter(this, BannerPicRepository.get(), ShowRepository.get()) }
 
     val banner: BannerPicture by extra(BANNER_ARG)
 
@@ -161,7 +155,7 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
 
 
     override fun onSuccess(items: List<BannerPicture>) {
-        BannerActivity.start(this,"SET")
+        SetActivity.start(this,"SET")
     }
 
     override fun onError(error: Throwable) {
@@ -170,7 +164,7 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
 
 
     override fun createSuccess(items: List<BannerPicture>) {
-        BannerActivity.start(this,"SET")
+        SetActivity.start(this,"SET")
     }
 
     override fun createFaile(error: Throwable) {
@@ -178,7 +172,7 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
     }
 
     override fun setShowSuccess(items: List<Show>) {
-        BannerActivity.start(this,"MAIN_SHOW")
+        SetActivity.start(this,"MAIN_SHOW")
     }
 
     override fun setShowError(error: Throwable) {
@@ -186,11 +180,11 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
     }
 
     fun backClick(){
-        BannerActivity.start(this,"SET")
+        SetActivity.start(this,"SET")
     }
 
     fun backToShowClick(){
-        BannerActivity.start(this,"MAIN_SHOW")
+        SetActivity.start(this,"MAIN_SHOW")
     }
 
     fun savaBannerBtnClick(){
@@ -216,11 +210,11 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
 
 
     fun picClick(){
-        BottomSheet.Builder(this@BannerSettingActivity).sheet(R.menu.list).listener { dialog, which ->
+        BottomSheet.Builder(this@SetDetailActivity).sheet(R.menu.list).listener { dialog, which ->
             when (which) {
                 R.id.takePhoto -> {
                     val intent = Intent()
-                    intent.setClass(this@BannerSettingActivity, SettingActivity::class.java)
+                    intent.setClass(this@SetDetailActivity, SettingActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.choosePhoto -> {
@@ -238,11 +232,11 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
         private const val INTENT = "INTENT_FROM"
 
         fun getIntent(context: Context, banner: BannerPicture) = context
-                .getIntent<BannerSettingActivity>()
+                .getIntent<SetDetailActivity>()
                 .apply { putExtra(BANNER_ARG, banner) }
 
         fun getIntent(context: Context, banner: BannerPicture, from: String) = context
-                .getIntent<BannerSettingActivity>()
+                .getIntent<SetDetailActivity>()
                 .apply {
                     putExtra(BANNER_ARG,banner)
                     putExtra(INTENT,from)
@@ -250,7 +244,7 @@ class BannerSettingActivity:BaseActivity(),BannerSettingView{
 
 
         fun getIntent(context: Context,show: Show,from: String) = context
-                .getIntent<BannerSettingActivity>()
+                .getIntent<SetDetailActivity>()
                 .apply {
                     putExtra(SHOW_ARG,show)
                     putExtra(INTENT,from)

@@ -27,6 +27,7 @@ class TicketItemAdapter(val ticket: Ticket,val clicked: (Ticket) -> Unit): ItemA
 
         createTime.text = date
 
+        orderID.setText(ticket.id)
     }
 
 
@@ -35,6 +36,7 @@ class TicketItemAdapter(val ticket: Ticket,val clicked: (Ticket) -> Unit): ItemA
         val ticketView by bindView<com.facebook.drawee.view.SimpleDraweeView>(R.id.ticket_image)
         val showName by bindView<TextView>(R.id.showName)
         val createTime by bindView<TextView>(R.id.createTime)
+        val orderID by bindView<TextView>(R.id.orderid)
     }
 
     fun setTime(strDate: String): String{

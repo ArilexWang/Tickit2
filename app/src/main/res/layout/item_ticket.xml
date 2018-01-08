@@ -49,6 +49,27 @@
             android:layout_marginLeft="5dp"
             />
 
+        <TextView
+            android:id="@+id/order_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ticket_image"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/cTime"
+            android:text="订单号："
+            />
+
+        <TextView
+            android:id="@+id/orderid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/cTime"
+            android:layout_below="@id/createTime"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            />
+
 
 
     </RelativeLayout>

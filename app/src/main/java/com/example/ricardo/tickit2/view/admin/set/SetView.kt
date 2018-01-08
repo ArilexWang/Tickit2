@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.view.admin.banner
+package com.example.ricardo.tickit2.view.admin.set
 
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
@@ -6,7 +6,7 @@ import com.example.ricardo.tickit2.data.model.Show
 /**
  * Created by Ricardo on 2018/1/6.
  */
-interface BannerView{
+interface SetView {
     var refresh: Boolean
     fun onSuccess(items: List<BannerPicture>)
     fun onError(error: Throwable)

@@ -5,25 +5,20 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
 import com.example.ricardo.tickit2.extensions.*
-import com.example.ricardo.tickit2.view.admin.bannerSetting.BannerSettingActivity
+import com.example.ricardo.tickit2.view.admin.detail.SetDetailActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
-import com.example.ricardo.tickit2.view.setting.SettingActivity
-import com.youth.banner.Banner
 
 import java.io.File
 
@@ -81,7 +76,7 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
             presenter.updateUserInfo(path!!)
         } else {
             banner.picPath = path!!
-            BannerSettingActivity.startFromAdd(this,banner,"ADD")
+            SetDetailActivity.startFromAdd(this,banner,"ADD")
         }
     }
 

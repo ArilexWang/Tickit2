@@ -1,6 +1,7 @@
 package com.example.ricardo.tickit2.view.profile
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.extensions.loadDaoSession
@@ -9,6 +10,9 @@ import com.example.ricardo.tickit2.view.common.BaseActivity
 import android.content.Intent
 import android.view.Window
 import com.cocosw.bottomsheet.BottomSheet
+import com.example.ricardo.tickit2.data.model.User
+import com.example.ricardo.tickit2.extensions.getIntent
+import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.setting.SettingActivity
 import com.example.ricardo.tickit2.view.signin.SignInActivity
@@ -56,7 +60,6 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
     }
 
 
-
     fun exitLogin(){
         val intent = Intent()
         intent.setClass(this@ProfileInfoActivity, SignInActivity::class.java)
@@ -80,7 +83,6 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
         userItemAvatar.setImageURI(avatarPath)
 
     }
-
 
     fun avatarClick(){
         //底部导航栏
@@ -113,5 +115,19 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
     companion object {
 
         val PROFILE_RESULT_CODE = 30001
+        val USER_ARG = "USER_KEY"
+
+        fun getIntent(context: Context,user: User) = context
+                .getIntent<ProfileInfoActivity>()
+                .apply { putExtra(USER_ARG,user) }
+
+        fun start(context: Context,user: User){
+            val intent = ProfileInfoActivity.getIntent(context,user)
+            context.startActivity(intent)
+        }
+
+
+
+
     }
 }

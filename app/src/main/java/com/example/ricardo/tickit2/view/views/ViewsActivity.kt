@@ -13,7 +13,10 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.base.BasePresenter
+import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.view.category.CategoryActivity
+import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.fragment.cart.CartFragment
 import com.example.ricardo.tickit2.view.fragment.home.HomeFragment
 import com.example.ricardo.tickit2.view.fragment.show.ShowFragment
@@ -25,7 +28,10 @@ import com.lhh.apst.library.Margins
 import kotlinx.android.synthetic.main.activity_views.*
 import java.util.*
 
-class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
+class ViewsActivity :BaseActivity(),ViewPager.OnPageChangeListener{
+
+
+    override val presenter by lazy { ViewsPresenter() }
 
     private var mHomeFragment: HomeFragment? = null
     public var mShowFragment: ShowFragment? =null
@@ -34,9 +40,12 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
 
     private var mSize = 0
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_views)
+
         init()
     }
 
@@ -103,7 +112,9 @@ class ViewsActivity :AppCompatActivity(),ViewPager.OnPageChangeListener{
             if (position in 0..(VIEW_SIZE - 1)) {
                 when (position) {
                     VIEW_FIRST -> {
-                        if (null == mHomeFragment) mHomeFragment = HomeFragment.instance()
+                        if (null == mHomeFragment){
+                            mHomeFragment = HomeFragment.instance()
+                        }
                         return mHomeFragment
                     }
 

@@ -8,7 +8,7 @@ import com.example.ricardo.tickit2.data.model.Ticket
  */
 
 interface MyTicketView{
-
+    var refresh: Boolean
     fun show(items: List<Ticket>)
     fun showError(error: Throwable)
 

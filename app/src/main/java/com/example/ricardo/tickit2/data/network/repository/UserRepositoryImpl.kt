@@ -1,10 +1,9 @@
 package com.example.ricardo.tickit2.data.network.repository
 
-import com.example.ricardo.tickit2.data.dto.UserDto
 import com.example.ricardo.tickit2.data.model.User
-import com.example.ricardo.tickit2.data.network.api.SigninApi
-import com.example.ricardo.tickit2.data.network.api.SignupApi
-import com.example.ricardo.tickit2.data.network.api.UpdateApi
+import com.example.ricardo.tickit2.data.network.api.userapi.SigninApi
+import com.example.ricardo.tickit2.data.network.api.userapi.SignupApi
+import com.example.ricardo.tickit2.data.network.api.userapi.UpdateApi
 import com.example.ricardo.tickit2.data.network.provider.retrofit
 import io.reactivex.Single
 

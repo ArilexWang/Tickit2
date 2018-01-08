@@ -38,23 +38,24 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
         user_btn_exit_login.setOnClickListener{ exitLogin() }
 
-        profileDetialBack.setOnClickListener {
-            val intent = Intent()
-
-            val bundle = Bundle()
-            bundle.putString("view","4")
-
-            intent.setClass(this@ProfileInfoActivity,ViewsActivity::class.java)
-            intent.putExtra("profiledetialflag", 1)
-            intent.putExtras(bundle)
-            setResult(Activity.RESULT_OK,intent)
-            finish()
-            //startActivity(intent)
-
-        }
-
+        profileDetialBack.setOnClickListener { backClick() }
 
     }
+
+    fun backClick(){
+        val intent = Intent()
+
+        val bundle = Bundle()
+        bundle.putString("view","4")
+
+        intent.setClass(this@ProfileInfoActivity,ViewsActivity::class.java)
+        intent.putExtra("profiledetialflag", 1)
+        intent.putExtras(bundle)
+        setResult(Activity.RESULT_OK,intent)
+        finish()
+    }
+
+
 
     fun exitLogin(){
         val intent = Intent()
@@ -86,17 +87,16 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
         BottomSheet.Builder(this@ProfileInfoActivity).sheet(R.menu.list).listener { dialog, which ->
             when (which) {
                 R.id.takePhoto -> {
+
                     val intent = Intent()
                     intent.setClass(this@ProfileInfoActivity, SettingActivity::class.java)
                     startActivity(intent)
                 }
-                R.id.choosePhoto -> {
-                    val intent = Intent()
-                    intent.setClass(this@ProfileInfoActivity, PhotoChoseActivity::class.java)
-                    startActivity(intent)
-                    this.finish()
 
+                R.id.choosePhoto -> {
+                    PhotoChoseActivity.start(this,"avatar")
                 }
+
             }
         }.build().show()
     }

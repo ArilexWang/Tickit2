@@ -31,6 +31,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".view.admin.bannerSetting.BannerSettingActivity"></activity>
+        <activity android:name=".view.admin.banner.BannerActivity"></activity>
+        <activity android:name=".view.admin.main.AdminMainActivity"></activity>
         <activity android:name=".view.advertisement.AdvertisementActivity"></activity>
         <activity android:name=".view.profile.ProfileInfoActivity"></activity>
         <activity android:name=".view.signin.SignInActivity"></activity>
@@ -40,6 +43,7 @@
         <activity android:name=".view.setting.SettingActivity"></activity>
         <activity android:name=".view.photo.PhotoChoseActivity"></activity>
         <activity android:name=".view.myTicket.MyTickeyActivity"></activity>
+        <activity android:name=".view.fragment.profile.functions.SystemActivity" />
     </application>
 
 </manifest>

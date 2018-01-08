@@ -72,13 +72,15 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/sign_margin"
-            android:layout_marginBottom="@dimen/sign_margin">
-            <EditText android:id="@+id/input_mobile"
+            android:layout_marginBottom="@dimen/sign_margin"
+            android:layout_marginTop="@dimen/sign_margin">
+
+            <EditText
+                android:id="@+id/input_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:hint="@string/mobile_hint" />
+                android:hint="@string/mobile_hint"
+                android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
@@ -115,7 +117,8 @@
             android:layout_marginTop="@dimen/main_margin"
             android:layout_marginBottom="@dimen/main_margin"
             android:padding="@dimen/sign_btn_margin"
-            android:text="@string/creat_account_hint"/>
+            android:text="@string/creat_account_hint"
+            android:background="@drawable/signin_btn"/>
 
         <TextView android:id="@+id/link_signin"
             android:layout_width="fill_parent"

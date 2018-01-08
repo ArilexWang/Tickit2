@@ -4,38 +4,33 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.widget.Toast
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.view.category.fragment.DrawerActivity
 import com.example.ricardo.tickit2.view.category.fragment.RecyclerViewFragment
 import com.example.ricardo.tickit2.view.views.ViewsActivity
 import com.github.florent37.materialviewpager.MaterialViewPager
 import com.github.florent37.materialviewpager.header.HeaderDesign
-import kotlinx.android.synthetic.main.fragment_category.*
-import kotlinx.android.synthetic.main.header_logo.*
+import kotlinx.android.synthetic.main.activity_category.*
 
 /**
  * Created by yuhanyin on 1/3/18.
  */
 class CategoryActivity : DrawerActivity() {
 
-//    @BindView(R.id.materialViewPager)
-//    internal var mViewPager: MaterialViewPager? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_category)
-        title = ""
+        setContentView(R.layout.activity_category)
+        title = "分类"
 //        val toolbar = materialViewPager!!.toolbar
-//        val toolbar = materialViewPager.toolbar
-//        if (toolbar != null) {
+        val toolbar = materialViewPager.toolbar
+        if (toolbar != null) {
 //            setSupportActionBar(toolbar)
-//        }
-        leftDrawer.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@CategoryActivity, ViewsActivity::class.java)
-            startActivity(intent)
         }
+//        leftDrawer.setOnClickListener {
+//            val intent = Intent()
+//            intent.setClass(this@CategoryActivity, ViewsActivity::class.java)
+//            startActivity(intent)
+//        }
 
 
         materialViewPager!!.viewPager.adapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
@@ -71,10 +66,10 @@ class CategoryActivity : DrawerActivity() {
             when (page) {
                 0 -> return@Listener HeaderDesign.fromColorResAndUrl(
                         R.color.green,
-                        "http://phandroid.s3.amazonaws.com/wp-content/uploads/2014/06/android_google_moutain_google_now_1920x1080_wallpaper_Wallpaper-HD_2560x1600_www.paperhi.com_-640x400.jpg")
+                        "http://www.hdiphonewallpapers.us/phone-wallpapers/540x960-1/540x960-mobile-wallpapers-hd-2218x5ox3.jpg")
                 1 -> return@Listener HeaderDesign.fromColorResAndUrl(
                         R.color.blue,
-                        "http://www.hdiphonewallpapers.us/phone-wallpapers/540x960-1/540x960-mobile-wallpapers-hd-2218x5ox3.jpg")
+                        "http://phandroid.s3.amazonaws.com/wp-content/uploads/2014/06/android_google_moutain_google_now_1920x1080_wallpaper_Wallpaper-HD_2560x1600_www.paperhi.com_-640x400.jpg")
                 2 -> return@Listener HeaderDesign.fromColorResAndUrl(
                         R.color.btn_bg_pressed_color,
                         "http://www.droid-life.com/wp-content/uploads/2014/10/lollipop-wallpapers10.jpg")

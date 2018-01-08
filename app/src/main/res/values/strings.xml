@@ -32,6 +32,8 @@
 
     <!--Profile-->
     <string name="me_title">个人信息</string>
+    <string name="profile_title">个人主页</string>
+    <string name="user_name">豆豆</string>
     <string name="me_login_balance">账户余额:</string>
     <string name="me_nologin_not_login">您还没有登录哦</string>
     <string name="me_nologin_login">立即登录</string>
@@ -71,6 +73,28 @@
     <string name="user_exit_login">退出登录</string>
     <string name="user_item_title_member_level">会员等级</string>
 
+    <!--profile detail-->
+    <string name="tab_title_home">首页</string>
+    <string name="tab_title_around">周边</string>
+    <string name="tab_title_me">我的</string>
+    <string name="tab_title_more">更多</string>
+    <string name="wait_dialog_title">加载中，请稍后...</string>
+    <string name="more_item_only_wifi_show_picture">仅在WIFI下显示图片</string>
+    <string name="more_item_message_notice">消息提醒</string>
+    <string name="more_item_share_settings">分享设置</string>
+    <string name="more_item_clear_cache">清除缓存</string>
+    <string name="more_item_good_comment">赏个好评</string>
+    <string name="more_item_feedback">意见反馈</string>
+    <string name="more_item_contact_kefu">联系客服</string>
+    <string name="more_item_kefu_number">18186532328</string>
+    <string name="more_item_current_version">当前版本 V1.0</string>
+    <string name="more_item_check_update">检查更新</string>
+    <string name="more_item_about">关于</string>
+    <string name="more_item_default_cache_size">0.00KB</string>
+    <string name="more_item_kefu_hours">(8:00-22:00)</string>
+
+    <!--system-->
+    <string name="system_tool_bar">系统设置</string>
 
     <!--menu-->
     <string name="take_photo">拍照</string>
@@ -85,6 +109,9 @@
     <string name="ticket_activity">票务新奇日</string>
     <string name="ticket_ad">票务推介</string>
     <string name="home_end"> --- END --- </string>
+
+    <!--category-->
+    <string name="category_bar">CATEGORY</string>
 
     <!--show page-->
 

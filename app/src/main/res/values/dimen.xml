@@ -15,11 +15,12 @@
     <!--Main Page-->
     <dimen name="main_ticket_height">260dp</dimen>
     <dimen name="main_margin">22dp</dimen>
-    <dimen name="main_text_size">40sp</dimen>
+    <dimen name="main_text_size">50sp</dimen>
     <dimen name="text_size">16dp</dimen>
     <dimen name="home_list_icon_width">75dp</dimen>
     <dimen name="home_list_ioon_height">100dp</dimen>
     <dimen name="item_horizan_list_margin">5dp</dimen>
+    <dimen name="main_margin_big">100dp</dimen>
 
     <!--Sign in page-->
     <dimen name="sign_padding_top">56dp</dimen>
@@ -33,7 +34,7 @@
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="weibo_tab_size">30dp</dimen>
-
+    <dimen name="tool_bar_view">1.5dp</dimen>
     <dimen name="button_drawable_padding">360dip</dimen>
     <dimen name="home_bar_icon_margins">15dp</dimen>
 
@@ -64,6 +65,8 @@
     <dimen name="me_nologin_textSize">@dimen/textSize_14</dimen>
     <dimen name="me_item_common_layout_marginTop">7dp</dimen>
 
+    <!--profile detail-->
+    <dimen name="around_toolbar_height">45dp</dimen>
 
     <!--show page-->
     <!-- Default screen margins, per the Android Design guidelines. -->
@@ -73,4 +76,11 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    
+    <!--category-->
+    <dimen name="category_parallaxHeaderFactor">1.5</dimen>
+    <dimen name="category_imageHeaderDarkLayerAlpha">0.2</dimen>
+    <dimen name="category_headerAlpha">0.4</dimen>
+    <dimen name="category_header_height">130dp</dimen>
+    <dimen name="category_logo_margin">50dp</dimen>
 </resources>

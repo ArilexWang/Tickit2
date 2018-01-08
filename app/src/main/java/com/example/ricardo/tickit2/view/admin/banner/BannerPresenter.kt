@@ -1,24 +1,36 @@
 package com.example.ricardo.tickit2.view.admin.banner
 
 import com.example.ricardo.tickit2.base.BasePresenter
+import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
+import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 import com.example.ricardo.tickit2.extensions.applySchedulers
+import com.example.ricardo.tickit2.extensions.getLocalUser
 import com.example.ricardo.tickit2.extensions.plusAssign
 import com.example.ricardo.tickit2.extensions.subscribeBy
+import com.example.ricardo.tickit2.greendao.gen.GDUserDao
+import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Created by Ricardo on 2018/1/6.
  */
 
-class BannerPresenter(val view: BannerView,val repository: BannerPicRepository):BasePresenter{
+class BannerPresenter(val view: BannerView,val repository: BannerPicRepository, val showRepository: ShowRepository):BasePresenter{
     protected var subscriptions = CompositeDisposable()
+
+    var mUserDao: GDUserDao? = null
+
+    var from:String? = null
+
     override fun start() {
-        getBannerPic()
+        if (from == "MAIN_SHOW") getShow()
+        else getBannerPic()
     }
 
     public fun onRefresh(){
-        getBannerPic()
+        if (from == "MAIN_SHOW") getShow()
+        else getBannerPic()
     }
 
     fun getBannerPic() {
@@ -32,6 +44,29 @@ class BannerPresenter(val view: BannerView,val repository: BannerPicRepository):
                 )
     }
 
+    fun getShow(){
+        subscriptions += showRepository.getNewShow()
+                .applySchedulers()
+                .doOnSubscribe { view.refresh = true }
+                .doFinally{ view.refresh = false }
+                .subscribeBy (
+                        onSuccess = view::onShowSuccess,
+                        onError = view::onShowError
+                )
+    }
+
+
+    fun deleteBanner(banner: BannerPicture){
+        val user = getLocalUser(mUserDao!!)
+        subscriptions += repository.deleteBannerPic(user!!,banner)
+                .applySchedulers()
+                .doOnSubscribe { view.refresh = true }
+                .doFinally{ view.refresh = false }
+                .subscribeBy(
+                        onSuccess = view::deleteSuccess,
+                        onError = view::deleteError
+                )
+    }
 
     override fun onViewDestroyed() {
 

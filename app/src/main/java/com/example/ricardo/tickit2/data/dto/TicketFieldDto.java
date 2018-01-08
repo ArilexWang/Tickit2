@@ -29,7 +29,7 @@ public class TicketFieldDto {
     @SerializedName("_showDescription")
     @Expose
     private String showDescription;
-    @SerializedName("showAvatar")
+    @SerializedName("_showAvatar")
     @Expose
     private String showAvatar;
 

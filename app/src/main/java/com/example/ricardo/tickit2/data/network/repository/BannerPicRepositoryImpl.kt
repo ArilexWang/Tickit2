@@ -3,6 +3,7 @@ package com.example.ricardo.tickit2.data.network.repository
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.api.bannerapi.CreateBannerApi
+import com.example.ricardo.tickit2.data.network.api.bannerapi.DeleteBannerApi
 import com.example.ricardo.tickit2.data.network.api.bannerapi.GetBannerApi
 import com.example.ricardo.tickit2.data.network.api.bannerapi.SetBannerApi
 import com.example.ricardo.tickit2.data.network.provider.retrofit
@@ -16,6 +17,7 @@ class BannerPicRepositoryImpl: BannerPicRepository {
     val bannerPicApi = retrofit.create(GetBannerApi::class.java)
     val setBannerApi = retrofit.create(SetBannerApi::class.java)
     val createBannerApi = retrofit.create(CreateBannerApi::class.java)
+    val deleteBannerApi = retrofit.create(DeleteBannerApi::class.java)
 
 
     override fun createBannerPic(user: User, banner: BannerPicture): Single<List<BannerPicture>> = createBannerApi.createBanner(
@@ -36,6 +38,12 @@ class BannerPicRepositoryImpl: BannerPicRepository {
     ).map { it.map(::BannerPicture) }
 
     override fun getBannerPic(): Single<List<BannerPicture>> = bannerPicApi.getBannerPic().map { it.map(::BannerPicture) }
+
+    override fun deleteBannerPic(user: User, banner: BannerPicture) = deleteBannerApi.deleteBanner(
+            studentID = user.id,
+            password = user.password,
+            bannerID = banner.id
+    )
 
 
 }

@@ -12,6 +12,7 @@ interface BannerPicRepository {
     fun getBannerPic(): Single<List<BannerPicture>>
     fun setBannerPic(user: User,banner: BannerPicture): Single<List<BannerPicture>>
     fun createBannerPic(user: User, banner: BannerPicture): Single<List<BannerPicture>>
+    fun deleteBannerPic(user: User, banner: BannerPicture): Single<String>
 
     companion object : Provider<BannerPicRepository>() {
         override fun creator() =  BannerPicRepositoryImpl()

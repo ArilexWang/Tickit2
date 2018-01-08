@@ -45,6 +45,9 @@ class BannerSettingPresenter(val view: BannerSettingView,val repository: BannerP
     }
 
 
+
+
+
     override fun onViewDestroyed() {
 
     }

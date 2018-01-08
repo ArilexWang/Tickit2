@@ -17,9 +17,12 @@ public class ShowFiledDto {
     @SerializedName("_description")
     @Expose
     private String description;
-    @SerializedName("_descriptionThumbnail")
+    @SerializedName("_showTime")
     @Expose
-    private String descriptionThumbnail;
+    private String showTime;
+    @SerializedName("_expiredTime")
+    @Expose
+    private String expiredTime;
     @SerializedName("_minPrice")
     @Expose
     private Integer minPrice;
@@ -63,12 +66,20 @@ public class ShowFiledDto {
         this.description = description;
     }
 
-    public String getDescriptionThumbnail() {
-        return descriptionThumbnail;
+    public String getShowTime() {
+        return showTime;
     }
 
-    public void setDescriptionThumbnail(String descriptionThumbnail) {
-        this.descriptionThumbnail = descriptionThumbnail;
+    public void setShowTime(String showTime) {
+        this.showTime = showTime;
+    }
+
+    public String getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(String expiredTime) {
+        this.expiredTime = expiredTime;
     }
 
     public Integer getMinPrice() {

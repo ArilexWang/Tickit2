@@ -2,7 +2,9 @@ package com.example.ricardo.tickit2.view.admin.bannerSetting
 
 import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.BannerPicture
+import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
+import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 import com.example.ricardo.tickit2.extensions.applySchedulers
 import com.example.ricardo.tickit2.extensions.getLocalUser
 import com.example.ricardo.tickit2.extensions.plusAssign
@@ -14,7 +16,7 @@ import io.reactivex.disposables.CompositeDisposable
  * Created by Ricardo on 2018/1/6.
  */
 
-class BannerSettingPresenter(val view: BannerSettingView,val repository: BannerPicRepository): BasePresenter{
+class BannerSettingPresenter(val view: BannerSettingView,val repository: BannerPicRepository, val showRepository: ShowRepository): BasePresenter{
     var mUserDao: GDUserDao? = null
 
     protected var subscriptins = CompositeDisposable()
@@ -43,6 +45,17 @@ class BannerSettingPresenter(val view: BannerSettingView,val repository: BannerP
                         onError = view::createFaile
                 )
     }
+
+    fun setShow(show: Show){
+        val user = getLocalUser(mUserDao!!)
+        subscriptins += showRepository.setShow(user!!,show)
+                .applySchedulers()
+                .subscribeBy (
+                        onSuccess = view::setShowSuccess,
+                        onError = view::setShowError
+                )
+    }
+
 
 
     override fun onViewDestroyed() {

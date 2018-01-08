@@ -16,3 +16,7 @@ val MOBILE_TAKEN_CODE = "HTTP 123 Unknown Status Code"
 val MOBILE_TAKEN = "手机号已被注册"
 
 val PWXQR_NUMBER = 4
+val ODNR_NUMBER = 0
+
+val PWXQR = "票务星期日"
+val ODNR = "普通票"

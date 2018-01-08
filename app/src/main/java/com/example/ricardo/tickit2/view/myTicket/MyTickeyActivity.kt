@@ -75,6 +75,7 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
     //加载我的票务失败
     override fun showError(error: Throwable) {
         toast("Error: ${error.message}")
+        println(error)
     }
 
     fun createCategoryItemAdapter(ticket : Ticket) = TicketItemAdapter(ticket,{ticketDetail(ticket)})

@@ -18,6 +18,7 @@
             android:background="@color/green"
             android:layout_marginLeft="@dimen/tool_back" />
         <TextView
+            android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Banner"

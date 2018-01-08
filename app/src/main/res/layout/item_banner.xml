@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.example.ricardo.tickit2.view.admin.banner.BannerFrameLayout
+<com.example.ricardo.tickit2.view.admin.set.BannerFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="350dp"
@@ -28,4 +28,4 @@
 
 
 
-</com.example.ricardo.tickit2.view.admin.banner.BannerFrameLayout>
+</com.example.ricardo.tickit2.view.admin.set.BannerFrameLayout>

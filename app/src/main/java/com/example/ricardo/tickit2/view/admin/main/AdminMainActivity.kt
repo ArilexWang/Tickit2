@@ -5,13 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BasePresenter
-import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.extensions.getIntent
-import com.example.ricardo.tickit2.view.admin.banner.BannerActivity
-import com.example.ricardo.tickit2.view.admin.bannerSetting.BannerSettingActivity
+import com.example.ricardo.tickit2.view.admin.set.SetActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.signin.SignInActivity
-import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_admin_main.*
 
 /**
@@ -36,11 +33,11 @@ class AdminMainActivity: BaseActivity(){
     }
 
     fun bannerBtnClick(){
-        BannerActivity.start(this, BANNER_INTENT)
+        SetActivity.start(this, BANNER_INTENT)
     }
 
     fun showBtnClick(){
-        BannerActivity.start(this, SHOW_INTENT)
+        SetActivity.start(this, SHOW_INTENT)
     }
 
 

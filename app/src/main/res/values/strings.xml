@@ -142,6 +142,7 @@
 
 
     <!--Admin fragment-->
+    <string name="admin_title">管理中心</string>
     <string name="bannerBtn">Banner</string>
     <string name="showBtn">Show</string>
 
@@ -149,6 +150,7 @@
         <item>票务新奇日</item>
         <item>普通票</item>
     </string-array>
+
 
 
 </resources>

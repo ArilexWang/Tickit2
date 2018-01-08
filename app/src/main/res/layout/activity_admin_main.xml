@@ -1,28 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/admin_bannerBtn"
-        android:text="@string/bannerBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/admin_showBtn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/showBtn"
-        android:layout_below="@id/admin_bannerBtn"/>
-
-    <Button
-        android:id="@+id/admin_exitBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="退出登录"
-        android:layout_below="@id/admin_showBtn"/>
+        android:orientation="vertical"
+        android:background="@color/white">
 
 
-</RelativeLayout>
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar"
+        android:background="@color/white"
+        android:layout_marginTop="10dp">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_back"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white"
+            android:layout_marginLeft="@dimen/tool_back"
+            android:visibility="gone"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/admin_title"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/textSize_20"/>
+    </android.support.v7.widget.Toolbar>
+
+        <ImageButton
+            android:id="@+id/admin_bannerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/admin_btn_height"
+            android:background="@drawable/admin_banner"/>
+
+
+        <ImageButton
+            android:id="@+id/admin_showBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/admin_btn_height"
+            android:background="@drawable/admin_show"/>
+
+        <ImageButton
+            android:id="@+id/admin_exitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/admin_exit_height"
+            android:background="@drawable/admin_exit"/>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

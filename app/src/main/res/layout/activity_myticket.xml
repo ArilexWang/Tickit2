@@ -28,7 +28,10 @@
             android:textSize="@dimen/textSize_20"/>
     </android.support.v7.widget.Toolbar>
 
-
+    <View
+        style="@style/me_horizontal_view_style"
+        android:background="@color/green"
+        android:layout_height="@dimen/tool_bar_view"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

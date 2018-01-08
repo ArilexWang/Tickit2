@@ -31,8 +31,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.admin.bannerSetting.BannerSettingActivity"></activity>
-        <activity android:name=".view.admin.banner.BannerActivity"></activity>
+        <activity android:name=".view.admin.detail.SetDetailActivity"></activity>
+        <activity android:name=".view.admin.set.SetActivity"></activity>
         <activity android:name=".view.admin.main.AdminMainActivity"></activity>
         <activity android:name=".view.advertisement.AdvertisementActivity"></activity>
         <activity android:name=".view.profile.ProfileInfoActivity"></activity>

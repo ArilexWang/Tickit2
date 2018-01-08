@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.view.admin.bannerSetting
+package com.example.ricardo.tickit2.view.admin.detail
 
 import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.BannerPicture
@@ -16,7 +16,7 @@ import io.reactivex.disposables.CompositeDisposable
  * Created by Ricardo on 2018/1/6.
  */
 
-class BannerSettingPresenter(val view: BannerSettingView,val repository: BannerPicRepository, val showRepository: ShowRepository): BasePresenter{
+class SetDetailPresenter(val view: SetDetailView, val repository: BannerPicRepository, val showRepository: ShowRepository): BasePresenter{
     var mUserDao: GDUserDao? = null
 
     protected var subscriptins = CompositeDisposable()

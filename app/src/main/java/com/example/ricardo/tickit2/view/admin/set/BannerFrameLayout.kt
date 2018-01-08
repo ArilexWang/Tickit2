@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.view.admin.banner
+package com.example.ricardo.tickit2.view.admin.set
 
 import android.content.Context
 import android.util.AttributeSet

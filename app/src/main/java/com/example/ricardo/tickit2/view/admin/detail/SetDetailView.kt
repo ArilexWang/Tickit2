@@ -1,13 +1,12 @@
-package com.example.ricardo.tickit2.view.admin.bannerSetting
+package com.example.ricardo.tickit2.view.admin.detail
 
 import com.example.ricardo.tickit2.data.model.BannerPicture
-import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.model.Show
 
 /**
  * Created by Ricardo on 2018/1/7.
  */
-interface BannerSettingView {
+interface SetDetailView {
 
     fun onSuccess(items: List<BannerPicture>)
 

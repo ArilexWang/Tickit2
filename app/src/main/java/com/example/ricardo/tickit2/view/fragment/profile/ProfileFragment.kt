@@ -36,6 +36,7 @@ class ProfileFragment: android.support.v4.app.Fragment() {
         val avatarPath = list[0].avatar
 
         me_login_iv_head.setImageURI(avatarPath)
+        me_login_tv_username.setText(list[0].nickName)
 
         imgProfileDetail.setOnClickListener {
             val intent = Intent()

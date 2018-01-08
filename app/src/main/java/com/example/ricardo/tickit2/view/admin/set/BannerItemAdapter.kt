@@ -1,17 +1,11 @@
-package com.example.ricardo.tickit2.view.admin.banner
+package com.example.ricardo.tickit2.view.admin.set
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.data.model.BannerPicture
-import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.extensions.bindView
 import com.example.ricardo.tickit2.view.common.ItemAdapter
-import com.example.ricardo.tickit2.view.myTicket.TicketItemAdapter
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * Created by Ricardo on 2018/1/6.

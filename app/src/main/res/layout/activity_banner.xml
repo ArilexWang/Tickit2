@@ -1,46 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tool_bar"
-        android:background="@color/green">
-        <ImageButton
-            android:id="@+id/bannerBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_back"
-            android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tool_bar"
+            android:background="@color/white">
+            <ImageButton
+                android:id="@+id/bannerBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_back"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                android:layout_marginLeft="@dimen/tool_back" />
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Banner"
+                android:layout_gravity="center"
+                android:gravity="fill_vertical"
+                android:textSize="@dimen/textSize_20"/>
+            <ImageButton
+                android:id="@+id/bannerAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/delete"
+                android:layout_gravity="right"
+                android:background="@color/white"
+                android:layout_marginRight="@dimen/tool_back" />
+        </android.support.v7.widget.Toolbar>
+        <View
+            style="@style/me_horizontal_view_style"
             android:background="@color/green"
-            android:layout_marginLeft="@dimen/tool_back" />
-        <TextView
-            android:id="@+id/toolbarTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Banner"
-            android:layout_gravity="center"
-            android:gravity="fill_vertical"
-            android:textSize="@dimen/textSize_20"/>
-        <ImageButton
-            android:id="@+id/bannerAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/delete"
-            android:layout_gravity="right"
-            android:background="@color/green"
-            android:layout_marginRight="@dimen/tool_back" />
-    </android.support.v7.widget.Toolbar>
+            android:layout_height="@dimen/tool_bar_view"/>
+    </LinearLayout>
 
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/bannerSwipeRefreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar">
+        >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/bannerRecyclerView"
             android:layout_width="match_parent"
@@ -53,4 +63,4 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

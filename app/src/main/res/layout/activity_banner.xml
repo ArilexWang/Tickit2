@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tool_bar"
+        android:background="@color/green">
+        <ImageButton
+            android:id="@+id/bannerBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_back"
+            android:layout_gravity="center_vertical"
+            android:background="@color/green"
+            android:layout_marginLeft="@dimen/tool_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Banner"
+            android:layout_gravity="center"
+            android:gravity="fill_vertical"
+            android:textSize="@dimen/textSize_20"/>
+        <ImageButton
+            android:id="@+id/bannerAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/delete"
+            android:layout_gravity="right"
+            android:background="@color/green"
+            android:layout_marginRight="@dimen/tool_back" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/bannerSwipeRefreshView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/bannerRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</RelativeLayout>

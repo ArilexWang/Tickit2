@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.data.network.api
+package com.example.ricardo.tickit2.data.network.api.showapi
 
 import com.example.ricardo.tickit2.data.dto.ShowDto
 import io.reactivex.Single

@@ -1,7 +1,7 @@
 package com.example.ricardo.tickit2.data.network.repository
 
 import com.example.ricardo.tickit2.data.model.Show
-import com.example.ricardo.tickit2.data.network.api.GetShowApi
+import com.example.ricardo.tickit2.data.network.api.showapi.GetShowApi
 import com.example.ricardo.tickit2.data.network.provider.retrofit
 import io.reactivex.Single
 

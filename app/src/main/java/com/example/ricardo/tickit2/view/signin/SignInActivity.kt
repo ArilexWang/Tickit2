@@ -11,6 +11,7 @@ import com.example.ricardo.tickit2.data.network.repository.UserRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.extensions.saveUserToLocal
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
+import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.signup.SignUpActivity
 import com.example.ricardo.tickit2.view.views.ViewsActivity
@@ -75,16 +76,21 @@ class SignInActivity:BaseActivity(),SignInView{
 
     //登录成功后调用函数
     override fun onSuccess(items: List<User>) {
-        println(items[0].avatar)
-
         val user = items[0]
-
         saveUserToLocal(user, presenter.mUserDao!!)
-        //跳转界面
 
-        val intent = Intent()
-        intent.setClass(this@SignInActivity, ViewsActivity::class.java)
-        startActivity(intent)
+
+        if (user.isAdmin == false){
+            //跳转界面
+            val intent = Intent()
+            intent.setClass(this@SignInActivity, ViewsActivity::class.java)
+            startActivity(intent)
+        } else{
+            val intent = Intent()
+            intent.setClass(this@SignInActivity, AdminMainActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 
@@ -106,7 +112,6 @@ class SignInActivity:BaseActivity(),SignInView{
         val password = input_password.getText().toString()
 
         if (inputID.isEmpty()|| ! Patterns.PHONE.matcher(inputID).matches()) {
-
             //|| !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
             input_studentID.setError("enter a valid email address !")
             valid = false
@@ -115,7 +120,7 @@ class SignInActivity:BaseActivity(),SignInView{
         }
 
         //password should be 4-10
-        if (password.isEmpty() || password.length < 4 || password.length > 10) {
+        if (password.isEmpty() || password.length < 0 || password.length > 10) {
             input_password.setError("between 4 and 10 alphanumeric characters")
             valid = false
         } else {

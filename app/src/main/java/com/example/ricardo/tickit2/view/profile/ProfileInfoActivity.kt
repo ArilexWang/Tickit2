@@ -1,6 +1,5 @@
 package com.example.ricardo.tickit2.view.profile
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import com.example.ricardo.tickit2.R
@@ -13,11 +12,9 @@ import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.extensions.extra
 import com.example.ricardo.tickit2.extensions.getIntent
-import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
-import com.example.ricardo.tickit2.view.setting.SettingActivity
+import com.example.ricardo.tickit2.view.camera.CameraActivity
 import com.example.ricardo.tickit2.view.signin.SignInActivity
-import com.example.ricardo.tickit2.view.signin.SignInPresenter
 import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_profile_detail.*
 
@@ -76,7 +73,7 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
                 R.id.takePhoto -> {
 
                     val intent = Intent()
-                    intent.setClass(this@ProfileInfoActivity, SettingActivity::class.java)
+                    intent.setClass(this@ProfileInfoActivity, CameraActivity::class.java)
                     startActivity(intent)
                 }
 

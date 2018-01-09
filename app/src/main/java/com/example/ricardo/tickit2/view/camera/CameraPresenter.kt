@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.view.setting
+package com.example.ricardo.tickit2.view.camera
 
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
@@ -18,7 +18,7 @@ import io.reactivex.disposables.CompositeDisposable
 /**
  * Created by Ricardo on 2017/12/2.
  */
-class SettingPresenter (val view: SettingView,val respository: UserRepository): SettingContract.Presenter{
+class CameraPresenter(val view: CameraView, val respository: UserRepository): CameraContract.Presenter{
 
 
     var userDao:GDUserDao? = null

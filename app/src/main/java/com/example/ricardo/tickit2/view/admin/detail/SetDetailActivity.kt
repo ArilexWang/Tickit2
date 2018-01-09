@@ -18,7 +18,7 @@ import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import com.example.ricardo.tickit2.view.admin.set.SetActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
-import com.example.ricardo.tickit2.view.setting.SettingActivity
+import com.example.ricardo.tickit2.view.camera.CameraActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_banner_setting.*
 import android.widget.AdapterView.OnItemSelectedListener
@@ -130,6 +130,11 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
             set_restrictionNum.setText(newShow!!.restrictionNum.toString())
 
             switch_limit.isChecked = newShow!!.isRestricted
+
+            if (newShow!!.isRestricted){
+                set_input3.visibility = View.VISIBLE
+            }
+
             switch_limit.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener {  buttonView, isChecked ->
                 if (isChecked) {
                     newShow!!.isRestricted = isChecked
@@ -213,7 +218,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
             when (which) {
                 R.id.takePhoto -> {
                     val intent = Intent()
-                    intent.setClass(this@SetDetailActivity, SettingActivity::class.java)
+                    intent.setClass(this@SetDetailActivity, CameraActivity::class.java)
                     startActivity(intent)
                 }
                 R.id.choosePhoto -> {

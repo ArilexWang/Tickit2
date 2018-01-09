@@ -40,7 +40,7 @@
         <activity android:name=".view.views.ViewsActivity"></activity>
         <activity android:name=".view.category.CategoryActivity"></activity>
         <activity android:name=".view.signup.SignUpActivity"></activity>
-        <activity android:name=".view.setting.SettingActivity"></activity>
+        <activity android:name=".view.camera.CameraActivity"></activity>
         <activity android:name=".view.photo.PhotoChoseActivity"></activity>
         <activity android:name=".view.myTicket.MyTickeyActivity"></activity>
         <activity android:name=".view.fragment.profile.functions.SystemActivity" />

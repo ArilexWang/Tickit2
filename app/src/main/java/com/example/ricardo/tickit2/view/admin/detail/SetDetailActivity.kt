@@ -133,7 +133,6 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
     }
 
 
-
     override fun onSuccess(items: List<BannerPicture>) {
         SetActivity.start(this, BANNER_INTENT)
     }
@@ -185,8 +184,6 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
         presenter.setShow(newShow!!)
 
     }
-
-
 
 
     fun picClick(){
@@ -245,9 +242,6 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
             context.startActivity(intent)
         }
 
-
     }
-
-
 
 }

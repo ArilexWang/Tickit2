@@ -63,7 +63,6 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
 
             newBanner = BannerPicture(banner)
 
-
             switch_view.isChecked = newBanner!!.isOnDisplay
 
             switch_view.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener {  buttonView, isChecked ->
@@ -87,6 +86,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
             set_banner_pic.layoutParams = para
 
             cate_spinner.visibility = View.VISIBLE
+            switch_limit.visibility = View.VISIBLE
 
             cate_spinner.setOnItemSelectedListener(object : OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
@@ -120,10 +120,27 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
             switch_view.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener {  buttonView, isChecked ->
                 if (isChecked) {
                     newShow!!.is_OnSale = isChecked
+
                 } else {
                     newShow!!.is_OnSale = isChecked
+
                 }
             })
+
+            set_restrictionNum.setText(newShow!!.restrictionNum.toString())
+
+            switch_limit.isChecked = newShow!!.isRestricted
+            switch_limit.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener {  buttonView, isChecked ->
+                if (isChecked) {
+                    newShow!!.isRestricted = isChecked
+                    set_input3.visibility = View.VISIBLE
+                } else {
+                    newShow!!.isRestricted = isChecked
+                    set_input3.visibility = View.GONE
+                }
+            })
+
+
             set_bannerBack.setOnClickListener { backToShowClick() }
         }
 
@@ -180,7 +197,12 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
 
         newShow!!.name = set_name.text.toString()
         newShow!!.descriptionPath = set_descriptionURL.text.toString()
-        println(newShow!!.name)
+
+        if (newShow!!.isRestricted){
+            newShow!!.restrictionNum = set_restrictionNum.text!!.toString().toInt()
+        }
+
+
         presenter.setShow(newShow!!)
 
     }

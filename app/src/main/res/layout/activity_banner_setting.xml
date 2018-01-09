@@ -86,12 +86,36 @@
         android:textOff="隐藏"
         android:showText="true"/>
 
+    <Switch
+        android:id="@+id/switch_limit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/switch_view"
+        android:textOn="限售"
+        android:textOff="不限"
+        android:showText="true"
+        android:visibility="gone"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/set_input3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/switch_limit"
+        android:layout_marginTop="@dimen/sign_margin"
+        android:layout_marginBottom="@dimen/sign_margin"
+        android:visibility="gone">
+        <EditText android:id="@+id/set_restrictionNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="some url" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/set_banner_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/switch_view"
+        android:layout_below="@+id/set_input3"
         android:text="保存"/>
 
 

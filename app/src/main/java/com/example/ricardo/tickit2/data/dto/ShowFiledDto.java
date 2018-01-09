@@ -41,6 +41,12 @@ public class ShowFiledDto {
     @SerializedName("_isOnSale")
     @Expose
     private Boolean isOnSale;
+    @SerializedName("_isRestricted")
+    @Expose
+    private Boolean isRestricted;
+    @SerializedName("_restrictionNum")
+    @Expose
+    private Integer restrictionNum;
 
     public String getParentEventID() {
         return parentEventID;
@@ -129,4 +135,21 @@ public class ShowFiledDto {
     public void setIsOnSale(Boolean isOnSale) {
         this.isOnSale = isOnSale;
     }
+
+    public Boolean getIsRestricted() {
+        return isRestricted;
+    }
+
+    public void setIsRestricted(Boolean isRestricted) {
+        this.isRestricted = isRestricted;
+    }
+
+    public Integer getRestrictionNum() {
+        return restrictionNum;
+    }
+
+    public void setRestrictionNum(Integer restrictionNum) {
+        this.restrictionNum = restrictionNum;
+    }
+
 }

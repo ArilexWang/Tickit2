@@ -15,6 +15,9 @@ val PASSWORK_ERROR = "密码错误"
 val MOBILE_TAKEN_CODE = "HTTP 123 Unknown Status Code"
 val MOBILE_TAKEN = "手机号已被注册"
 
+val TICKET_RESTRICTION_REACHED_CODE = "HTTP 152 Unknown Status Code"
+val TICKET_REACHED = "已到达限购次数"
+
 val PWXQR_NUMBER = 4
 val ODNR_NUMBER = 0
 

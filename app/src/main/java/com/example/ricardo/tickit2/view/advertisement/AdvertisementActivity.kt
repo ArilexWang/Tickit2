@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_advertisement.*
 import android.content.DialogInterface
 import android.view.View
 import com.example.ricardo.tickit2.data.PWXQR_NUMBER
+import com.example.ricardo.tickit2.data.TICKET_REACHED
+import com.example.ricardo.tickit2.data.TICKET_RESTRICTION_REACHED_CODE
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.model.Show
@@ -108,11 +110,20 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
 
     override fun onError(error: Throwable) {
         println(error)
-        val dialog = AlertDialog.Builder(this)
-                .setTitle("订票失败")
-                .setMessage("该票已经售罄了 ")
-                .create()
-                .show()
+        if (error.message == TICKET_RESTRICTION_REACHED_CODE){
+            val dialog = AlertDialog.Builder(this)
+                    .setTitle("订票失败")
+                    .setMessage(TICKET_REACHED)
+                    .create()
+                    .show()
+        }else{
+            val dialog = AlertDialog.Builder(this)
+                    .setTitle("订票失败")
+                    .setMessage("该票已经售罄了 ")
+                    .create()
+                    .show()
+        }
+
     }
 
     val items = arrayOf("a","b")

@@ -10,7 +10,9 @@ import android.widget.*
 import com.example.ricardo.tickit2.App
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BaseFragment
+import com.example.ricardo.tickit2.data.BANNER_ARG
 import com.example.ricardo.tickit2.data.PWXQR_NUMBER
+import com.example.ricardo.tickit2.data.SHOW_ARG
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
@@ -54,17 +56,13 @@ class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
-
         presenter.start()
     }
 
     //banner图片点击事件
     override fun OnBannerClick(position: Int) {
-        val url = bannerPics[position].targetPath
-        val intent = Intent(context, AdvertisementActivity::class.java)
-        intent.putExtra("url", url)
-        startActivityForResult(intent, 0)
+        val tempBanner:BannerPicture = bannerPics[position]
+        AdvertisementActivity.start(context,tempBanner, BANNER_ARG)
     }
 
     //加载banner成功
@@ -119,11 +117,7 @@ class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
 
     //票务新奇日点击事件
     fun viewClick(show: Show){
-        val intent = Intent(context, AdvertisementActivity::class.java)
-        intent.putExtra("url", show.descriptionPath)
-        intent.putExtra("category",show.category)
-        intent.putExtra("id",show.id)
-        startActivityForResult(intent, 0)
+        AdvertisementActivity.start(context,show, SHOW_ARG)
     }
 
     override fun onShowError(error: Throwable) {

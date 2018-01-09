@@ -22,16 +22,9 @@ import com.example.ricardo.tickit2.view.setting.SettingActivity
 import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_banner_setting.*
 import android.widget.AdapterView.OnItemSelectedListener
-import com.example.ricardo.tickit2.data.ODNR
-import com.example.ricardo.tickit2.data.ODNR_NUMBER
-import com.example.ricardo.tickit2.data.PWXQR
-import com.example.ricardo.tickit2.data.PWXQR_NUMBER
+import com.example.ricardo.tickit2.data.*
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 
-
-/**
- * Created by Ricardo on 2018/1/6.
- */
 
 class SetDetailActivity :BaseActivity(), SetDetailView {
     override val presenter by lazy{ SetDetailPresenter(this, BannerPicRepository.get(), ShowRepository.get()) }
@@ -54,21 +47,19 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
 
         Fresco.initialize(this)
 
-
         userDao = loadDaoSession().gdUserDao
 
-        if (from == "BANNER"){
+        if (from == BANNER_INTENT){
             set_banner_pic.setImageURI(banner.picPath)
             set_descriptionURL.setText(banner.targetPath)
 
             set_banner_pic.setOnClickListener { picClick() }
 
-            if(from != "ADD"){
+            if(from != ADD_INTEENT){
                 set_banner_save.setOnClickListener{ savaBannerBtnClick() }
             } else{
                 set_banner_save.setOnClickListener { addBannerBtnClick() }
             }
-
 
             newBanner = BannerPicture(banner)
 
@@ -86,8 +77,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
             set_bannerBack.setOnClickListener { backClick() }
         }
 
-        else if (from == "SHOW"){
-
+        else if (from == SHOW_INTENT){
             set_title.setText("Show")
 
             set_banner_pic.setImageURI(show.avatarPath)
@@ -95,7 +85,6 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
             para.width = 300
             para.height = 400
             set_banner_pic.layoutParams = para
-
 
             cate_spinner.visibility = View.VISIBLE
 
@@ -108,26 +97,22 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
                         newShow!!.category = ODNR_NUMBER
                     }
                 }
-
                 override fun onNothingSelected(parent: AdapterView<*>) {
 
                 }
             })
-
-
-            if(from != "ADD"){
+            if(from != ADD_INTEENT){
                 set_banner_save.setOnClickListener{ saveShowBtnClick() }
             } else{
 
             }
-
 
             set_descriptionURL.setText(show.descriptionPath)
             set_input2.visibility = View.VISIBLE
             set_name.setText(show.name)
 
             switch_view.textOn = "在售"
-            switch_view.textOff = "售罄"
+            switch_view.textOff = "停售"
 
             newShow = show
             switch_view.isChecked = newShow!!.is_OnSale
@@ -139,13 +124,8 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
                     newShow!!.is_OnSale = isChecked
                 }
             })
-
             set_bannerBack.setOnClickListener { backToShowClick() }
-
-
         }
-
-
 
         presenter.mUserDao = userDao
 
@@ -155,7 +135,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
 
 
     override fun onSuccess(items: List<BannerPicture>) {
-        SetActivity.start(this,"SET")
+        SetActivity.start(this, BANNER_INTENT)
     }
 
     override fun onError(error: Throwable) {
@@ -164,7 +144,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
 
 
     override fun createSuccess(items: List<BannerPicture>) {
-        SetActivity.start(this,"SET")
+        SetActivity.start(this, BANNER_INTENT)
     }
 
     override fun createFaile(error: Throwable) {
@@ -172,7 +152,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
     }
 
     override fun setShowSuccess(items: List<Show>) {
-        SetActivity.start(this,"MAIN_SHOW")
+        SetActivity.start(this, SHOW_INTENT)
     }
 
     override fun setShowError(error: Throwable) {
@@ -180,11 +160,11 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
     }
 
     fun backClick(){
-        SetActivity.start(this,"SET")
+        SetActivity.start(this, BANNER_INTENT)
     }
 
     fun backToShowClick(){
-        SetActivity.start(this,"MAIN_SHOW")
+        SetActivity.start(this, SHOW_INTENT)
     }
 
     fun savaBannerBtnClick(){

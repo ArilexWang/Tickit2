@@ -10,7 +10,6 @@
         android:orientation="vertical"
         android:background="@color/white">
 
-
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="@dimen/tool_bar"
@@ -33,6 +32,10 @@
             android:textSize="@dimen/textSize_20"/>
     </android.support.v7.widget.Toolbar>
 
+
+
+
+
         <ImageButton
             android:id="@+id/admin_bannerBtn"
             android:layout_width="match_parent"
@@ -45,6 +48,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/admin_btn_height"
             android:background="@drawable/admin_show"/>
+
+        <ImageButton
+            android:id="@+id/admin_orderBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/admin_exit_height"
+            android:background="@drawable/admin_exit"/>
 
         <ImageButton
             android:id="@+id/admin_exitBtn"

@@ -28,6 +28,9 @@ class TicketItemAdapter(val ticket: Ticket,val clicked: (Ticket) -> Unit): ItemA
         createTime.text = date
 
         orderID.setText(ticket.id)
+
+        studentID.setText(ticket.studentID)
+
     }
 
 
@@ -37,6 +40,7 @@ class TicketItemAdapter(val ticket: Ticket,val clicked: (Ticket) -> Unit): ItemA
         val showName by bindView<TextView>(R.id.showName)
         val createTime by bindView<TextView>(R.id.createTime)
         val orderID by bindView<TextView>(R.id.orderid)
+        val studentID by bindView<TextView>(R.id.order_studentid)
     }
 
     fun setTime(strDate: String): String{

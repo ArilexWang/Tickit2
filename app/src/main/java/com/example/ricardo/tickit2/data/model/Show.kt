@@ -3,6 +3,7 @@ package com.example.ricardo.tickit2.data.model
 import android.annotation.SuppressLint
 import android.os.Parcelable
 import com.example.ricardo.tickit2.data.dto.ShowDto
+import com.example.ricardo.tickit2.extensions.toInt
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -20,7 +21,9 @@ class Show(
         var is_OnSale: Boolean,
         var category: Int,
         var showTime: String,
-        var expiredTime: String
+        var expiredTime: String,
+        var isRestricted: Boolean,
+        var restrictionNum: Int
 ): Parcelable{
     constructor(dto:ShowDto):this(
             id = dto.pk.toLong(),
@@ -31,6 +34,8 @@ class Show(
             is_OnSale = dto.fields.isOnSale,
             category = dto.fields.category,
             showTime = dto.fields.showTime,
-            expiredTime = dto.fields.expiredTime
+            expiredTime = dto.fields.expiredTime,
+            isRestricted = dto.fields.isRestricted,
+            restrictionNum = dto.fields.restrictionNum
     )
 }

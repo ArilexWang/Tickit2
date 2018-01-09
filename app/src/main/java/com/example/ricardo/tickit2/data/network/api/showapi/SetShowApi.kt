@@ -23,6 +23,8 @@ interface SetShowApi {
             @Field("showTime") showTime: String,
             @Field("expiredTime") expiredTime: String,
             @Field("category") category: Int,
-            @Field("isOnSale") isOnSale: Int
+            @Field("isOnSale") isOnSale: Int,
+            @Field("isRestricted") isRestricted: Int,
+            @Field("restrictionNum") restrictionNum: Int
     ): Single<List<ShowDto>>
 }

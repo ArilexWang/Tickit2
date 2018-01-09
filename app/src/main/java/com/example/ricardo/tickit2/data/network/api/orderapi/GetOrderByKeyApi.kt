@@ -6,9 +6,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-/**
- * Created by Ricardo on 2018/1/9.
- */
+
 interface GetOrderByKeyApi {
     @FormUrlEncoded
     @POST("getOrderByPartIDWithAdminID/")

@@ -75,7 +75,7 @@ class SetActivity :BaseActivity(), SetView {
 
     fun addBtnClick(){
         val banner = BannerPicture("","","",true)
-        SetDetailActivity.startFromAdd(this,banner,"ADD")
+        SetDetailActivity.startFromAdd(this,banner, ADD_INTEENT)
 
     }
 
@@ -90,7 +90,7 @@ class SetActivity :BaseActivity(), SetView {
         BottomSheet.Builder(this@SetActivity).sheet(R.menu.set_banner_list).listener { dialog, which ->
             when (which) {
                 R.id.set_banner -> {
-                    SetDetailActivity.start(this,banner,"BANNER")
+                    SetDetailActivity.start(this,banner, BANNER_INTENT)
                 }
                 R.id.delete_banner -> {
                     presenter.deleteBanner(banner)
@@ -104,7 +104,7 @@ class SetActivity :BaseActivity(), SetView {
         BottomSheet.Builder(this@SetActivity).sheet(R.menu.set_banner_list).listener { dialog, which ->
             when (which) {
                 R.id.set_banner -> {
-                    SetDetailActivity.startFromShow(this,show,"SHOW")
+                    SetDetailActivity.startFromShow(this,show, SHOW_INTENT)
                 }
                 R.id.delete_banner -> {
 
@@ -164,8 +164,7 @@ class SetActivity :BaseActivity(), SetView {
         private const val BANNER_INTENT = "MAIN_BANNER"
         private const val SHOW_INTENT = "MAIN_SHOW"
         private const val ORDER_INTENT = "MAIN_ORDER"
-
-
+        private const val ADD_INTEENT = "MAIN_ADD"
 
         fun getIntent(context: Context,from: String) = context.getIntent<SetActivity>()
                 .apply {

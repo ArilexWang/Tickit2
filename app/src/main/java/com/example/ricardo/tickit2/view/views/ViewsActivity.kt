@@ -1,6 +1,7 @@
 package com.example.ricardo.tickit2.view.views
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
@@ -14,7 +15,9 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.base.BasePresenter
+import com.example.ricardo.tickit2.extensions.getIntent
 import com.example.ricardo.tickit2.extensions.loadDaoSession
+import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import com.example.ricardo.tickit2.view.category.CategoryActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.fragment.cart.CartFragment
@@ -40,7 +43,7 @@ class ViewsActivity :BaseActivity(),ViewPager.OnPageChangeListener{
 
     private var mSize = 0
 
-
+    val currentView by lazy { intent.getIntExtra(CURRENT_VIEW,0) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +77,13 @@ class ViewsActivity :BaseActivity(),ViewPager.OnPageChangeListener{
 
         tabs.setOnPageChangeListener(this)
 
-        vp_main.currentItem = VIEW_FIRST
+        if (currentView != null){
+            vp_main.currentItem = currentView!!
+        } else{
+            vp_main.currentItem = VIEW_FIRST
+        }
+
+
 
 
     }
@@ -279,6 +288,20 @@ class ViewsActivity :BaseActivity(),ViewPager.OnPageChangeListener{
         private val VIEW_FOURTH = 3
 
         private val VIEW_SIZE = 4
+
+        private val CURRENT_VIEW = "VIEW_KEY"
+
+        fun getIntent(context: Context,view: Int) = context
+                .getIntent<ViewsActivity>()
+                .apply { putExtra(CURRENT_VIEW,view) }
+
+        fun start(context: Context,view: Int){
+            val intent = ViewsActivity.getIntent(context,view)
+            context.startActivity(intent)
+
+        }
+
+
     }
 }
 

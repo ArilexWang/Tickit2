@@ -54,13 +54,9 @@ class PhotoChosePresenter(val view: PhotoChoseView,val respository: UserReposito
     override fun updateUserInfo(avatarPath: String) {
 
         val db = userDao!!.queryBuilder()
-
         val list = db.list()
-
         val gdUser = userDao!!.load(list[0].id)
-
         var nUser = User(gdUser)
-
         nUser.avatar = avatarPath
 
         subscriptins += respository.updateUserInfo(nUser)

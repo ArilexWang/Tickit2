@@ -54,7 +54,6 @@ class SettingActivity:BaseActivity(), SettingView{
 
         onAddCameraClicked()
 
-
         val gdUser = loadDaoSession().gdUserDao
 
         presenter.userDao = gdUser

@@ -1,6 +1,7 @@
 package com.example.ricardo.tickit2.view.profile
 
 import com.example.ricardo.tickit2.data.entity.GDUser
+import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import kotlinx.android.synthetic.main.activity_signin.*
 
@@ -13,20 +14,15 @@ class ProfileInfoPresenter: ProfileInfoContract.Presenter{
 
     override fun start() {
 
-
     }
 
-    override fun getLocalAvatar(): String? {
+    override fun getLocalUser(): User? {
         val db = mUserDao!!.queryBuilder()
-
         val list = db.list()
-
         if (!list.isEmpty()){
-
-            return list[0].avatar
-
+            val tempUser = User(list[0]);
+            return tempUser
         }
-
         return null
     }
 

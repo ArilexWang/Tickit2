@@ -13,25 +13,18 @@ import java.util.ArrayList
 
 import kotlinx.android.synthetic.main.fragment_show.*
 import android.support.v7.widget.LinearLayoutManager
+import com.example.ricardo.tickit2.base.BaseFragment
+import com.example.ricardo.tickit2.data.model.Show
+import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 
 
-/**
- * Created by yuhanyin on 2017/12/8.
- */
-class ShowFragment :android.support.v4.app.Fragment(), View.OnClickListener{
 
+class ShowFragment :BaseFragment(), View.OnClickListener,ShowView{
 
-    private var suggestions = ArrayList<TicketType>()
+    val presenter by lazy { ShowPresenter(this, ShowRepository.get()) }
+
+    private var suggestions = ArrayList<Show>()
     private var searchSuggestionsAdapter: SearchSuggestionsAdapter? = null
-
-    // Sample data
-    private val tickets = arrayOf("天鹅湖",
-            "Vincent",
-            "猫Cats",
-            "奇迹展",
-            "芳华——舞团",
-            "C4专场")
-
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_show, null)
@@ -43,39 +36,46 @@ class ShowFragment :android.support.v4.app.Fragment(), View.OnClickListener{
 
         searchSuggestionsAdapter = SearchSuggestionsAdapter(layoutInflater)
 
-        searchBar.setMaxSuggestionCount(2)
+        searchBar.setMaxSuggestionCount(4)
         searchBar.setHint("find tickets...")
 
-        for (i in 1..6) {
-            suggestions.add(TicketType(tickets[i - 1], (i * 10).toFloat()))
-        }
+
+
+
+        presenter.start()
 
         searchSuggestionsAdapter!!.suggestions = suggestions
         searchBar.setCustomSuggestionAdapter(searchSuggestionsAdapter)
+
+
 
         searchBar.addTextChangeListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                Log.d("LOG_TAG", javaClass.simpleName + " text changed " + searchBar!!.text)
-                // send the entered text to our filter and let it manage everything
                 searchSuggestionsAdapter!!.filter.filter(searchBar!!.text)
             }
 
             override fun afterTextChanged(editable: Editable) {
 
             }
-
         })
-
         ticketsList.layoutManager = LinearLayoutManager(context)
-
-
 
     }
 
+    override fun onSuccess(items: List<Show>) {
+        for (item in items){
+            suggestions.add(item)
+        }
+    }
+
+    override fun onError(error: Throwable) {
+
+    }
+
+
     override fun onClick(v: View?) {
-        searchSuggestionsAdapter!!.addSuggestion(TicketType("Product", 100.0F))
     }
 
     override fun onDestroy() {

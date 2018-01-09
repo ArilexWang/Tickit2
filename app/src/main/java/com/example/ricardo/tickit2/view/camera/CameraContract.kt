@@ -1,11 +1,10 @@
-package com.example.ricardo.tickit2.view.setting
+package com.example.ricardo.tickit2.view.camera
 
 import com.example.ricardo.tickit2.base.BasePresenter
-import com.example.ricardo.tickit2.data.model.User
 
 
 //接口类，将所用函数定义在这里
-interface SettingContract {
+interface CameraContract {
 
     interface Presenter : BasePresenter {
         //发送照片到七牛云

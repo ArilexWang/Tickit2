@@ -9,16 +9,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ricardo.tickit2.R;
-import com.example.ricardo.tickit2.data.entity.TicketType;
+import com.example.ricardo.tickit2.data.model.Show;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 
 import java.util.ArrayList;
+
+import kotlin.Unit;
 
 /**
  * Created by yyh
  */
 
-public class SearchSuggestionsAdapter extends SuggestionsAdapter<TicketType, SearchSuggestionsAdapter.SuggestionHolder> {
+public class SearchSuggestionsAdapter extends SuggestionsAdapter<Show, SearchSuggestionsAdapter.SuggestionHolder> {
 
     public SearchSuggestionsAdapter(LayoutInflater inflater) {
         super(inflater);
@@ -36,10 +38,12 @@ public class SearchSuggestionsAdapter extends SuggestionsAdapter<TicketType, Sea
     }
 
     @Override
-    public void onBindSuggestionHolder(TicketType suggestion, SuggestionHolder holder, int position) {
+    public void onBindSuggestionHolder(Show suggestion, SuggestionHolder holder, int position) {
         holder.title.setText(suggestion.getName());
-        holder.subtitle.setText("价格 ： " + suggestion.getPrice() + " ￥");
+
     }
+
+
 
     @Override
     public Filter getFilter() {
@@ -52,7 +56,7 @@ public class SearchSuggestionsAdapter extends SuggestionsAdapter<TicketType, Sea
                     suggestions = suggestions_clone;
                 else {
                     suggestions = new ArrayList<>();
-                    for (TicketType item: suggestions_clone)
+                    for (Show item: suggestions_clone)
                         if(item.getName().toLowerCase().contains(term.toLowerCase()))
                             suggestions.add(item);
                 }
@@ -62,7 +66,7 @@ public class SearchSuggestionsAdapter extends SuggestionsAdapter<TicketType, Sea
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                suggestions = (ArrayList<TicketType>) results.values;
+                suggestions = (ArrayList<Show>) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -73,9 +77,12 @@ public class SearchSuggestionsAdapter extends SuggestionsAdapter<TicketType, Sea
         protected TextView subtitle;
         protected ImageView image;
 
+
+
         public SuggestionHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
+
             subtitle = (TextView) itemView.findViewById(R.id.subtitle);
         }
     }

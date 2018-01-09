@@ -55,7 +55,6 @@ class SignInActivity:BaseActivity(),SignInView{
             input_password.setText(password)
         }
 
-
     }
 
     fun linkSignupClick(){
@@ -81,16 +80,10 @@ class SignInActivity:BaseActivity(),SignInView{
 
 
         if (user.isAdmin == false){
-            //跳转界面
-            val intent = Intent()
-            intent.setClass(this@SignInActivity, ViewsActivity::class.java)
-            startActivity(intent)
+            ViewsActivity.start(this,0)
         } else{
-            val intent = Intent()
-            intent.setClass(this@SignInActivity, AdminMainActivity::class.java)
-            startActivity(intent)
+            AdminMainActivity.start(this)
         }
-
 
     }
 
@@ -102,7 +95,6 @@ class SignInActivity:BaseActivity(),SignInView{
         }else if(error.message == PASSWORK_ERROR_CODE){
             Toast.makeText(baseContext, PASSWORK_ERROR , Toast.LENGTH_SHORT).show()
         }
-
     }
 
     fun validate(): Boolean {

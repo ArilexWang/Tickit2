@@ -72,9 +72,12 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
 
     //图片上传七牛云成功
     override fun postAvatarSuccess(path: String?) {
+        //修改头像
         if (from == AVATAR){
             presenter.updateUserInfo(path!!)
-        } else {
+        }
+        //修改banner
+        else {
             banner.picPath = path!!
             SetDetailActivity.startFromAdd(this,banner,"ADD")
         }
@@ -89,9 +92,8 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
     override fun onSuccess(items: List<User>) {
         val user = items[0]
         saveUserToLocal(user, presenter.userDao!!)
-        val intent = Intent()
-        intent.setClass(this@PhotoChoseActivity, ProfileInfoActivity::class.java)
-        startActivity(intent)
+
+        ProfileInfoActivity.start(this,user)
 
     }
 

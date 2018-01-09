@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.view.setting
+package com.example.ricardo.tickit2.view.camera
 
 import com.example.ricardo.tickit2.data.model.User
 
@@ -6,7 +6,7 @@ import com.example.ricardo.tickit2.data.model.User
  * Created by Ricardo on 2017/12/2.
  */
 
-interface SettingView{
+interface CameraView {
     fun uploadSuccess(path: String)
     fun uploadError(error: String)
     fun onSuccess(items: List<User>)

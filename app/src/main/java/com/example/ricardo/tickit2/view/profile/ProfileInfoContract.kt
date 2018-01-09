@@ -12,6 +12,6 @@ import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 interface ProfileInfoContract {
 
     interface Presenter : BasePresenter {
-        fun getLocalAvatar(): String?
+        fun getLocalUser(): User?
     }
 }

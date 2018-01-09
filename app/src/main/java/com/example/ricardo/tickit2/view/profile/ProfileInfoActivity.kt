@@ -1,6 +1,5 @@
 package com.example.ricardo.tickit2.view.profile
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import com.example.ricardo.tickit2.R
@@ -11,30 +10,31 @@ import android.content.Intent
 import android.view.Window
 import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.data.model.User
+import com.example.ricardo.tickit2.extensions.extra
 import com.example.ricardo.tickit2.extensions.getIntent
-import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
-import com.example.ricardo.tickit2.view.setting.SettingActivity
+import com.example.ricardo.tickit2.view.camera.CameraActivity
 import com.example.ricardo.tickit2.view.signin.SignInActivity
-import com.example.ricardo.tickit2.view.signin.SignInPresenter
 import com.example.ricardo.tickit2.view.views.ViewsActivity
 import kotlinx.android.synthetic.main.activity_profile_detail.*
 
 class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
-   override val presenter by lazy { ProfileInfoPresenter() }
-   
+    override val presenter by lazy { ProfileInfoPresenter() }
+
+    val user: User by extra(USER_ARG)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(R.layout.activity_profile_detail)
-        initView()
-
         val userDao = loadDaoSession().gdUserDao
 
         presenter.mUserDao = userDao
 
+        val avatarPath = presenter.getLocalUser()!!.avatar
+        val userName = presenter.getLocalUser()!!.nickName
 
-        val avatarPath = presenter.getLocalAvatar()
+        user_item_username_tv_username.setText(userName)
 
         userItemAvatar.setImageURI(avatarPath)
 
@@ -47,16 +47,7 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
     }
 
     fun backClick(){
-        val intent = Intent()
-
-        val bundle = Bundle()
-        bundle.putString("view","4")
-
-        intent.setClass(this@ProfileInfoActivity,ViewsActivity::class.java)
-        intent.putExtra("profiledetialflag", 1)
-        intent.putExtras(bundle)
-        setResult(Activity.RESULT_OK,intent)
-        finish()
+        ViewsActivity.start(this,3)
     }
 
 
@@ -68,18 +59,9 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
 
     override fun onResume() {
         super.onResume()
-
-        println("resume")
-
         val userDao = loadDaoSession().gdUserDao
-
         presenter.mUserDao = userDao
-
-
-        var avatarPath =  presenter.getLocalAvatar()
-
-        println(avatarPath)
-
+        var avatarPath =  presenter.getLocalUser()!!.avatar
         userItemAvatar.setImageURI(avatarPath)
 
     }
@@ -91,7 +73,7 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
                 R.id.takePhoto -> {
 
                     val intent = Intent()
-                    intent.setClass(this@ProfileInfoActivity, SettingActivity::class.java)
+                    intent.setClass(this@ProfileInfoActivity, CameraActivity::class.java)
                     startActivity(intent)
                 }
 
@@ -103,20 +85,8 @@ class ProfileInfoActivity: BaseActivity(),ProfileInfoView{
         }.build().show()
     }
 
-    private fun initView(){
-        userItemAvatar.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this.applicationContext, SettingActivity::class.java)
-            startActivity(intent)
-        }
-
-
-    }
     companion object {
-
-        val PROFILE_RESULT_CODE = 30001
         val USER_ARG = "USER_KEY"
-
         fun getIntent(context: Context,user: User) = context
                 .getIntent<ProfileInfoActivity>()
                 .apply { putExtra(USER_ARG,user) }

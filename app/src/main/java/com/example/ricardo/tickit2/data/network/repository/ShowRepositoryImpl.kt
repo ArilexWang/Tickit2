@@ -31,7 +31,9 @@ class ShowRepositoryImpl: ShowRepository{
             showTime = show.showTime,
             expiredTime = show.expiredTime,
             descriptionURL = show.descriptionPath,
-            isOnSale = show.is_OnSale.toInt()
+            isOnSale = show.is_OnSale.toInt(),
+            isRestricted = show.isRestricted.toInt(),
+            restrictionNum = show.restrictionNum
 
     ).map { it.map(::Show) }
 }

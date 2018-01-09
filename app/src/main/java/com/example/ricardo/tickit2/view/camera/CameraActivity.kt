@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.view.setting
+package com.example.ricardo.tickit2.view.camera
 
 import android.app.Activity
 import android.content.Intent
@@ -14,14 +14,12 @@ import android.support.v4.view.ViewCompat
 import android.view.View
 import android.widget.Toast
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.extensions.saveUserToLocal
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.photo.ImageUtils
-import com.example.ricardo.tickit2.view.photo.PhotoChoseActivity
 import com.example.ricardo.tickit2.view.profile.ProfileInfoActivity
 import com.github.florent37.camerafragment.CameraFragment
 import com.github.florent37.camerafragment.CameraFragmentApi
@@ -33,12 +31,10 @@ import com.github.florent37.camerafragment.listeners.CameraFragmentVideoRecordTe
 import com.github.florent37.camerafragment.widgets.CameraSettingsView
 import kotlinx.android.synthetic.main.activity_setting.*
 import java.io.File
-import java.net.URL
-import java.util.jar.Manifest
 
 
-class SettingActivity:BaseActivity(), SettingView{
-    override val presenter by lazy { SettingPresenter(this,UserRepository.get()) }
+class CameraActivity :BaseActivity(), CameraView {
+    override val presenter by lazy { CameraPresenter(this,UserRepository.get()) }
 
     val settingView:CameraSettingsView? = null
 
@@ -53,7 +49,6 @@ class SettingActivity:BaseActivity(), SettingView{
         setContentView(R.layout.activity_setting)
 
         onAddCameraClicked()
-
 
         val gdUser = loadDaoSession().gdUserDao
 
@@ -124,9 +119,9 @@ class SettingActivity:BaseActivity(), SettingView{
             return
         } else {
             when (requestCode) {
-                SettingActivity.IMAGE_REQUEST_CODE -> resizeImage(data!!.data)
+                CameraActivity.IMAGE_REQUEST_CODE -> resizeImage(data!!.data)
 
-                SettingActivity.RESIZE_REQUEST_CODE -> if (data != null) {
+                CameraActivity.RESIZE_REQUEST_CODE -> if (data != null) {
                     showResizeImage(data)
                 }
 
@@ -188,7 +183,7 @@ class SettingActivity:BaseActivity(), SettingView{
         val user = items[0]
         saveUserToLocal(user, presenter.userDao!!)
         val intent = Intent()
-        intent.setClass(this@SettingActivity, ProfileInfoActivity::class.java)
+        intent.setClass(this@CameraActivity, ProfileInfoActivity::class.java)
         startActivity(intent)
     }
 

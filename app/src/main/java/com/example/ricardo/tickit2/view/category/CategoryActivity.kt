@@ -1,13 +1,12 @@
 package com.example.ricardo.tickit2.view.category
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.view.category.fragment.DrawerActivity
-import com.example.ricardo.tickit2.view.category.fragment.RecyclerViewFragment
-import com.example.ricardo.tickit2.view.views.ViewsActivity
+import com.example.ricardo.tickit2.view.category.fragment.CategoryActivityFragment
+import com.example.ricardo.tickit2.view.category.fragment.CategoryShowFragment
+import com.example.ricardo.tickit2.view.category.fragment.CategoryXQRFragment
 import com.github.florent37.materialviewpager.MaterialViewPager
 import com.github.florent37.materialviewpager.header.HeaderDesign
 import kotlinx.android.synthetic.main.activity_category.*
@@ -37,13 +36,13 @@ class CategoryActivity : DrawerActivity() {
 
             override fun getItem(position: Int): Fragment {
                 when (position % 4) {
-                //case 0:
-                //    return RecyclerViewFragment.newInstance();
-                //case 1:
-                //    return RecyclerViewFragment.newInstance();
-                //case 2:
-                //    return WebViewFragment.newInstance();
-                    else -> return RecyclerViewFragment.newInstance()
+                    0 ->
+                    return CategoryShowFragment.newInstance();
+                    1 ->
+                    return CategoryActivityFragment.newInstance();
+                    2 ->
+                    return CategoryXQRFragment.newInstance();
+                    else -> return CategoryShowFragment.newInstance()
                 }
             }
 
@@ -85,6 +84,7 @@ class CategoryActivity : DrawerActivity() {
 
         materialViewPager!!.viewPager.offscreenPageLimit = materialViewPager!!.viewPager.adapter.count
         materialViewPager!!.pagerTitleStrip.setViewPager(materialViewPager!!.viewPager)
+
 
 //        val logo = findViewById(R.id.logoWhite)
 //        if (logoWhite != null) {

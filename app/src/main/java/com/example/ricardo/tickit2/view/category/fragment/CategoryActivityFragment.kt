@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.R.id.recyclerView
+import com.example.ricardo.tickit2.view.common.RecyclerViewAdapter
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator
 import kotlinx.android.synthetic.main.fragment_recyclerview.*
 import java.util.ArrayList
 
 /**
- * Created by yuhanyin on 1/4/18.
+ * Created by yuhanyin on 1/10/18.
  */
-class RecyclerViewFragment : Fragment() {
+class CategoryActivityFragment : Fragment() {
 
 //    @BindView(R.id.recyclerView)
 //    internal var mRecyclerView: RecyclerView? = null
@@ -56,8 +55,8 @@ class RecyclerViewFragment : Fragment() {
         private val GRID_LAYOUT = false
         private val ITEM_COUNT = 100
 
-        fun newInstance(): RecyclerViewFragment {
-            return RecyclerViewFragment()
+        fun newInstance(): CategoryActivityFragment {
+            return CategoryActivityFragment()
         }
     }
 }

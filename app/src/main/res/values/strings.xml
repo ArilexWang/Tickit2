@@ -139,6 +139,15 @@
     <string name="ticket_title">我的票券</string>
     <string name="time">购买时间:  </string>
     <string name="detail">票券详情</string>
+    <string name="ticket_name">Name</string>
+    <string name="ticket_price">价格：</string>
+    <string name="ticket_price_hint">price</string>
+    <string name="ticket_time">time</string>
+
+    <!--cart show-->
+    <string name="cart_title">购物车</string>
+
+
 
 
     <!--Admin fragment-->
@@ -150,6 +159,7 @@
         <item>票务新奇日</item>
         <item>普通票</item>
     </string-array>
+
 
 
     <string name="search_hint">Search for order</string>

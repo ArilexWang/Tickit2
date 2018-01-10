@@ -1,4 +1,4 @@
-package com.example.ricardo.tickit2.view.category.fragment
+package com.example.ricardo.tickit2.view.common
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ class RecyclerViewAdapter(internal var contents: List<Any>) : RecyclerView.Adapt
 
     override fun getItemViewType(position: Int): Int {
         when (position) {
-            0 -> return TYPE_HEADER
+            0 -> return TYPE_CELL
             else -> return TYPE_CELL
         }
     }

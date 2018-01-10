@@ -1,6 +1,7 @@
 package com.example.ricardo.tickit2.view.fragment.show
 
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,7 +17,9 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.ricardo.tickit2.base.BaseFragment
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
-
+import com.example.ricardo.tickit2.view.category.fragment.CategoryShowFragment
+import com.example.ricardo.tickit2.view.common.RecyclerViewAdapter
+import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator
 
 
 class ShowFragment :BaseFragment(), View.OnClickListener,ShowView{
@@ -31,6 +34,32 @@ class ShowFragment :BaseFragment(), View.OnClickListener,ShowView{
 
     }
 
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//        ButterKnife.bind(this, view)
+
+        val items = ArrayList<Any>()
+
+        for (i in 0 until ITEM_COUNT) {
+            items.add(Any())
+        }
+
+
+        //setup materialviewpager
+
+        if (GRID_LAYOUT) {
+            ticketRecycleView.layoutManager = GridLayoutManager(activity, 2)
+        } else {
+            ticketRecycleView.layoutManager = LinearLayoutManager(activity)
+        }
+        ticketRecycleView.setHasFixedSize(true)
+
+        //Use this now
+        ticketRecycleView.addItemDecoration(MaterialViewPagerHeaderDecorator())
+        ticketRecycleView.adapter = RecyclerViewAdapter(items)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -38,9 +67,6 @@ class ShowFragment :BaseFragment(), View.OnClickListener,ShowView{
 
         searchBar.setMaxSuggestionCount(4)
         searchBar.setHint("find tickets...")
-
-
-
 
         presenter.start()
 
@@ -60,9 +86,12 @@ class ShowFragment :BaseFragment(), View.OnClickListener,ShowView{
 
             }
         })
-        ticketsList.layoutManager = LinearLayoutManager(context)
 
     }
+
+
+
+
 
     override fun onSuccess(items: List<Show>) {
         for (item in items){
@@ -84,6 +113,8 @@ class ShowFragment :BaseFragment(), View.OnClickListener,ShowView{
     }
 
     companion object {
+        private val GRID_LAYOUT = false
+        private val ITEM_COUNT = 100
 
         fun instance(): ShowFragment {
             return ShowFragment()

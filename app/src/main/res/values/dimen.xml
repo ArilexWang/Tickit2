@@ -72,10 +72,13 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="margin_ticket_name">35dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="buy_height">30dp</dimen>
+    <dimen name="buy_width">25dp</dimen>
     
     <!--category-->
     <dimen name="category_parallaxHeaderFactor">1.5</dimen>
@@ -83,6 +86,9 @@
     <dimen name="category_headerAlpha">0.4</dimen>
     <dimen name="category_header_height">130dp</dimen>
     <dimen name="category_logo_margin">50dp</dimen>
+    <dimen name="category_img_height">120dp</dimen>
+    <dimen name="category_img_width">70dp</dimen>
+    <dimen name="radius">2dp</dimen>
 
     <!--admin-->
     <dimen name="admin_btn_height">270dp</dimen>

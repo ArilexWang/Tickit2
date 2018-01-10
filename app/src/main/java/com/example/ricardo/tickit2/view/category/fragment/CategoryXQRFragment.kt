@@ -1,6 +1,7 @@
-package com.example.ricardo.tickit2.view.fragment.cart
+package com.example.ricardo.tickit2.view.category.fragment
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -9,17 +10,24 @@ import android.view.ViewGroup
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.view.common.RecyclerViewAdapter
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator
-import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.fragment_recyclerview.*
 import java.util.ArrayList
 
-class CartFragment: android.support.v4.app.Fragment() {
+/**
+ * Created by yuhanyin on 1/10/18.
+ */
+class CategoryXQRFragment : Fragment() {
+
+//    @BindView(R.id.recyclerView)
+//    internal var mRecyclerView: RecyclerView? = null
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_cart, null)
+        return inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        ButterKnife.bind(this, view)
 
         val items = ArrayList<Any>()
 
@@ -31,23 +39,24 @@ class CartFragment: android.support.v4.app.Fragment() {
         //setup materialviewpager
 
         if (GRID_LAYOUT) {
-            recyclerCartView.layoutManager = GridLayoutManager(activity, 2)
+            recyclerView.layoutManager = GridLayoutManager(activity, 2)
         } else {
-            recyclerCartView.layoutManager = LinearLayoutManager(activity)
+            recyclerView.layoutManager = LinearLayoutManager(activity)
         }
-        recyclerCartView.setHasFixedSize(true)
+        recyclerView.setHasFixedSize(true)
 
         //Use this now
-        recyclerCartView.addItemDecoration(MaterialViewPagerHeaderDecorator())
-        recyclerCartView.adapter = RecyclerViewAdapter(items)
+        recyclerView.addItemDecoration(MaterialViewPagerHeaderDecorator())
+        recyclerView.adapter = RecyclerViewAdapter(items)
     }
+
     companion object {
 
         private val GRID_LAYOUT = false
-        private val ITEM_COUNT = 10
+        private val ITEM_COUNT = 100
 
-        fun instance(): CartFragment {
-            return CartFragment()
+        fun newInstance(): CategoryShowFragment {
+            return CategoryShowFragment()
         }
     }
 }

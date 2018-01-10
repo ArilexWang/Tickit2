@@ -12,7 +12,7 @@
 
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/ticket_image"
+            android:id="@+id/ticketImage"
             android:layout_width="@dimen/home_list_icon_width"
             android:layout_height="@dimen/home_list_ioon_height"
             android:scaleType="centerCrop"
@@ -23,7 +23,7 @@
             android:id="@+id/showName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ticket_image"
+            android:layout_toRightOf="@id/ticketImage"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             />
@@ -32,7 +32,7 @@
             android:id="@+id/cTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ticket_image"
+            android:layout_toRightOf="@id/ticketImage"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/showName"
@@ -53,7 +53,7 @@
             android:id="@+id/order_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ticket_image"
+            android:layout_toRightOf="@id/ticketImage"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/cTime"
@@ -75,7 +75,7 @@
             android:id="@+id/order_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ticket_image"
+            android:layout_toRightOf="@id/ticketImage"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:layout_below="@id/order_title"

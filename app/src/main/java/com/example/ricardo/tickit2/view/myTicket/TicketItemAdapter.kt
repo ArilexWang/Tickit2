@@ -36,7 +36,7 @@ class TicketItemAdapter(val ticket: Ticket,val clicked: (Ticket) -> Unit): ItemA
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
     {
-        val ticketView by bindView<com.facebook.drawee.view.SimpleDraweeView>(R.id.ticket_image)
+        val ticketView by bindView<com.facebook.drawee.view.SimpleDraweeView>(R.id.ticketImage)
         val showName by bindView<TextView>(R.id.showName)
         val createTime by bindView<TextView>(R.id.createTime)
         val orderID by bindView<TextView>(R.id.orderid)

@@ -52,8 +52,8 @@
         <ImageButton
             android:id="@+id/admin_orderBtn"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/admin_exit_height"
-            android:background="@drawable/admin_exit"/>
+            android:layout_height="@dimen/admin_btn_height"
+            android:background="@drawable/order"/>
 
         <ImageButton
             android:id="@+id/admin_exitBtn"

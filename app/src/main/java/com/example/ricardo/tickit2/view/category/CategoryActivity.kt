@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.view.category.fragment.CategoryActivityFragment
-import com.example.ricardo.tickit2.view.category.fragment.CategoryShowFragment
-import com.example.ricardo.tickit2.view.category.fragment.CategoryXQRFragment
+import com.example.ricardo.tickit2.data.ODNR_NUMBER
+import com.example.ricardo.tickit2.data.PWXQR_NUMBER
+import com.example.ricardo.tickit2.data.model.Show
+import com.example.ricardo.tickit2.data.network.repository.ShowRepository
+import com.example.ricardo.tickit2.view.category.fragment.*
 import com.github.florent37.materialviewpager.MaterialViewPager
 import com.github.florent37.materialviewpager.header.HeaderDesign
 import kotlinx.android.synthetic.main.activity_category.*
@@ -14,34 +16,54 @@ import kotlinx.android.synthetic.main.activity_category.*
 /**
  * Created by yuhanyin on 1/3/18.
  */
-class CategoryActivity : DrawerActivity() {
+class CategoryActivity : DrawerActivity(), CategoryView {
+
+    override val presenter: CategoryPresenter = CategoryPresenter(ShowRepository.get(), this)
+
+    var pwxqrList: MutableList<Show> = mutableListOf()
+    var activityList: MutableList<Show> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
+
+        presenter.start()
+
         title = "分类"
 //        val toolbar = materialViewPager!!.toolbar
         val toolbar = materialViewPager.toolbar
         if (toolbar != null) {
 //            setSupportActionBar(toolbar)
         }
-//        leftDrawer.setOnClickListener {
-//            val intent = Intent()
-//            intent.setClass(this@CategoryActivity, ViewsActivity::class.java)
-//            startActivity(intent)
-//        }
 
+    }
+
+    override fun onShowError(error: Throwable) {
+
+    }
+
+    override fun onShowSuccess(items: List<Show>) {
+        for (item in items){
+            if (item.category == PWXQR_NUMBER){
+                pwxqrList.add(item)
+            } else if (item.category == ODNR_NUMBER){
+                activityList.add(item)
+            }
+        }
 
         materialViewPager!!.viewPager.adapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
 
             override fun getItem(position: Int): Fragment {
+
+                println(pwxqrList.count())
+
                 when (position % 4) {
                     0 ->
-                    return CategoryShowFragment.newInstance();
+                        return CategoryShowFragment.newInstance();
                     1 ->
-                    return CategoryActivityFragment.newInstance();
+                        return CategoryActivityFragment.newInstance(activityList);
                     2 ->
-                    return CategoryXQRFragment.newInstance();
+                        return CategoryXQRFragment.newInstance(pwxqrList);
                     else -> return CategoryShowFragment.newInstance()
                 }
             }
@@ -85,13 +107,5 @@ class CategoryActivity : DrawerActivity() {
         materialViewPager!!.viewPager.offscreenPageLimit = materialViewPager!!.viewPager.adapter.count
         materialViewPager!!.pagerTitleStrip.setViewPager(materialViewPager!!.viewPager)
 
-
-//        val logo = findViewById(R.id.logoWhite)
-//        if (logoWhite != null) {
-//            logoWhite!!.setOnClickListener{
-//                materialViewPager!!.notifyHeaderChanged()
-//                Toast.makeText(applicationContext, "Yes, the title is clickable", Toast.LENGTH_SHORT).show()
-//            }
-//        }
     }
 }

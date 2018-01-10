@@ -18,6 +18,7 @@ import com.example.ricardo.tickit2.data.TICKET_RESTRICTION_REACHED_CODE
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.model.Show
+import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.extensions.extra
 import com.example.ricardo.tickit2.extensions.getIntent
@@ -30,6 +31,7 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
 
     val show:Show by extra(SHOW_ARG)
     val banner:BannerPicture by extra(BANNER_ARG)
+    val ticket:Ticket by extra(ORDER_ARG)
     val from by lazy { intent.getStringExtra(INTENT_FROM) }
 
     var url: String? = null
@@ -61,6 +63,8 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
 
         } else if(from == BANNER_ARG){
             url = banner.targetPath
+        } else if(from == ORDER_ARG){
+            url = ticket.showDescription
         }
 
         wb.loadUrl(url)
@@ -165,7 +169,7 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
         private const val SHOW_ARG = "SHOW_KEY"
         private const val BANNER_ARG = "BANNER_KEY"
         private const val INTENT_FROM = "INTENT_KEY"
-
+        private const val ORDER_ARG = "ORDER_KEY"
 
         fun getIntent(context: Context, show: Show,from: String) = context
                 .getIntent<AdvertisementActivity>()
@@ -181,6 +185,12 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
                     putExtra(INTENT_FROM,from)
                 }
 
+        fun getIntent(context: Context, ticket: Ticket, from: String) = context
+                .getIntent<AdvertisementActivity>()
+                .apply {
+                    putExtra(ORDER_ARG,ticket)
+                    putExtra(INTENT_FROM,from)
+                }
 
         fun start(context: Context,show: Show,from: String){
             val intent = getIntent(context,show,from)
@@ -189,6 +199,11 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
 
         fun start(context: Context, bannerPicture: BannerPicture, from: String){
             val intent = getIntent(context,bannerPicture,from)
+            context.startActivity(intent)
+        }
+
+        fun start(context: Context, ticket: Ticket,from: String){
+            val intent = getIntent(context,ticket,from)
             context.startActivity(intent)
         }
 

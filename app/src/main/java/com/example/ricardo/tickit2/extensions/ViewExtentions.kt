@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.example.ricardo.tickit2.data.*
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -38,4 +41,33 @@ private class SwipeRefreshBinding(lazyViewProvider: Lazy<SwipeRefreshLayout>) : 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: Boolean) {
         view.isRefreshing = value
     }
+}
+
+fun setTime(strDate: String): String{
+    val dateFormate1: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmm")
+    val d1: Date = dateFormate1.parse(strDate)
+    val dateFormate2: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
+    val str1 = dateFormate2.format(d1)
+    return str1
+}
+
+fun getTimeString(strDate: String): String{
+    val dateFormate1: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    val d1: Date = dateFormate1.parse(strDate)
+    val dateFormate2: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmm")
+    val str1 = dateFormate2.format(d1)
+    return str1
+}
+
+fun explainOrderStatu(statu: Int) :String?{
+    if (statu == ORDER_OPEN_UNFETCHED){
+        return ORDER_OPEN_UNFETCHED_MESSAGE
+    } else if(statu == ORDER_SUCCESS){
+        return ORDER_SUCCESS_MESSAGE
+    } else if(statu == ORDER_CANCELED_BY_USER){
+        return ORDER_CANCELED_BY_USER_MESSAGE
+    } else if(statu == ORDER_EXPIRED_UNFETCHED){
+        return ORDER_EXPIRED_UNFETCHED_MESSAGE
+    }
+    return null
 }

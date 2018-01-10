@@ -1,6 +1,7 @@
 package com.example.ricardo.tickit2.view.myTicket
 
 import com.example.ricardo.tickit2.base.BasePresenter
+import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.extensions.applySchedulers
@@ -35,6 +36,18 @@ class MyTicketPresenter(val view: MyTicketView, val repository: OrderRepository)
                 .doFinally{ view.refresh = false }
                 .subscribeBy (
                         onSuccess = view::show,
+                        onError = view::showError
+                )
+    }
+
+    fun cancelOrder(ticket: Ticket){
+        val user = getLocalUser(mUserDao!!)
+        subscriptins += repository.cancelOrderByUser(user!!,ticket)
+                .applySchedulers()
+                .doOnSubscribe { view.refresh = true }
+                .doFinally{ view.refresh = false }
+                .subscribeBy (
+                        onSuccess = view::cancelOrderSuccess,
                         onError = view::showError
                 )
     }

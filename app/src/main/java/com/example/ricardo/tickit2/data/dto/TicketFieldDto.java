@@ -14,9 +14,9 @@ public class TicketFieldDto {
     @SerializedName("_studentID")
     @Expose
     private String studentID;
-    @SerializedName("_isOpen")
+    @SerializedName("_orderStatus")
     @Expose
-    private Boolean isOpen;
+    private Integer orderStatus;
     @SerializedName("_actualPrice")
     @Expose
     private Integer actualPrice;
@@ -49,12 +49,12 @@ public class TicketFieldDto {
         this.studentID = studentID;
     }
 
-    public Boolean getIsOpen() {
-        return isOpen;
+    public Integer getOrderStatus() {
+        return orderStatus;
     }
 
-    public void setIsOpen(Boolean isOpen) {
-        this.isOpen = isOpen;
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public Integer getActualPrice() {
@@ -96,5 +96,6 @@ public class TicketFieldDto {
     public void setShowAvatar(String showAvatar) {
         this.showAvatar = showAvatar;
     }
+
 
 }

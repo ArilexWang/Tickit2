@@ -32,6 +32,7 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
         public final static Property Avatar = new Property(5, String.class, "avatar", false, "AVATAR");
         public final static Property IsSuperUser = new Property(6, boolean.class, "isSuperUser", false, "IS_SUPER_USER");
         public final static Property IsAdmin = new Property(7, boolean.class, "isAdmin", false, "IS_ADMIN");
+        public final static Property VipPoint = new Property(8, int.class, "vipPoint", false, "VIP_POINT");
     }
 
 
@@ -54,7 +55,8 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
                 "\"PASSWORD\" TEXT," + // 4: password
                 "\"AVATAR\" TEXT," + // 5: avatar
                 "\"IS_SUPER_USER\" INTEGER NOT NULL ," + // 6: isSuperUser
-                "\"IS_ADMIN\" INTEGER NOT NULL );"); // 7: isAdmin
+                "\"IS_ADMIN\" INTEGER NOT NULL ," + // 7: isAdmin
+                "\"VIP_POINT\" INTEGER NOT NULL );"); // 8: vipPoint
     }
 
     /** Drops the underlying database table. */
@@ -98,6 +100,7 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
         }
         stmt.bindLong(7, entity.getIsSuperUser() ? 1L: 0L);
         stmt.bindLong(8, entity.getIsAdmin() ? 1L: 0L);
+        stmt.bindLong(9, entity.getVipPoint());
     }
 
     @Override
@@ -135,6 +138,7 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
         }
         stmt.bindLong(7, entity.getIsSuperUser() ? 1L: 0L);
         stmt.bindLong(8, entity.getIsAdmin() ? 1L: 0L);
+        stmt.bindLong(9, entity.getVipPoint());
     }
 
     @Override
@@ -152,7 +156,8 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // password
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // avatar
             cursor.getShort(offset + 6) != 0, // isSuperUser
-            cursor.getShort(offset + 7) != 0 // isAdmin
+            cursor.getShort(offset + 7) != 0, // isAdmin
+            cursor.getInt(offset + 8) // vipPoint
         );
         return entity;
     }
@@ -167,6 +172,7 @@ public class GDUserDao extends AbstractDao<GDUser, String> {
         entity.setAvatar(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setIsSuperUser(cursor.getShort(offset + 6) != 0);
         entity.setIsAdmin(cursor.getShort(offset + 7) != 0);
+        entity.setVipPoint(cursor.getInt(offset + 8));
      }
     
     @Override

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.Window
 import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.SHOW_ARG
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.model.Ticket
@@ -16,6 +17,7 @@ import com.example.ricardo.tickit2.data.network.repository.ShowRepository
 import com.example.ricardo.tickit2.extensions.*
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
 import com.example.ricardo.tickit2.view.admin.detail.SetDetailActivity
+import com.example.ricardo.tickit2.view.admin.detail.ShowDetailActivity
 import com.example.ricardo.tickit2.view.admin.main.AdminMainActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.myTicket.TicketItemAdapter
@@ -23,10 +25,6 @@ import com.facebook.drawee.backends.pipeline.Fresco
 import kotlinx.android.synthetic.main.activity_banner.*
 import kotlinx.android.synthetic.main.item_ticket.*
 
-
-/**
- * Created by Ricardo on 2018/1/6.
- */
 
 class SetActivity :BaseActivity(), SetView {
     override val presenter by lazy { SetPresenter(this, BannerPicRepository.get(), ShowRepository.get(), OrderRepository.get()) }
@@ -51,6 +49,7 @@ class SetActivity :BaseActivity(), SetView {
 
         if (from == SHOW_INTENT){
             toolbarTitle.setText("Show")
+            bannerAdd.setOnClickListener{ addShowClick() }
         } else if(from == ORDER_INTENT){
             toolbarTitle.setText("Order")
             searchViewLayout.visibility = View.VISIBLE
@@ -60,22 +59,29 @@ class SetActivity :BaseActivity(), SetView {
                     presenter.onSearchChanged(text)
                 }
             }
+        }else if(from == BANNER_INTENT){
+            bannerAdd.setOnClickListener { addBtnClick() }
         }
 
         bannerSwipeRefreshView.setOnRefreshListener { presenter.onRefresh() }
 
         presenter.start()
 
-        bannerAdd.setOnClickListener { addBtnClick() }
+
+
 
         bannerBack.setOnClickListener{ backBtnClick() }
-
     }
 
 
     fun addBtnClick(){
         val banner = BannerPicture("","","",true)
         SetDetailActivity.startFromAdd(this,banner, ADD_INTEENT)
+    }
+
+    fun addShowClick(){
+        val show = Show()
+        ShowDetailActivity.start(this,show, SHOW_ARG)
 
     }
 
@@ -83,7 +89,7 @@ class SetActivity :BaseActivity(), SetView {
 
     fun createCategoryItemAdapter(show: Show) = ShowItemAdapte(show,{showClick(show)})
 
-    fun createCategoryItemAdapter(ticket: Ticket) = TicketItemAdapter(ticket,{})
+    fun createCategoryItemAdapter(ticket: Ticket) = TicketItemAdapter(ticket,{orderClick(ticket)})
 
     fun bannerPicClick(banner: BannerPicture){
 
@@ -104,9 +110,22 @@ class SetActivity :BaseActivity(), SetView {
         BottomSheet.Builder(this@SetActivity).sheet(R.menu.set_banner_list).listener { dialog, which ->
             when (which) {
                 R.id.set_banner -> {
-                    SetDetailActivity.startFromShow(this,show, SHOW_INTENT)
+                    ShowDetailActivity.start(this,show, SHOW_INTENT)
                 }
                 R.id.delete_banner -> {
+
+                }
+            }
+        }.build().show()
+    }
+
+    fun orderClick(ticket: Ticket){
+        BottomSheet.Builder(this@SetActivity).sheet(R.menu.set_order_list).listener { dialog, which ->
+            when (which) {
+                R.id.finish_order -> {
+                    presenter.confirmOrder(ticket)
+                }
+                R.id.cancel_order -> {
 
                 }
             }
@@ -145,18 +164,19 @@ class SetActivity :BaseActivity(), SetView {
     }
 
     override fun onOrderSuccess(items: List<Ticket>) {
-        println(items[0].createTime)
         val categoryItemAdapters = items.map(this::createCategoryItemAdapter)
         bannerRecyclerView.adapter = SetListAdapter(categoryItemAdapters)
     }
 
     override fun onOrderError(error: Throwable) {
+
         println(error)
+
     }
 
 
-
     companion object {
+
         private const val BANNER_ARG = "Banner_Key"
         private const val INTENT = "Intent_From"
 
@@ -175,8 +195,6 @@ class SetActivity :BaseActivity(), SetView {
             val intent = getIntent(context,from)
             context.startActivity(intent)
         }
-
-
 
 
     }

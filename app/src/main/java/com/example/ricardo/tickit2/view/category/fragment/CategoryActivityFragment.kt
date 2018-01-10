@@ -8,18 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ricardo.tickit2.R
-import com.example.ricardo.tickit2.view.common.RecyclerViewAdapter
+import com.example.ricardo.tickit2.data.model.Show
+import com.example.ricardo.tickit2.data.network.repository.ShowRepository
+import com.example.ricardo.tickit2.view.admin.set.SetListAdapter
+import com.example.ricardo.tickit2.view.category.CategoryItemAdapte
+import com.example.ricardo.tickit2.view.category.CategoryPresenter
+import com.example.ricardo.tickit2.view.category.CategoryView
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator
 import kotlinx.android.synthetic.main.fragment_recyclerview.*
-import java.util.ArrayList
 
 /**
  * Created by yuhanyin on 1/10/18.
  */
-class CategoryActivityFragment : Fragment() {
+class CategoryActivityFragment : Fragment(), CategoryView {
 
-//    @BindView(R.id.recyclerView)
-//    internal var mRecyclerView: RecyclerView? = null
+    val presenter: CategoryPresenter by lazy { CategoryPresenter(ShowRepository.get(), this) }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
@@ -27,16 +30,6 @@ class CategoryActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        ButterKnife.bind(this, view)
-
-        val items = ArrayList<Any>()
-
-        for (i in 0 until ITEM_COUNT) {
-            items.add(Any())
-        }
-
-
-        //setup materialviewpager
 
         if (GRID_LAYOUT) {
             recyclerView.layoutManager = GridLayoutManager(activity, 2)
@@ -45,18 +38,35 @@ class CategoryActivityFragment : Fragment() {
         }
         recyclerView.setHasFixedSize(true)
 
-        //Use this now
         recyclerView.addItemDecoration(MaterialViewPagerHeaderDecorator())
-        recyclerView.adapter = RecyclerViewAdapter(items)
+        val categoryItemAdapters = showList.map(this::createCategoryItemAdapter)
+        recyclerView.adapter = SetListAdapter(categoryItemAdapters)
+
     }
+
+    fun createCategoryItemAdapter(show: Show) = CategoryItemAdapte(show,{})
+
+    override fun onShowSuccess(items: List<Show>) {
+        val categoryItemAdapters = items.map(this::createCategoryItemAdapter)
+        recyclerView.adapter = SetListAdapter(categoryItemAdapters)
+    }
+
+    override fun onShowError(error: Throwable) {
+
+    }
+
 
     companion object {
 
         private val GRID_LAYOUT = false
         private val ITEM_COUNT = 100
 
-        fun newInstance(): CategoryActivityFragment {
+        var showList: MutableList<Show> = mutableListOf()
+
+        fun newInstance(showList: MutableList<Show>): CategoryActivityFragment {
+            this.showList = showList
             return CategoryActivityFragment()
+
         }
     }
 }

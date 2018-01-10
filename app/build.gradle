@@ -32,7 +32,7 @@ android {
         experimental = true
     }
     greendao {
-        schemaVersion 4
+        schemaVersion 5
         daoPackage 'com.example.ricardo.tickit2.greendao.gen'
         targetGenDir 'src/main/java'
     }
@@ -81,6 +81,8 @@ dependencies {
 
 
     implementation 'com.orhanobut:dialogplus:1.11@aar'
+
+    implementation 'com.contrarywind:Android-PickerView:3.2.7'
 
 }
 

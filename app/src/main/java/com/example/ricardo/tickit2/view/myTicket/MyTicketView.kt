@@ -12,4 +12,8 @@ interface MyTicketView{
     fun show(items: List<Ticket>)
     fun showError(error: Throwable)
 
+    fun cancelOrderSuccess(message: String)
+
+
+
 }

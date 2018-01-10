@@ -23,8 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cardMarginHorizontal">
 
-
-            <ImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/ticketImage"
                 android:layout_width="@dimen/home_list_icon_width"
                 android:layout_height="@dimen/home_list_ioon_height"
@@ -39,31 +38,51 @@
                 android:layout_toRightOf="@id/ticketImage"
                 android:layout_marginTop="@dimen/cardMarginVertical"
                 android:layout_marginLeft="@dimen/cardMarginVertical"
-                android:textSize="@dimen/textSize_20"
+                android:textSize="@dimen/textSize_16"
                 android:hint="@string/ticket_name"/>
 
 
 
             <TextView
-                android:id="@+id/ticketTime"
+                android:id="@+id/expiredTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/ticket_time"
                 android:layout_toRightOf="@id/ticketImage"
                 android:layout_marginTop="@dimen/margin_ticket_name"
                 android:layout_marginLeft="@dimen/cardMarginHorizontal"
-                android:textSize="@dimen/textSize_18"/>
+                />
+
+            <TextView
+                android:id="@+id/ticketTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/ticket_time"
+                android:layout_toRightOf="@id/expiredTime"
+                android:layout_marginTop="@dimen/margin_ticket_name"
+                android:layout_marginLeft="@dimen/cardMarginHorizontal"
+                />
 
 
             <TextView
-                android:id="@+id/tickePrice"
+                android:id="@+id/fetchTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ticketTime"
                 android:layout_toRightOf="@id/ticketImage"
                 android:layout_marginLeft="@dimen/cardMarginHorizontal"
+                android:hint="@string/ticket_fetch_time"
+                />
 
-                android:hint="@string/ticket_price_hint"
+
+            <TextView
+                android:id="@+id/tickeFetchTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ticketTime"
+                android:layout_toRightOf="@id/fetchTime"
+                android:layout_marginLeft="@dimen/cardMarginHorizontal"
+                android:hint="@string/ticket_fetch_time"
                 />
 
             <Button
@@ -72,7 +91,7 @@
                 android:id="@+id/buyBtn"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/cardMarginHorizontal"
-                android:layout_below="@id/tickePrice"
+                android:layout_below="@id/tickeFetchTime"
                 android:background="@mipmap/buy_cart"
                 android:layout_marginRight="@dimen/cardMarginVertical"/>
 

@@ -22,6 +22,7 @@ interface SetShowApi {
             @Field("description") descriptionURL: String,
             @Field("showTime") showTime: String,
             @Field("expiredTime") expiredTime: String,
+            @Field("expiredFetchTime") expiredFetchTime: String,
             @Field("category") category: Int,
             @Field("isOnSale") isOnSale: Int,
             @Field("isRestricted") isRestricted: Int,

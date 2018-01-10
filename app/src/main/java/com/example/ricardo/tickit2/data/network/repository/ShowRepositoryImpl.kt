@@ -30,6 +30,7 @@ class ShowRepositoryImpl: ShowRepository{
             category = show.category,
             showTime = show.showTime,
             expiredTime = show.expiredTime,
+            expiredFetchTime = show.expiredFetchTime,
             descriptionURL = show.descriptionPath,
             isOnSale = show.is_OnSale.toInt(),
             isRestricted = show.isRestricted.toInt(),

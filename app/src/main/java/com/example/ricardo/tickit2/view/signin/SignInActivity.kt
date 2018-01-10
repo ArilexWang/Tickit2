@@ -72,12 +72,11 @@ class SignInActivity:BaseActivity(),SignInView{
         }
     }
 
-
     //登录成功后调用函数
     override fun onSuccess(items: List<User>) {
         val user = items[0]
+        println(user.vipPoint)
         saveUserToLocal(user, presenter.mUserDao!!)
-
 
         if (user.isAdmin == false){
             ViewsActivity.start(this,0)

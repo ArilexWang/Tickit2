@@ -2,6 +2,7 @@ package com.example.ricardo.tickit2.view.admin.set
 
 import com.example.ricardo.tickit2.base.BasePresenter
 import com.example.ricardo.tickit2.data.model.BannerPicture
+import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
 import com.example.ricardo.tickit2.data.network.repository.OrderRepository
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
@@ -80,6 +81,19 @@ class SetPresenter(val view: SetView, val repository: BannerPicRepository, val s
                         onError = view::onOrderError
                 )
     }
+
+    fun confirmOrder(order: Ticket){
+        val user = getLocalUser(mUserDao!!)
+        subscriptions += orderRepository.confirmOrder(user!!,order)
+                .applySchedulers()
+                .doOnSubscribe { view.refresh = true }
+                .doFinally{ view.refresh = false }
+                .subscribeBy(
+                        onSuccess = view::deleteSuccess,
+                        onError = view::onOrderError
+                )
+    }
+
 
     fun deleteBanner(banner: BannerPicture){
         val user = getLocalUser(mUserDao!!)

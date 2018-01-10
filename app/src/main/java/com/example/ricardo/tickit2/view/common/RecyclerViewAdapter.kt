@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.model.Show
 
 /**
  * Created by yuhanyin on 1/4/18.
  */
-class RecyclerViewAdapter(internal var contents: List<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecyclerViewAdapter(internal var contents: List<Show>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         when (position) {

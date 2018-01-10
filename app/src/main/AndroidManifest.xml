@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".view.admin.main.AdminMainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeFullscreen">
             <intent-filter>
@@ -31,9 +31,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".view.admin.detail.ShowDetailActivity"></activity>
         <activity android:name=".view.admin.detail.SetDetailActivity"></activity>
         <activity android:name=".view.admin.set.SetActivity"></activity>
-        <!--<activity android:name=".view.admin.main.AdminMainActivity"></activity>-->
+        <activity android:name=".view.admin.main.AdminMainActivity"></activity>
         <activity android:name=".view.advertisement.AdvertisementActivity"></activity>
         <activity android:name=".view.profile.ProfileInfoActivity"></activity>
         <activity android:name=".view.signin.SignInActivity"></activity>

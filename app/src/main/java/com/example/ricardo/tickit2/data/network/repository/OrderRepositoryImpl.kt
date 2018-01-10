@@ -3,10 +3,7 @@ package com.example.ricardo.tickit2.data.network.repository
 import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.data.model.User
-import com.example.ricardo.tickit2.data.network.api.orderapi.CreateOrderApi
-import com.example.ricardo.tickit2.data.network.api.orderapi.GetAllOrderApi
-import com.example.ricardo.tickit2.data.network.api.orderapi.GetOrderApi
-import com.example.ricardo.tickit2.data.network.api.orderapi.GetOrderByKeyApi
+import com.example.ricardo.tickit2.data.network.api.orderapi.*
 import com.example.ricardo.tickit2.data.network.provider.retrofit
 import io.reactivex.Single
 
@@ -19,6 +16,8 @@ class OrderRepositoryImpl: OrderRepository {
     val getOrderApi = retrofit.create(GetOrderApi::class.java)
     val getAllOrderApi = retrofit.create(GetAllOrderApi::class.java)
     val getOderByKeyApi = retrofit.create(GetOrderByKeyApi::class.java)
+    val cancelOrderByUserApi = retrofit.create(CancelOrderByUserApi::class.java)
+    val confirmOrderApi = retrofit.create(ConfirmOrderApi::class.java)
 
     override fun createOrder(user: User, ticketTypeID: Long): Single<List<Order>> = orderApi.createOrder(
             studentID = user.id.toString(),
@@ -43,5 +42,17 @@ class OrderRepositoryImpl: OrderRepository {
             password = user.password,
             key = key
     ).map { it.map(::Ticket) }
+
+    override fun cancelOrderByUser(user: User, ticket: Ticket): Single<String> = cancelOrderByUserApi.cancelOrderByUser(
+            studentID = user.id,
+            password = user.password,
+            orderID = ticket.id
+    )
+
+    override fun confirmOrder(user: User, ticket: Ticket): Single<String> = confirmOrderApi.confirmOrder(
+            studentID = user.id,
+            password = user.password,
+            orderID = ticket.id
+    )
 
 }

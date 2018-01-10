@@ -57,7 +57,7 @@ class ShowFragment :BaseFragment(), View.OnClickListener,ShowView{
 
         //Use this now
         ticketRecycleView.addItemDecoration(MaterialViewPagerHeaderDecorator())
-        ticketRecycleView.adapter = RecyclerViewAdapter(items)
+        //ticketRecycleView.adapter = RecyclerViewAdapter(items)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

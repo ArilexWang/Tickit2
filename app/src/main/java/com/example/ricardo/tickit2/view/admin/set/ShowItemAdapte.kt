@@ -30,7 +30,4 @@ class ShowItemAdapte(val show: Show, val clicked: (Show) -> Unit): ItemAdapter<S
     }
 
 
-
-
-
 }

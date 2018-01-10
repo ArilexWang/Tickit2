@@ -21,9 +21,11 @@ public class GDUser {
     private String avatar;
     private boolean isSuperUser;
     private boolean isAdmin;
-    @Generated(hash = 1610267966)
+    private int vipPoint;
+    @Generated(hash = 581695833)
     public GDUser(String id, String nickName, String realName, String mobileNumber,
-            String password, String avatar, boolean isSuperUser, boolean isAdmin) {
+            String password, String avatar, boolean isSuperUser, boolean isAdmin,
+            int vipPoint) {
         this.id = id;
         this.nickName = nickName;
         this.realName = realName;
@@ -32,6 +34,7 @@ public class GDUser {
         this.avatar = avatar;
         this.isSuperUser = isSuperUser;
         this.isAdmin = isAdmin;
+        this.vipPoint = vipPoint;
     }
     @Generated(hash = 1014226889)
     public GDUser() {
@@ -47,6 +50,7 @@ public class GDUser {
         this.avatar = user.getAvatar();
         this.isAdmin = user.isAdmin();
         this.isSuperUser = user.isSuperUser();
+        this.vipPoint = user.getVipPoint();
     }
 
     public String getId() {
@@ -96,5 +100,11 @@ public class GDUser {
     }
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
+    }
+    public int getVipPoint() {
+        return this.vipPoint;
+    }
+    public void setVipPoint(int vipPoint) {
+        this.vipPoint = vipPoint;
     }
 }

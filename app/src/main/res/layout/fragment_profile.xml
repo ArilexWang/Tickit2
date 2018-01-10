@@ -99,7 +99,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/me_login_balance"
+                            android:text="会员积分："
                             android:textSize="@dimen/me_login_balance_size"/>
                         <TextView
                             android:id="@+id/me_login_tv_balance"

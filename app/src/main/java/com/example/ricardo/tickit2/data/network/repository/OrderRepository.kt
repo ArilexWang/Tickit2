@@ -17,6 +17,9 @@ interface OrderRepository {
     fun getAllOrder(user: User): Single<List<Ticket>>
     fun getOrderByKey(user: User,key: String): Single<List<Ticket>>
 
+    fun cancelOrderByUser(user: User,ticket: Ticket): Single<String>
+    fun confirmOrder(user: User,ticket: Ticket):Single<String>
+
     companion object : Provider<OrderRepository>() {
         override fun creator() =  OrderRepositoryImpl()
     }

@@ -5,24 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.github.florent37.materialviewpager.MaterialViewPager
-        android:id="@+id/materialViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
-        app:viewpager_logoMarginTop="@dimen/category_logo_margin"
-        app:viewpager_color="@color/colorPrimary"
-        app:viewpager_headerHeight="@dimen/category_header_height"
-        app:viewpager_headerAlpha="@dimen/category_headerAlpha"
-        app:viewpager_imageHeaderDarkLayerAlpha="@dimen/category_imageHeaderDarkLayerAlpha"
-        app:viewpager_hideLogoWithFade="false"
-        app:viewpager_hideToolbarAndTitle="false"
-        app:viewpager_enableToolbarElevation="true"
-        app:viewpager_parallaxHeaderFactor="@dimen/category_parallaxHeaderFactor"
-        app:viewpager_logo="@layout/header_logo"
-        app:viewpager_displayToolbarWhenSwipe="true"
-        app:viewpager_transparentToolbar="false"
-        app:viewpager_animatedHeaderImage="true"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <com.github.florent37.materialviewpager.MaterialViewPager
+            android:id="@+id/materialViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:viewpager_pagerTitleStrip="@layout/material_view_pager_pagertitlestrip_newstand"
+            app:viewpager_logoMarginTop="@dimen/category_logo_margin"
+            app:viewpager_color="@color/colorPrimary"
+            app:viewpager_headerHeight="@dimen/category_header_height"
+            app:viewpager_headerAlpha="@dimen/category_headerAlpha"
+            app:viewpager_imageHeaderDarkLayerAlpha="@dimen/category_imageHeaderDarkLayerAlpha"
+            app:viewpager_hideLogoWithFade="false"
+            app:viewpager_hideToolbarAndTitle="false"
+            app:viewpager_enableToolbarElevation="true"
+            app:viewpager_parallaxHeaderFactor="@dimen/category_parallaxHeaderFactor"
+            app:viewpager_logo="@layout/header_logo"
+            app:viewpager_displayToolbarWhenSwipe="true"
+            app:viewpager_transparentToolbar="false"
+            app:viewpager_animatedHeaderImage="true"/>
+
+    </RelativeLayout>
+
+
+
     <!--<View xmlns:android="http://schemas.android.com/apk/res/android"-->
         <!--android:id="@+id/leftDrawer"-->
         <!--android:layout_width="320dp"-->

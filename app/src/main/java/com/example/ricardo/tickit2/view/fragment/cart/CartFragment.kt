@@ -39,7 +39,7 @@ class CartFragment: android.support.v4.app.Fragment() {
 
         //Use this now
         recyclerCartView.addItemDecoration(MaterialViewPagerHeaderDecorator())
-        recyclerCartView.adapter = RecyclerViewAdapter(items)
+        //recyclerCartView.adapter = RecyclerViewAdapter(items)
     }
     companion object {
 

@@ -23,6 +23,9 @@ public class ShowFiledDto {
     @SerializedName("_expiredTime")
     @Expose
     private String expiredTime;
+    @SerializedName("_expiredFetchTime")
+    @Expose
+    private String expiredFetchTime;
     @SerializedName("_minPrice")
     @Expose
     private Integer minPrice;
@@ -86,6 +89,14 @@ public class ShowFiledDto {
 
     public void setExpiredTime(String expiredTime) {
         this.expiredTime = expiredTime;
+    }
+
+    public String getExpiredFetchTime() {
+        return expiredFetchTime;
+    }
+
+    public void setExpiredFetchTime(String expiredFetchTime) {
+        this.expiredFetchTime = expiredFetchTime;
     }
 
     public Integer getMinPrice() {

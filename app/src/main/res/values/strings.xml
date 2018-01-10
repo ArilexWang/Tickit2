@@ -142,7 +142,8 @@
     <string name="ticket_name">Name</string>
     <string name="ticket_price">价格：</string>
     <string name="ticket_price_hint">price</string>
-    <string name="ticket_time">time</string>
+    <string name="ticket_time">截止购票时间：</string>
+    <string name="ticket_fetch_time">截止取票时间：</string>
 
     <!--cart show-->
     <string name="cart_title">购物车</string>

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Window
+import com.cocosw.bottomsheet.BottomSheet
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.data.model.Order
 import com.example.ricardo.tickit2.data.model.Ticket
@@ -14,6 +15,8 @@ import com.example.ricardo.tickit2.extensions.getLocalUser
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.extensions.toast
 import com.example.ricardo.tickit2.greendao.gen.GDUserDao
+import com.example.ricardo.tickit2.view.admin.detail.ShowDetailActivity
+import com.example.ricardo.tickit2.view.admin.set.SetActivity
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
 import com.example.ricardo.tickit2.view.common.BaseActivity
 import com.example.ricardo.tickit2.view.views.ViewsActivity
@@ -54,16 +57,8 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
     }
 
     fun ticketBackBtnClick(){
-        val intent = Intent()
 
-        val bundle = Bundle()
-        bundle.putString("view","4")
-
-        intent.setClass(this@MyTickeyActivity, ViewsActivity::class.java)
-        intent.putExtra("ticketdetialflag", 1)
-        intent.putExtras(bundle)
-        setResult(Activity.RESULT_OK,intent)
-        finish()
+        ViewsActivity.start(this,3)
     }
 
     //加载我的票务成功
@@ -78,15 +73,31 @@ class MyTickeyActivity:BaseActivity(),MyTicketView{
         println(error)
     }
 
+    override fun cancelOrderSuccess(message: String) {
+        println(message)
+    }
+
     fun createCategoryItemAdapter(ticket : Ticket) = TicketItemAdapter(ticket,{ticketDetail(ticket)})
 
     fun ticketDetail(ticket: Ticket){
-        val url = ticket.showDescription
-        val intent = Intent()
-        intent.putExtra("url", url)
-        intent.setClass(this@MyTickeyActivity,AdvertisementActivity::class.java)
-        startActivity(intent)
+
+        BottomSheet.Builder(this@MyTickeyActivity).sheet(R.menu.myorder_list).listener { dialog, which ->
+            when (which) {
+                R.id.detail_order -> {
+                    AdvertisementActivity.start(this,ticket, ORDER_ARG)
+                }
+                R.id.cancel_order -> {
+                    presenter.cancelOrder(ticket)
+                }
+            }
+        }.build().show()
+
+
+
     }
 
+    companion object {
+        private const val ORDER_ARG = "ORDER_KEY"
+    }
 
 }

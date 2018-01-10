@@ -76,79 +76,6 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
             set_bannerBack.setOnClickListener { backClick() }
         }
 
-        else if (from == SHOW_INTENT){
-            set_title.setText("Show")
-
-            set_banner_pic.setImageURI(show.avatarPath)
-            var para = set_banner_pic.layoutParams
-            para.width = 300
-            para.height = 400
-            set_banner_pic.layoutParams = para
-
-            cate_spinner.visibility = View.VISIBLE
-            switch_limit.visibility = View.VISIBLE
-
-            cate_spinner.setOnItemSelectedListener(object : OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    val data = cate_spinner.getItemAtPosition(position) as String//从spinner中获取被选择的数据
-                    if (data == PWXQR){
-                        newShow!!.category = PWXQR_NUMBER
-                    } else if(data == ODNR){
-                        newShow!!.category = ODNR_NUMBER
-                    }
-                }
-                override fun onNothingSelected(parent: AdapterView<*>) {
-
-                }
-            })
-            if(from != ADD_INTEENT){
-                set_banner_save.setOnClickListener{ saveShowBtnClick() }
-            } else{
-
-            }
-
-            set_descriptionURL.setText(show.descriptionPath)
-            set_input2.visibility = View.VISIBLE
-            set_name.setText(show.name)
-
-            switch_view.textOn = "在售"
-            switch_view.textOff = "停售"
-
-            newShow = show
-            switch_view.isChecked = newShow!!.is_OnSale
-
-            switch_view.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener {  buttonView, isChecked ->
-                if (isChecked) {
-                    newShow!!.is_OnSale = isChecked
-
-                } else {
-                    newShow!!.is_OnSale = isChecked
-
-                }
-            })
-
-            set_restrictionNum.setText(newShow!!.restrictionNum.toString())
-
-            switch_limit.isChecked = newShow!!.isRestricted
-
-            if (newShow!!.isRestricted){
-                set_input3.visibility = View.VISIBLE
-            }
-
-            switch_limit.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener {  buttonView, isChecked ->
-                if (isChecked) {
-                    newShow!!.isRestricted = isChecked
-                    set_input3.visibility = View.VISIBLE
-                } else {
-                    newShow!!.isRestricted = isChecked
-                    set_input3.visibility = View.GONE
-                }
-            })
-
-
-            set_bannerBack.setOnClickListener { backToShowClick() }
-        }
-
         presenter.mUserDao = userDao
 
 
@@ -199,7 +126,6 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
     }
 
     fun saveShowBtnClick(){
-
         newShow!!.name = set_name.text.toString()
         newShow!!.descriptionPath = set_descriptionURL.text.toString()
 
@@ -211,6 +137,8 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
         presenter.setShow(newShow!!)
 
     }
+
+
 
 
     fun picClick(){

@@ -19,7 +19,7 @@ public class FieldDto {
     private String password;
     @SerializedName("_email")
     @Expose
-    private String email;
+    private Object email;
     @SerializedName("_isSuperuser")
     @Expose
     private Boolean isSuperuser;
@@ -32,12 +32,9 @@ public class FieldDto {
     @SerializedName("_avatar")
     @Expose
     private String avatar;
-    @SerializedName("_level")
+    @SerializedName("_vipPoint")
     @Expose
-    private Integer level;
-    @SerializedName("_experience")
-    @Expose
-    private Integer experience;
+    private Integer vipPoint;
 
     public String getNickname() {
         return nickname;
@@ -63,11 +60,11 @@ public class FieldDto {
         this.password = password;
     }
 
-    public String getEmail() {
+    public Object getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Object email) {
         this.email = email;
     }
 
@@ -103,19 +100,12 @@ public class FieldDto {
         this.avatar = avatar;
     }
 
-    public Integer getLevel() {
-        return level;
+    public Integer getVipPoint() {
+        return vipPoint;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setVipPoint(Integer vipPoint) {
+        this.vipPoint = vipPoint;
     }
 
-    public Integer getExperience() {
-        return experience;
-    }
-
-    public void setExperience(Integer experience) {
-        this.experience = experience;
-    }
 }

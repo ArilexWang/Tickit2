@@ -6,6 +6,8 @@ import android.widget.TextView
 import com.example.ricardo.tickit2.R
 import com.example.ricardo.tickit2.data.model.Ticket
 import com.example.ricardo.tickit2.extensions.bindView
+import com.example.ricardo.tickit2.extensions.explainOrderStatu
+import com.example.ricardo.tickit2.extensions.setTime
 import com.example.ricardo.tickit2.view.common.ItemAdapter
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,6 +33,8 @@ class TicketItemAdapter(val ticket: Ticket,val clicked: (Ticket) -> Unit): ItemA
 
         studentID.setText(ticket.studentID)
 
+        orderStatu.setText(explainOrderStatu(ticket.status))
+
     }
 
 
@@ -41,17 +45,10 @@ class TicketItemAdapter(val ticket: Ticket,val clicked: (Ticket) -> Unit): ItemA
         val createTime by bindView<TextView>(R.id.createTime)
         val orderID by bindView<TextView>(R.id.orderid)
         val studentID by bindView<TextView>(R.id.order_studentid)
+        val orderStatu by bindView<TextView>(R.id.order_statu)
     }
 
-    fun setTime(strDate: String): String{
-        val dateFormate1: SimpleDateFormat = SimpleDateFormat("yyyyMMddHHmm")
-        val d1: Date = dateFormate1.parse(strDate)
-        val dateFormate2: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
-        val str1 = dateFormate2.format(d1)
-        return str1
 
-
-    }
 
 
 

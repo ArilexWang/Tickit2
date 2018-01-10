@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/order_menu"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <item
+        android:id="@+id/detail_order"
+        android:icon="@mipmap/ic_launcher"
+        android:title="详情" />
+    <item
+        android:id="@+id/cancel_order"
+        android:icon="@mipmap/ic_launcher"
+        android:title="退票" />
+</menu>

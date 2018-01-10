@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.ricardo.tickit2.view.myTicket.TicketFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="130dp"
 
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools">
@@ -13,8 +13,8 @@
 
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/ticketImage"
-            android:layout_width="@dimen/home_list_icon_width"
-            android:layout_height="@dimen/home_list_ioon_height"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             fresco:placeholderImage="@mipmap/default_list_pic"/>
 
@@ -89,6 +89,28 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/order_id"
             android:layout_below="@id/orderid"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            />
+
+        <TextView
+            android:id="@+id/order_statu_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ticketImage"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/order_id"
+            android:text="订单状态："
+
+            />
+
+        <TextView
+            android:id="@+id/order_statu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/order_statu_title"
+            android:layout_below="@id/order_id"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             />

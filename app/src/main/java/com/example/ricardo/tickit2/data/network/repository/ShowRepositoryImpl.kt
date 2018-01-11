@@ -34,7 +34,8 @@ class ShowRepositoryImpl: ShowRepository{
             descriptionURL = show.descriptionPath,
             isOnSale = show.is_OnSale.toInt(),
             isRestricted = show.isRestricted.toInt(),
-            restrictionNum = show.restrictionNum
+            restrictionNum = show.restrictionNum,
+            remainAmount = show.remainAmout
 
     ).map { it.map(::Show) }
 }

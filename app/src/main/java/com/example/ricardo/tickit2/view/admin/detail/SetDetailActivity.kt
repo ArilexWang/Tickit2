@@ -49,7 +49,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
 
         userDao = loadDaoSession().gdUserDao
 
-        if (from == BANNER_INTENT){
+        if (from == BANNER_INTENT || from == ADD_INTEENT){
             set_banner_pic.setImageURI(banner.picPath)
             set_descriptionURL.setText(banner.targetPath)
 
@@ -57,7 +57,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
 
             if(from != ADD_INTEENT){
                 set_banner_save.setOnClickListener{ savaBannerBtnClick() }
-            } else{
+            } else {
                 set_banner_save.setOnClickListener { addBannerBtnClick() }
             }
 
@@ -121,6 +121,7 @@ class SetDetailActivity :BaseActivity(), SetDetailView {
     }
 
     fun addBannerBtnClick(){
+        println("bbbbbbbbb")
         newBanner!!.targetPath = set_descriptionURL.text.toString()
         presenter.createBanner(newBanner!!)
     }

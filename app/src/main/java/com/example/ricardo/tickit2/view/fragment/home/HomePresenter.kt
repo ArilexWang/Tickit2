@@ -21,11 +21,19 @@ class HomePresenter(val view: HomeView,val repository: BannerPicRepository, val 
         getShow()
     }
 
+    fun onRefresh(){
+        getBannerPic()
+        getShow()
+    }
+
     fun getBannerPic() {
         subscriptions += repository.getBannerPic()
                 .applySchedulers()
+                .doOnSubscribe { view.refresh = true }
+                .doFinally{ view.refresh = false }
                 .subscribeBy (
                         onSuccess = view::onSuccess,
+
                         onError = view::onError
                 )
     }
@@ -33,6 +41,8 @@ class HomePresenter(val view: HomeView,val repository: BannerPicRepository, val 
 
         subscriptions += showRepository.getNewShow()
                 .applySchedulers()
+                .doOnSubscribe { view.refresh = true }
+                .doFinally{ view.refresh = false }
                 .subscribeBy (
                     onSuccess = view::onShowSuccess,
                     onError = view::onShowError

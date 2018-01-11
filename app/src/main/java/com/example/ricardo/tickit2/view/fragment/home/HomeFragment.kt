@@ -17,6 +17,7 @@ import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
+import com.example.ricardo.tickit2.extensions.bindToSwipeRefresh
 import com.example.ricardo.tickit2.extensions.isAdmin
 import com.example.ricardo.tickit2.extensions.loadDaoSession
 import com.example.ricardo.tickit2.view.advertisement.AdvertisementActivity
@@ -32,7 +33,7 @@ import java.util.ArrayList
 class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
 
     val presenter: HomePresenter = HomePresenter(this, BannerPicRepository.get(), ShowRepository.get())
-
+    override var refresh by bindToSwipeRefresh(R.id.home_swipeRefreshView)
     var scollerView: ShowHorizontalScrollview? = null
     var scollerView2: ShowHorizontalScrollview? = null
 
@@ -57,6 +58,8 @@ class HomeFragment: BaseFragment(),HomeView,OnBannerListener {
         super.onActivityCreated(savedInstanceState)
 
         presenter.start()
+
+        home_swipeRefreshView.setOnRefreshListener { presenter.onRefresh() }
     }
 
     //banner图片点击事件

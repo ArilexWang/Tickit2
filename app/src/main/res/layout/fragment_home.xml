@@ -1,125 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-   android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/home_swipeRefreshView"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+    <android.support.v4.widget.NestedScrollView
 
-
-    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tool_bar"
-        android:background="@color/white"
-        android:layout_marginTop="10dp">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_back"
-            android:layout_gravity="center_vertical"
-            android:background="@color/white"
-            android:layout_marginLeft="@dimen/tool_back"
-            android:visibility="gone"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/app_name_b"
-            android:layout_gravity="center"
-            android:gravity="center_vertical"
-            android:textSize="@dimen/textSize_20"/>
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="match_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <com.youth.banner.Banner
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/switchBanner_height" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/dark"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ticket_activity"
-        android:layout_gravity="left"
-        android:layout_marginTop="@dimen/home_margin"
-        android:layout_marginBottom="@dimen/home_margin"
-        android:layout_marginLeft="@dimen/home_margin"/>
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tool_bar"
+                android:background="@color/white"
+                android:layout_marginTop="10dp">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_back"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white"
+                    android:layout_marginLeft="@dimen/tool_back"
+                    android:visibility="gone"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/app_name_b"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/textSize_20"/>
+            </android.support.v7.widget.Toolbar>
 
-    <com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
-        android:id="@+id/pwxqrScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/homeListHorizon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:scrollbars="none">
+            <com.youth.banner.Banner
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/switchBanner_height" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ticket_activity"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/home_margin"
+                android:layout_marginBottom="@dimen/home_margin"
+                android:layout_marginLeft="@dimen/home_margin"/>
+
+            <com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
+                android:id="@+id/pwxqrScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/homeListHorizon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:scrollbars="none">
+
+                </LinearLayout>
+            </com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ticket_ad"
+                android:layout_gravity="left"
+                android:layout_marginTop="@dimen/home_margin"
+                android:layout_marginBottom="@dimen/home_margin"
+                android:layout_marginLeft="@dimen/home_margin"/>
+
+            <com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
+                android:id="@+id/pwtjScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/homeListHorizon2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:scrollbars="none">
+
+                </LinearLayout>
+            </com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/homeListVertical"
+                    android:gravity="center_vertical"
+                    android:scrollbars="none"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/dark"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_end"
+                android:layout_marginTop="@dimen/home_end_margin"
+                android:gravity="center" />
+            <!--</android.support.v4.widget.NestedScrollView>-->
         </LinearLayout>
-    </com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/dark"/>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ticket_ad"
-        android:layout_gravity="left"
-        android:layout_marginTop="@dimen/home_margin"
-        android:layout_marginBottom="@dimen/home_margin"
-        android:layout_marginLeft="@dimen/home_margin"/>
-
-    <com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview
-        android:id="@+id/pwtjScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/homeListHorizon2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:scrollbars="none">
-
-        </LinearLayout>
-    </com.example.ricardo.tickit2.view.common.ShowHorizontalScrollview>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/homeListVertical"
-            android:gravity="center_vertical"
-            android:scrollbars="none"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/dark"/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_end"
-        android:layout_marginTop="@dimen/home_end_margin"
-        android:gravity="center" />
-    <!--</android.support.v4.widget.NestedScrollView>-->
-</LinearLayout>
-</android.support.v4.widget.NestedScrollView>

@@ -49,8 +49,8 @@ class ShowDetailActivity : BaseActivity(), ShowDetailView{
     var expiredTimePicker:TimePickerView? = null
     var expiredFetchTimePicker: TimePickerView? = null
 
-    var expiredTime: String? = null
-    var expiredFetchTime: String? = null
+    var expiredTime: String? = DEFAULT_TIME
+    var expiredFetchTime: String? = DEFAULT_TIME
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +68,9 @@ class ShowDetailActivity : BaseActivity(), ShowDetailView{
         cate_spinner.visibility = View.VISIBLE
         switch_limit.visibility = View.VISIBLE
 
+
+        cate_spinner.setSelection(show.category)
+
         cate_spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 val data = cate_spinner.getItemAtPosition(position) as String//从spinner中获取被选择的数据
@@ -75,6 +78,8 @@ class ShowDetailActivity : BaseActivity(), ShowDetailView{
                     newShow!!.category = PWXQR_NUMBER
                 } else if(data == ODNR){
                     newShow!!.category = ODNR_NUMBER
+                } else if (data == ACTIVITY){
+                    newShow!!.category = ACTI_NUMBER
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -129,6 +134,7 @@ class ShowDetailActivity : BaseActivity(), ShowDetailView{
 
         show_expiredTime.setText(setTime(show.expiredTime))
         show_expiredFetchTime.setText(setTime(show.expiredFetchTime))
+        set_remain.setText(show.remainAmout.toString())
 
         initExpiredTimePicker()
         initExpiredFetchTimePicker()
@@ -282,6 +288,8 @@ class ShowDetailActivity : BaseActivity(), ShowDetailView{
         newShow!!.descriptionPath = set_descriptionURL.text.toString()
         newShow!!.expiredTime = expiredTime!!
         newShow!!.expiredFetchTime = expiredFetchTime!!
+        newShow!!.remainAmout = set_remain.text.toString().toInt()
+
         if (newShow!!.isRestricted){
             newShow!!.restrictionNum = set_restrictionNum.text!!.toString().toInt()
         }

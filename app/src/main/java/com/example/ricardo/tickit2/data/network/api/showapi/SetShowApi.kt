@@ -26,6 +26,7 @@ interface SetShowApi {
             @Field("category") category: Int,
             @Field("isOnSale") isOnSale: Int,
             @Field("isRestricted") isRestricted: Int,
-            @Field("restrictionNum") restrictionNum: Int
+            @Field("restrictionNum") restrictionNum: Int,
+            @Field("remainedAmount") remainAmount: Int
     ): Single<List<ShowDto>>
 }

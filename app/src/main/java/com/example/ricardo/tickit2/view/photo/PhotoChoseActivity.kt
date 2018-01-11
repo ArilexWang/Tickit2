@@ -12,6 +12,8 @@ import android.widget.Button
 import android.widget.ImageView
 
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.ADD_INTEENT
+import com.example.ricardo.tickit2.data.BANNER_INTENT
 import com.example.ricardo.tickit2.data.model.BannerPicture
 import com.example.ricardo.tickit2.data.model.User
 import com.example.ricardo.tickit2.data.network.repository.UserRepository
@@ -72,14 +74,16 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
 
     //图片上传七牛云成功
     override fun postAvatarSuccess(path: String?) {
+        println(from)
         //修改头像
         if (from == AVATAR){
             presenter.updateUserInfo(path!!)
         }
         //修改banner
-        else {
+        else if (from == "banner"){
+            println("aaaaaa")
             banner.picPath = path!!
-            SetDetailActivity.startFromAdd(this,banner,"ADD")
+            SetDetailActivity.startFromAdd(this,banner, ADD_INTEENT)
         }
     }
 
@@ -154,7 +158,7 @@ class PhotoChoseActivity : BaseActivity(),PhotoChoseView {
         private val AVATAR = "avatar"
 
         private const val INTENT = "FROM"
-        private const val BANNER_INTENT = "FROM_BANNER"
+        //private const val BANNER_INTENT = "MAIN_BANNER"
         private const val BANNER_ARG = "BANNER_KEY"
 
         fun getInent(context: Context, from: String) = context

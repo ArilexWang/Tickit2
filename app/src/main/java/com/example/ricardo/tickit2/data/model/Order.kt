@@ -14,7 +14,7 @@ class Order(
         val id: String,
         val studentID: String,
         val actualPrice: Int,
-        val isOpen: Boolean,
+        val status: Int,
         val createTime: String,
         val ticketTypeID: String
 
@@ -23,9 +23,9 @@ class Order(
             id = dto.pk,
             studentID = dto.fields.studentID,
             actualPrice = dto.fields.actualPrice,
-            isOpen = dto.fields.isOpen,
+            status = dto.fields.status,
             createTime = dto.fields.createTime,
-            ticketTypeID = dto.fields.ticketTypeID
+            ticketTypeID = dto.fields.showID
 
     )
 }

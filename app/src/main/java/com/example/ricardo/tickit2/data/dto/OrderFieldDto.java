@@ -8,15 +8,15 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class OrderFieldDto {
-    @SerializedName("_ticketTypeID")
+    @SerializedName("_showID")
     @Expose
-    private String ticketTypeID;
+    private String showID;
     @SerializedName("_studentID")
     @Expose
     private String studentID;
-    @SerializedName("_isOpen")
+    @SerializedName("_status")
     @Expose
-    private Boolean isOpen;
+    private Integer status;
     @SerializedName("_actualPrice")
     @Expose
     private Integer actualPrice;
@@ -24,12 +24,12 @@ public class OrderFieldDto {
     @Expose
     private String createTime;
 
-    public String getTicketTypeID() {
-        return ticketTypeID;
+    public String getShowID() {
+        return showID;
     }
 
-    public void setTicketTypeID(String ticketTypeID) {
-        this.ticketTypeID = ticketTypeID;
+    public void setShowID(String showID) {
+        this.showID = showID;
     }
 
     public String getStudentID() {
@@ -40,12 +40,12 @@ public class OrderFieldDto {
         this.studentID = studentID;
     }
 
-    public Boolean getIsOpen() {
-        return isOpen;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setIsOpen(Boolean isOpen) {
-        this.isOpen = isOpen;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Integer getActualPrice() {
@@ -63,4 +63,5 @@ public class OrderFieldDto {
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
+
 }

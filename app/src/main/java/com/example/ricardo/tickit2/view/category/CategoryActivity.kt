@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.ACTI_NUMBER
 import com.example.ricardo.tickit2.data.ODNR_NUMBER
 import com.example.ricardo.tickit2.data.PWXQR_NUMBER
 import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
+import com.example.ricardo.tickit2.extensions.explainCategory
 import com.example.ricardo.tickit2.view.category.fragment.*
 import com.github.florent37.materialviewpager.MaterialViewPager
 import com.github.florent37.materialviewpager.header.HeaderDesign
@@ -22,6 +24,7 @@ class CategoryActivity : DrawerActivity(), CategoryView {
 
     var pwxqrList: MutableList<Show> = mutableListOf()
     var activityList: MutableList<Show> = mutableListOf()
+    var normalList: MutableList<Show> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +46,17 @@ class CategoryActivity : DrawerActivity(), CategoryView {
     }
 
     override fun onShowSuccess(items: List<Show>) {
+
+
+
         for (item in items){
+            val category = explainCategory(item.category)
             if (item.category == PWXQR_NUMBER){
                 pwxqrList.add(item)
-            } else if (item.category == ODNR_NUMBER){
+            } else if (item.category == ACTI_NUMBER){
                 activityList.add(item)
+            } else if (item.category == ODNR_NUMBER){
+                normalList.add(item)
             }
         }
 
@@ -55,16 +64,15 @@ class CategoryActivity : DrawerActivity(), CategoryView {
 
             override fun getItem(position: Int): Fragment {
 
-                println(pwxqrList.count())
 
                 when (position % 4) {
                     0 ->
-                        return CategoryShowFragment.newInstance();
+                        return CategoryShowFragment.newInstance(normalList);
                     1 ->
                         return CategoryActivityFragment.newInstance(activityList);
                     2 ->
                         return CategoryXQRFragment.newInstance(pwxqrList);
-                    else -> return CategoryShowFragment.newInstance()
+                    else -> return CategoryShowFragment.newInstance(normalList)
                 }
             }
 

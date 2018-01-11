@@ -157,8 +157,10 @@
     <string name="showBtn">Show</string>
 
     <string-array name="cate_spinnerarr">
-        <item>票务新奇日</item>
         <item>普通票</item>
+        <item>活动票</item>
+        <item>票务新奇日</item>
+
     </string-array>
 
 

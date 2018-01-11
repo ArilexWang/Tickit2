@@ -18,11 +18,15 @@ val MOBILE_TAKEN = "手机号已被注册"
 val TICKET_RESTRICTION_REACHED_CODE = "HTTP 152 Unknown Status Code"
 val TICKET_REACHED = "已到达限购次数"
 
-val PWXQR_NUMBER = 4
-val ODNR_NUMBER = 0
 
-val PWXQR = "票务星期日"
+val ODNR_NUMBER = 0
+val ACTI_NUMBER = 1
+val PWXQR_NUMBER = 2
+
+
 val ODNR = "普通票"
+val ACTIVITY = "活动票"
+val PWXQR = "票务新奇日"
 
 val SHOW_ARG = "SHOW_KEY"
 val BANNER_ARG = "BANNER_KEY"

@@ -55,9 +55,8 @@ class AdvertisementActivity:BaseActivity(),AdvertisementView {
             if (category == PWXQR_NUMBER){
 
                 participateBtn.setText("立即参与")
-                val ticketTypeID = id.toString() + "00"
                 participateBtn.visibility = View.VISIBLE
-                participateBtn.setOnClickListener{ participateBtnClick(ticketTypeID) }
+                participateBtn.setOnClickListener{ participateBtnClick(show.id.toString()) }
 
             }
 

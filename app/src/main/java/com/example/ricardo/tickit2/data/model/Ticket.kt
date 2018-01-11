@@ -29,7 +29,7 @@ class Ticket(
             actualPrice = dto.fields.actualPrice,
             status = dto.fields.orderStatus,
             createTime = dto.fields.createTime,
-            ticketTypeID = dto.fields.ticketTypeID,
+            ticketTypeID = dto.fields.showID,
             showName = dto.fields.showName,
             showAvatar = dto.fields.showAvatar,
             showDescription = dto.fields.showDescription

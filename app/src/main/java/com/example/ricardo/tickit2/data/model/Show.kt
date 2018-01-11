@@ -25,7 +25,8 @@ class Show(
         var expiredTime: String,
         var expiredFetchTime: String,
         var isRestricted: Boolean,
-        var restrictionNum: Int
+        var restrictionNum: Int,
+        var remainAmout: Int
 ): Parcelable{
     constructor(dto:ShowDto):this(
             id = dto.pk.toLong(),
@@ -39,7 +40,8 @@ class Show(
             expiredTime = dto.fields.expiredTime,
             expiredFetchTime = dto.fields.expiredFetchTime,
             isRestricted = dto.fields.isRestricted,
-            restrictionNum = dto.fields.restrictionNum
+            restrictionNum = dto.fields.restrictionNum,
+            remainAmout = dto.fields.remainedAmount
     )
     constructor():this(
             id = 0,
@@ -53,6 +55,7 @@ class Show(
             expiredTime = DEFAULT_TIME,
             expiredFetchTime = DEFAULT_TIME,
             isRestricted = false,
-            restrictionNum = 0
+            restrictionNum = 0,
+            remainAmout = 0
     )
 }

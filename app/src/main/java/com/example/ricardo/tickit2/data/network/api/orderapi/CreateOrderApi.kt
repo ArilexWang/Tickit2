@@ -15,6 +15,6 @@ interface CreateOrderApi{
     fun createOrder(
             @Field("studentID") studentID: String,
             @Field("password") password: String,
-            @Field("ticketTypeID") ticketTypeID: Long
+            @Field("showID") ticketTypeID: Long
     ): Single<List<OrderDto>>
 }

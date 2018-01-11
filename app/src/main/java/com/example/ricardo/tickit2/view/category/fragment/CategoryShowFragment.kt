@@ -8,8 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ricardo.tickit2.R
+import com.example.ricardo.tickit2.data.model.Show
 import com.example.ricardo.tickit2.data.network.repository.BannerPicRepository
 import com.example.ricardo.tickit2.data.network.repository.ShowRepository
+import com.example.ricardo.tickit2.view.admin.set.SetListAdapter
+import com.example.ricardo.tickit2.view.category.CategoryItemAdapte
 import com.example.ricardo.tickit2.view.common.RecyclerViewAdapter
 import com.example.ricardo.tickit2.view.fragment.home.HomeFragment
 import com.example.ricardo.tickit2.view.fragment.home.HomePresenter
@@ -27,15 +30,13 @@ class CategoryShowFragment : Fragment() {
         return inflater!!.inflate(R.layout.fragment_recyclerview, container, false)
     }
 
+
+
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val items = ArrayList<Any>()
-
-        for (i in 0 until ITEM_COUNT) {
-            items.add(Any())
-        }
 
         if (GRID_LAYOUT) {
             recyclerView.layoutManager = GridLayoutManager(activity, 2)
@@ -46,17 +47,22 @@ class CategoryShowFragment : Fragment() {
 
         //Use this now
         recyclerView.addItemDecoration(MaterialViewPagerHeaderDecorator())
+        val categoryItemAdapters = CategoryShowFragment.showList.map(this::createCategoryItemAdapter)
+        recyclerView.adapter = SetListAdapter(categoryItemAdapters)
 
     }
 
-
+    fun createCategoryItemAdapter(show: Show) = CategoryItemAdapte(show,{})
 
     companion object {
 
         private val GRID_LAYOUT = false
         private val ITEM_COUNT = 100
 
-        fun newInstance(): CategoryShowFragment {
+        var showList: MutableList<Show> = mutableListOf()
+
+        fun newInstance(list: MutableList<Show>): CategoryShowFragment {
+            showList = list
             return CategoryShowFragment()
         }
     }

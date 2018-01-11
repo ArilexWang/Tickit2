@@ -67,16 +67,13 @@ class SetActivity :BaseActivity(), SetView {
 
         presenter.start()
 
-
-
-
         bannerBack.setOnClickListener{ backBtnClick() }
     }
 
 
     fun addBtnClick(){
         val banner = BannerPicture("","","",true)
-        SetDetailActivity.startFromAdd(this,banner, ADD_INTEENT)
+        SetDetailActivity.startFromAdd(this,banner, BANNER_INTENT)
     }
 
     fun addShowClick(){

@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class TicketFieldDto {
-    @SerializedName("_ticketTypeID")
+    @SerializedName("_showID")
     @Expose
-    private String ticketTypeID;
+    private String showID;
     @SerializedName("_studentID")
     @Expose
     private String studentID;
@@ -33,12 +33,12 @@ public class TicketFieldDto {
     @Expose
     private String showAvatar;
 
-    public String getTicketTypeID() {
-        return ticketTypeID;
+    public String getShowID() {
+        return showID;
     }
 
-    public void setTicketTypeID(String ticketTypeID) {
-        this.ticketTypeID = ticketTypeID;
+    public void setShowID(String showID) {
+        this.showID = showID;
     }
 
     public String getStudentID() {
@@ -96,6 +96,7 @@ public class TicketFieldDto {
     public void setShowAvatar(String showAvatar) {
         this.showAvatar = showAvatar;
     }
+
 
 
 }

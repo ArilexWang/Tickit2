@@ -1,6 +1,7 @@
 package com.example.ricardo.tickit2.extensions
 
 import android.app.Activity
+import android.app.Fragment
 import android.content.Context
 import android.support.annotation.IdRes
 import android.support.v4.widget.SwipeRefreshLayout
@@ -8,7 +9,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.example.ricardo.tickit2.base.BaseFragment
 import com.example.ricardo.tickit2.data.*
+import kotlinx.android.synthetic.main.activity_show_setting.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.ReadWriteProperty
@@ -30,6 +33,9 @@ fun Boolean.toInt() = if (this) 1 else 0
 
 fun Activity.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
         = SwipeRefreshBinding(lazy { findViewById<SwipeRefreshLayout>(swipeRefreshLayoutId)}  )
+
+fun BaseFragment.bindToSwipeRefresh(@IdRes swipeRefreshLayoutId: Int): ReadWriteProperty<Any?, Boolean>
+        = SwipeRefreshBinding(lazy { view!!.findViewById<SwipeRefreshLayout>(swipeRefreshLayoutId)}  )
 
 private class SwipeRefreshBinding(lazyViewProvider: Lazy<SwipeRefreshLayout>) : ReadWriteProperty<Any?
         ,Boolean> {
@@ -70,4 +76,15 @@ fun explainOrderStatu(statu: Int) :String?{
         return ORDER_EXPIRED_UNFETCHED_MESSAGE
     }
     return null
+}
+
+fun explainCategory(category: Int): Int{
+    if(category == 0 || category == 1){
+        return ODNR_NUMBER
+    }else if(category == 2 || category ==3){
+        return ACTI_NUMBER
+    }else if(category == 4 || category ==5){
+        return PWXQR_NUMBER
+    }
+    return 0
 }

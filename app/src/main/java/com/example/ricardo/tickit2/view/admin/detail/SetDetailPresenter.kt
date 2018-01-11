@@ -37,6 +37,7 @@ class SetDetailPresenter(val view: SetDetailView, val repository: BannerPicRepos
 
 
     fun createBanner(banner: BannerPicture){
+        println("ccccccc")
         val user = getLocalUser(mUserDao!!)
         subscriptins += repository.createBannerPic(user!!,banner)
                 .applySchedulers()

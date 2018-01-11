@@ -26,12 +26,9 @@ public class ShowFiledDto {
     @SerializedName("_expiredFetchTime")
     @Expose
     private String expiredFetchTime;
-    @SerializedName("_minPrice")
+    @SerializedName("_price")
     @Expose
-    private Integer minPrice;
-    @SerializedName("_maxPrice")
-    @Expose
-    private Integer maxPrice;
+    private Integer price;
     @SerializedName("_avatar")
     @Expose
     private String avatar;
@@ -50,6 +47,9 @@ public class ShowFiledDto {
     @SerializedName("_restrictionNum")
     @Expose
     private Integer restrictionNum;
+    @SerializedName("_remainedAmount")
+    @Expose
+    private Integer remainedAmount;
 
     public String getParentEventID() {
         return parentEventID;
@@ -99,20 +99,12 @@ public class ShowFiledDto {
         this.expiredFetchTime = expiredFetchTime;
     }
 
-    public Integer getMinPrice() {
-        return minPrice;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setMinPrice(Integer minPrice) {
-        this.minPrice = minPrice;
-    }
-
-    public Integer getMaxPrice() {
-        return maxPrice;
-    }
-
-    public void setMaxPrice(Integer maxPrice) {
-        this.maxPrice = maxPrice;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public String getAvatar() {
@@ -161,6 +153,14 @@ public class ShowFiledDto {
 
     public void setRestrictionNum(Integer restrictionNum) {
         this.restrictionNum = restrictionNum;
+    }
+
+    public Integer getRemainedAmount() {
+        return remainedAmount;
+    }
+
+    public void setRemainedAmount(Integer remainedAmount) {
+        this.remainedAmount = remainedAmount;
     }
 
 }

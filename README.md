@@ -23,8 +23,8 @@ https://github.com/ArilexWang/Tickit2
 - android studio：compileSdkVersion  26
 - 虚拟机 Nexus 5X API 26
 - Django  1.11.3
-- Python	3.6
-- Ubuntu	16.04
+  - Python3.6
+  - Ubuntu16.04
 
 > #### 基本需求
 
@@ -150,7 +150,21 @@ https://github.com/ArilexWang/Tickit2
 
 ## ScreenShot
 
+![1](/Users/yuhanyin/AndroidStudioProjects/TICKIT666/img/1.png)
 
+![2](/Users/yuhanyin/AndroidStudioProjects/TICKIT666/img/2.png)
+
+![3](/Users/yuhanyin/AndroidStudioProjects/TICKIT666/img/3.png)
+
+![4](/Users/yuhanyin/AndroidStudioProjects/TICKIT666/img/4.png)
+
+![5](/Users/yuhanyin/AndroidStudioProjects/TICKIT666/img/5.png)
+
+![6](/Users/yuhanyin/AndroidStudioProjects/TICKIT666/img/6.png)
+
+![7](/Users/yuhanyin/AndroidStudioProjects/TICKIT666/img/7.png)
+
+![8](/Users/yuhanyin/AndroidStudioProjects/TICKIT666/img/8.png)
 
 
 
